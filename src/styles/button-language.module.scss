@@ -1,0 +1,25 @@
+.wrapperButtonLanguage {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  .containerContent {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    opacity: 0.5;
+    scale: 0.9;
+    transition: all 0.5s ease;
+    span {
+      font-size: 12px;
+      color: white;
+    }
+
+    &.active {
+      opacity: 1;
+      scale: 1;
+    }
+  }
+}

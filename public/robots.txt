@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://aa-design.vn
+
+# Sitemaps
+Sitemap: https://aa-design.vn/sitemap.xml

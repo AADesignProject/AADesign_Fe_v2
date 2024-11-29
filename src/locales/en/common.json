@@ -1,0 +1,34 @@
+{
+  "seo": {
+    "title_homepage": "Home",
+    "description_homepage": "This is the home screen of the AA DESIGN website - Professional interior design website",
+    "title_construction": "Construction",
+    "description_construction": ""
+  },
+  "header": {
+    "call": "Call",
+    "emergency": "Emergency Service",
+    "menu": {
+      "introduction": "Introduction",
+      "my_name": "La Van Phi",
+      "company": "Company",
+      "construction": "Construction",
+      "construction_image": "Construction images",
+      "feng_shui_consultation": "Feng shui consultation",
+      "contact": "Contact"
+    }
+  },
+  "construction": {
+    "title": "Construction",
+    "description": "We are proud to bring you the most beautiful and luxurious construction projects. We are always ready to serve you.",
+    "view_more": "View more"
+  },
+  "contact": {
+    "title": "Contact",
+    "live": "Meet in person",
+    "office": "Office",
+    "office_address_detail": "Lac Hong Westlake Building",
+    "office_address": "Phu Thuong, Tay Ho, Hanoi",
+    "time_active": "10h - 17h"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "seo": {
+    "title_homepage": "Trang chủ",
+    "description_homepage": "Đây là màn hình home của website AA DESIGN - Website thiết kế nội thất chuyên nghiệp",
+    "title_construction": "Công trình",
+    "description_construction": ""
+  },
+  "header": {
+    "call": "Gọi",
+    "emergency": "Dịch vụ khẩn cấp",
+    "menu": {
+      "introduction": "Giới thiệu",
+      "my_name": "La Văn Phi",
+      "company": "Công ty",
+      "construction": "Công trình",
+      "construction_image": "Hình ảnh thi công",
+      "feng_shui_consultation": "Tư vấn phong thủy",
+      "contact": "Liên hệ"
+    }
+  },
+  "construction": {
+    "title": "Công trình",
+    "description": "Chúng tôi tự hào mang đến cho bạn những công trình xây dựng đẹp và sang trọng nhất. Chúng tôi luôn sẵn lòng phục vụ bạn.",
+    "view_more": "Xem thêm"
+  },
+  "contact": {
+    "title": "Liên hệ",
+    "live": "Trực tiếp",
+    "office": "Văn phòng",
+    "office_address_detail": "Toà nhà Lạc Hồng Westlake",
+    "office_address": "Phú thượng, Tây Hồ, Hà Nội",
+    "time_active": "10h - 17h"
+  }
+}

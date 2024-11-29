@@ -1,0 +1,243 @@
+@import './variables.module.scss';
+
+.headerContainerTop {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  background-color: $primary-color;
+  color: $white-color;
+  .containerOption {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1360px;
+    padding: 5px 25px;
+
+    .wrapperInfo {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      .contentLink {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        span {
+          font-size: 12px;
+          font-weight: 500;
+        }
+      }
+    }
+
+    .wrapperSocialAndLanguage {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      @media (max-width: 767px) {
+        display: none;
+      }
+    }
+  }
+}
+
+.headerContainerBottom {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  box-shadow: 5px 0 10px rgba(0, 0, 0, 0.1);
+  .containerContent {
+    width: 100%;
+    max-width: 1360px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 25px;
+    .logo {
+      font-size: 28px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .menuOption {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .menuItem {
+        position: relative;
+        margin-right: 20px;
+        cursor: pointer;
+        .menuLabel {
+          display: flex;
+          align-items: center;
+          a {
+            font-size: 16px;
+            font-weight: 500;
+            text-transform: capitalize;
+            transition: all 0.5s ease;
+            &:hover {
+              color: $primary-color;
+              transform: scale(1.04);
+            }
+          }
+        }
+        .subMenu {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          background-color: white;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          z-index: 1000;
+          .subMenuItem {
+            display: block;
+            padding: 10px 20px;
+            white-space: nowrap;
+            &:hover {
+              background-color: $primary-color;
+              color: white;
+            }
+          }
+        }
+      }
+    }
+    .menuMobile {
+      display: none;
+    }
+  }
+}
+
+//mobile
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 2000;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(100%);
+  &.open {
+    transform: translateX(0);
+  }
+  .mobileMenuHeader {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    color: white;
+    .mobileLogo {
+      font-size: 24px;
+      font-weight: 700;
+    }
+  }
+  .mobileMenuContent {
+    padding: 15px;
+    .mobileMenuItem {
+      margin: 35px 0px;
+      color: white;
+      .mobileMenuLabel {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        span {
+          font-size: 16px;
+          font-weight: 500;
+        }
+      }
+      .mobileSubMenu {
+        margin-top: 10px;
+        .mobileSubMenuItem {
+          display: block;
+          padding: 10px 20px;
+          white-space: nowrap;
+          &:hover {
+            background-color: $primary-color;
+            color: white;
+          }
+        }
+      }
+    }
+  }
+
+  .mobileMenuFooter {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    .contactInfo {
+      text-align: center;
+      p {
+        margin: 5px 0;
+      }
+    }
+  }
+}
+
+/* Responsive Styles */
+
+/* Large devices (laptops/desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .headerContainerBottom .containerContent .logo {
+    font-size: 28px;
+  }
+  .headerContainerBottom
+    .containerContent
+    .menuOption
+    .menuItem
+    .menuLabel
+    span {
+    font-size: 16px;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (max-width: 1199px) and (min-width: 768px) {
+  .headerContainerBottom .containerContent .logo {
+    font-size: 24px;
+  }
+  .headerContainerBottom
+    .containerContent
+    .menuOption
+    .menuItem
+    .menuLabel
+    span {
+    font-size: 14px;
+  }
+  .headerContainerBottom .containerContent .menuOption {
+    display: none;
+  }
+  .headerContainerBottom .containerContent .menuMobile {
+    display: block;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 767px) and (min-width: 576px) {
+  .headerContainerBottom .containerContent .logo {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  .headerContainerBottom .containerContent .menuOption {
+    display: none;
+  }
+  .headerContainerBottom .containerContent .menuMobile {
+    display: block;
+  }
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575px) {
+  .headerContainerBottom .containerContent .logo {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .headerContainerBottom .containerContent .menuOption {
+    display: none;
+  }
+  .headerContainerBottom .containerContent .menuMobile {
+    display: block;
+  }
+}

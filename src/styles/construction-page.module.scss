@@ -1,0 +1,29 @@
+.wrapperConstructionPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 15px 0px;
+  .containerConstructionPage {
+    min-height: 80vh;
+    max-width: 1360px;
+    width: 100%;
+    padding: 0px 25px;
+
+    .wrapperCardConstruction {
+      margin-top: 25px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      width: 100%;
+      @media (max-width: 1024px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        padding: 0 10px;
+      }
+    }
+  }
+}
