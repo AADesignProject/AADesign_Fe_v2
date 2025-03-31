@@ -2,7 +2,6 @@ import React, { memo, useState } from 'react';
 import Link from 'next/link';
 import { BsFillTelephoneFill } from 'react-icons/bs';
 import { GoClock } from 'react-icons/go';
-import { FaFacebookF, FaInstagram } from 'react-icons/fa6';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import { IoMenu, IoClose } from 'react-icons/io5';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -13,7 +12,7 @@ import ButtonLanguageComponent from './button-language';
 
 //scss
 import styles from '@/scss/header.module.scss';
-import { phoneNumber } from '@/constant/general';
+import { email, phoneNumber } from '@/constant/general';
 
 const HeaderComponent = () => {
   const { t } = useTranslation();
@@ -55,12 +54,8 @@ const HeaderComponent = () => {
       url: '/construction',
     },
     {
-      label: t('header.menu.construction_image'),
-      url: '/construction-image',
-    },
-    {
-      label: t('header.menu.feng_shui_consultation'),
-      url: '/feng-shui-consultation',
+      label: t('header.menu.services'),
+      url: '#services',
     },
     {
       label: t('header.menu.contact'),
@@ -79,7 +74,7 @@ const HeaderComponent = () => {
           <div className={styles.wrapperInfo}>
             <Link href={`tel: ${phoneNumber}`} className={styles.contentLink}>
               <BsFillTelephoneFill />
-              <span>{`${t('header.call')}: ${phoneNumber}`}</span>
+              <span>{phoneNumber}</span>
             </Link>
             <Link href={'#'} className={styles.contentLink}>
               <GoClock size={18} />
@@ -88,8 +83,6 @@ const HeaderComponent = () => {
           </div>
 
           <div className={styles.wrapperSocialAndLanguage}>
-            <FaFacebookF />
-            <FaInstagram />
             <ButtonLanguageComponent />
           </div>
         </div>
@@ -172,8 +165,8 @@ const HeaderComponent = () => {
           </div>
           <div className={styles.mobileMenuFooter}>
             <div className={styles.contactInfo}>
-              <p>Call: 0123123123123</p>
-              <p>Email: info@example.com</p>
+              <p>Call: {phoneNumber}</p>
+              <p>Email: {email}</p>
             </div>
           </div>
         </div>

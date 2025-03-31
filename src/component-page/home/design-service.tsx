@@ -9,57 +9,6 @@ const DesignServiceComponentPage = () => {
   const [isInView, setIsInView] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>(null);
 
-  const numberAnimation = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 1,
-        when: 'beforeChildren',
-        staggerChildren: 0.3,
-      },
-    },
-  };
-
-  const countAnimation = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 1,
-      },
-    },
-  };
-
-  const CountUp = ({ end }: { end: number }) => {
-    const [count, setCount] = useState(0);
-
-    useEffect(() => {
-      let current = 0;
-      const increment = end / 100;
-      const interval = setInterval(() => {
-        current += increment;
-        setCount(Math.min(current, end));
-        if (current >= end) {
-          clearInterval(interval);
-        }
-      }, 20);
-      return () => clearInterval(interval);
-    }, [end]);
-
-    return (
-      <motion.h2
-        id={`count-${end}`}
-        className={styles.number}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 2 }}
-      >
-        {Math.floor(count)}+
-      </motion.h2>
-    );
-  };
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -93,71 +42,60 @@ const DesignServiceComponentPage = () => {
       transition={{ duration: 0.5 }}
       className={styles.designService}
     >
-      <div className={styles.textContent}>
-        <h2 className={styles.title}>What we offer</h2>
-        <p className={styles.subTitle}>
-          Full Package <br /> of Design Services
-        </p>
-        <p className={styles.descriptionTitle}>
-          From design-project to Accessories Selection
-        </p>
-        <span className={styles.description}>
-          Interior Agency provides its clients with the most full list of design
-          services, starting from creating a design-project and its 3D
-          visualization to selecting exclusive accessories right for your
-          interior. Our award-winning designers offer the most exquisite
-          decisions and create really unique spaces either in apartments or
-          offices.
-        </span>
-        <motion.div
-          variants={numberAnimation}
-          initial="hidden"
-          animate={isInView ? 'visible' : 'hidden'}
-          className={styles.containerNumberInfo}
-        >
-          <motion.div className={styles.boxContent} variants={countAnimation}>
-            <CountUp end={20} />
-            <p className={styles.note}>tons of paint used</p>
-          </motion.div>
-          <motion.div className={styles.boxContent} variants={countAnimation}>
-            <CountUp end={67} />
-            <p className={styles.note}>rooms done monthly</p>
-          </motion.div>
-        </motion.div>
-      </div>
-
-      <div className={styles.imageContent}>
-        <div className={styles.listImageLeft}>
-          <Image
-            src={
-              'https://aa-design.s3.ap-southeast-1.amazonaws.com/design_service.webp'
-            }
-            alt="image0"
-            width={200}
-            height={300}
-            className={styles.image0}
-          />
-
-          <Image
-            src={
-              'https://aa-design.s3.ap-southeast-1.amazonaws.com/design_service.webp'
-            }
-            alt="image1"
-            width={120}
-            height={200}
-            className={styles.image1}
-          />
+      <div className={styles.container}>
+        <div className={styles.textContent}>
+          {/* <h2 className={styles.title}>What we offer</h2> */}
+          <p className={styles.subTitle}>
+            Giải Pháp Thiết Kế Toàn Diện
+            <br />
+            Kiến Tạo Không Gian, Hiện Thực Ý Tưởng
+          </p>
+          <p className={styles.descriptionTitle}>
+            Tái định nghĩa không gian - nâng tầm trải nghiệm sống
+          </p>
+          <span className={styles.description}>
+            Chúng tôi cung cấp một gói dịch vụ thiết kế nội - ngoại thất trọn
+            gói, bao gồm từ lên ý tưởng, dựng bản thiết kế 3D cho đến lựa chọn
+            các phụ kiện trang trí cao cấp, giúp không gian của bạn trở nên hoàn
+            mỹ nhất. <br />
+            Với sự tận tâm và tỉ mỉ chúng tôi tạo ra những không gian tinh tế và
+            độc đáo, từ biệt thự, căn hộ cá nhân đến các dự án nhà hàng, khách
+            sạn và văn phòng làm việc chuyên nghiệp. Mỗi dự án đều là sự kết hợp
+            hài hòa giữa sáng tạo, công năng và phong cách riêng của khách hàng.
+          </span>
         </div>
-        <div className={styles.listImageRight}>
-          <Image
-            src={
-              'https://aa-design.s3.ap-southeast-1.amazonaws.com/design_service.webp'
-            }
-            alt="image2"
-            width={200}
-            height={300}
-            className={styles.image2}
-          />
+
+        <div className={styles.imageContent}>
+          <div className={styles.listImageLeft}>
+            <Image
+              src={
+                'https://aa-design.s3.ap-southeast-1.amazonaws.com/design_service.webp'
+              }
+              alt="image0"
+              width={200}
+              height={400}
+              className={styles.image0}
+            />
+
+            <Image
+              src={
+                'https://aa-design.s3.ap-southeast-1.amazonaws.com/design_service.webp'
+              }
+              alt="image1"
+              height={200}
+              width={130}
+            />
+          </div>
+          <div className={styles.listImageRight}>
+            <Image
+              src={
+                'https://aa-design.s3.ap-southeast-1.amazonaws.com/design_service.webp'
+              }
+              alt="image2"
+              height={300}
+              width={200}
+            />
+          </div>
         </div>
       </div>
     </motion.div>

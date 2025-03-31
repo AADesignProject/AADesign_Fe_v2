@@ -65,7 +65,7 @@ const ConstructionPage = () => {
   return (
     <>
       <SEOHeaderComponent
-        title={t('seo.title_homepage')}
+        title={t('seo.title_construction')}
         description={t('seo.description_construction')}
         keywords="construction, design, aa-design construction, aa design construction, la thien phi, công trình la thiên phi, công trình,"
       />

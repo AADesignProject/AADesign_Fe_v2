@@ -60,11 +60,11 @@ const OurProjectComponentPage = () => {
       animate={isInView ? 'visible' : 'hidden'}
       className={styles.ourProject}
     >
-      <h3 className={styles.title}>Our Project</h3>
-      <h2 className={styles.title2}>Recent works</h2>
+      {/* <h3 className={styles.title}>Dự Án</h3> */}
+      <h2 className={styles.title2}>Dự Án</h2>
       <p className={styles.description}>
-        Check our recent works we have just finished in different locations for
-        different purposes and clients.
+        Những công trình mà chúng tôi đã hoàn thành tại nhiều địa điểm, phục vụ
+        cho các mục đích và khách hàng khác nhau.
       </p>
       <motion.div
         className={styles.projectGallery}
