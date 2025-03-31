@@ -8,27 +8,24 @@ import styles from '@/scss/home-page.module.scss';
 const listOurService = [
   {
     icon: <SiVorondesign />,
-    title: 'Design Consultation',
-    description:
-      'This service is perfect for multiple rooms or rooms that require more than just a refresh. We can visit your home to create a complete design scheme.',
+    title: 'Thiết Kế Kiến Trúc',
+    description: `Kiến tạo không gian sống đẳng cấp với những thiết kế độc đáo, bền vững và tối ưu công năng, đảm bảo sự hài hòa giữa kiến trúc, phong cách và môi trường.`,
   },
   {
     icon: <SiVorondesign />,
-    title: 'Design Consultation',
+    title: 'Thiết Kế Nội Thất',
     description:
-      'This service is perfect for multiple rooms or rooms that require more than just a refresh. We can visit your home to create a complete design scheme.',
+      'Biến ý tưởng thành không gian sống lý tưởng, kết hợp giữa thẩm mỹ, tiện nghi và cá tính, mang đến mang đến dấu ấn cá nhân cho từng công trình.',
   },
   {
     icon: <SiVorondesign />,
-    title: 'Design Consultation',
-    description:
-      'This service is perfect for multiple rooms or rooms that require more than just a refresh. We can visit your home to create a complete design scheme.',
+    title: 'Thi Công',
+    description: `Từ bản vẽ đến thực tế – quy trình thi công chuyên nghiệp, chính xác và đúng tiến độ, đảm bảo chất lượng hoàn thiện cao nhất cho từng công trình.`,
   },
   {
     icon: <SiVorondesign />,
-    title: 'Design Consultation',
-    description:
-      'This service is perfect for multiple rooms or rooms that require more than just a refresh. We can visit your home to create a complete design scheme.',
+    title: 'Tư Vấn & Cung Cấp Vật Phẩm Phong Thủy',
+    description: `Ứng dụng các nguyên tắc phong thủy vào thiết kế kiến trúc và nội thất, tạo nên không gian cân bằng năng lượng, hài hòa thiên nhiên và mang lại sự thịnh vượng, may mắn, bình an cho gia chủ.`,
   },
 ];
 
@@ -86,29 +83,28 @@ const OurServiceComponentPage = () => {
       variants={containerVariants}
       className={styles.ourService}
     >
-      <h2 className={styles.title}>Meet</h2>
-      <h2 className={styles.title2}>Our services</h2>
+      {/* <h2 className={styles.title}>Meet</h2> */}
+      <h2 className={styles.title2}>DỊCH VỤ CỦA CHÚNG TÔI</h2>
       <p className={styles.description}>
-        With a team of highly skilled and accredited interior designers, we are
-        equipped to undertake projects of any size
+        Giải pháp chuyên nghiệp - Thi công nhanh chóng - Hoàn thiện tỉ mỉ từng
+        chi tiết
       </p>
 
-      <motion.div
-        variants={containerVariants}
-        className={styles.serviceWrapper}
-      >
-        {listOurService?.map((item, index) => (
-          <motion.div
-            variants={itemVariants}
-            key={index}
-            className={styles.serviceBox}
-          >
-            <div className={styles.icon}>{item.icon}</div>
-            <h3 className={styles.title}>{item.title}</h3>
-            <p className={styles.description}>{item.description}</p>
-          </motion.div>
-        ))}
-      </motion.div>
+      <div className={styles.serviceWrapper}>
+        <motion.div variants={containerVariants} className={styles.container}>
+          {listOurService?.map((item, index) => (
+            <motion.div
+              variants={itemVariants}
+              key={index}
+              className={styles.serviceBox}
+            >
+              <div className={styles.icon}>{item.icon}</div>
+              <h3 className={styles.title}>{item.title}</h3>
+              <p className={styles.description}>{item.description}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
     </motion.div>
   );
 };
