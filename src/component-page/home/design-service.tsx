@@ -1,13 +1,31 @@
 import Image from 'next/image';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 
 //styles
 import styles from '@/scss/home-page.module.scss';
+import axiosInstance from '@/services/axios';
+import { listApiUrl } from '@/utils/apiUrl';
+import { useQuery } from '@tanstack/react-query';
+
+type TDataImageBannerSmallProps = {
+  title: string;
+  url: string;
+  _id: string;
+};
+
+const fetchImages = async () => {
+  const { data } = await axiosInstance.get(listApiUrl.banner_small);
+  return data;
+};
 
 const DesignServiceComponentPage = () => {
   const [isInView, setIsInView] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>(null);
+
+  const { data: dataImageBannersSmall } = useQuery<
+    TDataImageBannerSmallProps[]
+  >({ queryKey: ['images-banner-small'], queryFn: fetchImages });
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -68,9 +86,7 @@ const DesignServiceComponentPage = () => {
         <div className={styles.imageContent}>
           <div className={styles.listImageLeft}>
             <Image
-              src={
-                'https://aa-design.s3.ap-southeast-1.amazonaws.com/design_service.webp'
-              }
+              src={`${process.env.NEXT_PUBLIC_LINK_S3}/${dataImageBannersSmall?.[0]?.url || ''}`}
               alt="image0"
               width={200}
               height={400}
@@ -78,9 +94,7 @@ const DesignServiceComponentPage = () => {
             />
 
             <Image
-              src={
-                'https://aa-design.s3.ap-southeast-1.amazonaws.com/design_service.webp'
-              }
+              src={`${process.env.NEXT_PUBLIC_LINK_S3}/${dataImageBannersSmall?.[1]?.url || ''}`}
               alt="image1"
               height={200}
               width={130}
@@ -88,9 +102,7 @@ const DesignServiceComponentPage = () => {
           </div>
           <div className={styles.listImageRight}>
             <Image
-              src={
-                'https://aa-design.s3.ap-southeast-1.amazonaws.com/design_service.webp'
-              }
+              src={`${process.env.NEXT_PUBLIC_LINK_S3}/${dataImageBannersSmall?.[2]?.url || ''}`}
               alt="image2"
               height={300}
               width={200}
@@ -102,4 +114,4 @@ const DesignServiceComponentPage = () => {
   );
 };
 
-export default DesignServiceComponentPage;
+export default memo(DesignServiceComponentPage);

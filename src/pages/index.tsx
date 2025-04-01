@@ -14,11 +14,6 @@ interface IComponentConfig {
   component: React.ComponentType<object>;
 }
 
-const listImageCarousel = [
-  { src: 'https://aa-design.s3.ap-southeast-1.amazonaws.com/ini-design.jpg' },
-  { src: 'https://aa-design.s3.ap-southeast-1.amazonaws.com/design_1.webp' },
-];
-
 const components: IComponentConfig[] = [
   {
     id: 'design-service',
@@ -80,7 +75,7 @@ const HomePage = () => {
         keywords="AA DESIGN, design, interior design, Thiết kế nội thất, La văn phi, La thiên phi, aa design homepage"
       />
       <div className={styles.wrapperHomePage}>
-        <CarouselComponent images={listImageCarousel} />
+        <CarouselComponent />
         {components.map(({ id, component: Component }) => (
           <div key={id} id={id}>
             {visible[id] && <Component />}
