@@ -1,0 +1,49 @@
+name: Deploy-production
+
+# Trigger deployment only on push to main branch
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy to EC2 on main branch push
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the files
+        uses: actions/checkout@v2
+
+      - name: npm install
+        run: npm install
+      - name: npm run build
+        env:
+          NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_BASE_URL }}
+        run: |
+          npm run build
+      - name: Coppy .next to Server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST_DNS_PRODUCTION }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY_PRODUCTION }}
+          source: ".next"
+          target: "AADesign_Fe_v2"
+
+      - name: Executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST_DNS_PRODUCTION }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY_PRODUCTION }}
+          script: |
+            cd AADesign_Fe_v2
+            git pull
+            npm install
+            if pm2 describe aa_design_fe > /dev/null 2>&1; then
+              npm run restart-server
+            else
+              npm run start-server
+            fi
+
