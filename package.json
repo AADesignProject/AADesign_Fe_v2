@@ -9,7 +9,10 @@
     "lint": "next lint",
     "prepare": "husky",
     "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}",
-    "postbuild": "next-sitemap"
+    "postbuild": "next-sitemap",
+    "start-server": "pm2 start 'npm run start' --name 'aa-design-fe'",
+    "restart-server": "pm2 restart 'aa-design-fe'",
+    "stop-server": "pm2 stop 'aa-design-fe'"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,css,scss,md}": "yarn format"
