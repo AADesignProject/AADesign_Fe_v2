@@ -20,6 +20,7 @@ jobs:
       - name: npm run build
         env:
           NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_BASE_URL }}
+          NEXT_PUBLIC_LINK_S3: ${{ secrets.NEXT_PUBLIC_LINK_S3 }}
         run: |
           npm run build
       - name: Coppy .next to Server
