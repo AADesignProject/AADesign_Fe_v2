@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { BsFillTelephoneFill } from 'react-icons/bs';
 import { GoClock } from 'react-icons/go';
@@ -6,6 +6,7 @@ import { RiArrowDropDownLine } from 'react-icons/ri';
 import { IoMenu, IoClose } from 'react-icons/io5';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { useRouter } from 'next/router';
 
 //components
 import ButtonLanguageComponent from './button-language';
@@ -28,6 +29,11 @@ const HeaderComponent = () => {
     }
   };
 
+  const handleMobileMenuItemClick = (url: string) => {
+    setIsMobileMenuOpen(false);
+    setOpenMenu(null);
+  };
+
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
@@ -35,16 +41,11 @@ const HeaderComponent = () => {
   const listMenu = [
     {
       label: t('header.menu.introduction'),
-      url: '',
+      url: '/profile',
       children: [
         {
           label: t('header.menu.my_name'),
           url: '/profile',
-          icon: '',
-        },
-        {
-          label: t('header.menu.company'),
-          url: '/company',
           icon: '',
         },
       ],
@@ -89,7 +90,7 @@ const HeaderComponent = () => {
       </div>
       <div className={styles.headerContainerBottom}>
         <div className={styles.containerContent}>
-          <div className={styles.logo}>{`AA'Design`}</div>
+          <Link href={'/'} className={styles.logo}>{`AA Design`}</Link>
           <div className={styles.menuOption}>
             {listMenu.map((menu, index) => (
               <div key={index} className={styles.menuItem}>
@@ -140,11 +141,13 @@ const HeaderComponent = () => {
           <div className={styles.mobileMenuContent}>
             {listMenu.map((menu, index) => (
               <div key={index} className={styles.mobileMenuItem}>
-                <div
-                  onClick={() => handleMenuClick(menu.label)}
-                  className={styles.mobileMenuLabel}
-                >
-                  <span>{menu.label}</span>
+                <div className={styles.mobileMenuLabel}>
+                  <Link
+                    href={menu.url}
+                    onClick={() => handleMobileMenuItemClick(menu.url)}
+                  >
+                    {menu.label}
+                  </Link>
                   {menu.children && <RiArrowDropDownLine size={28} />}
                 </div>
                 {menu.children && openMenu === menu.label && (
@@ -154,6 +157,7 @@ const HeaderComponent = () => {
                         key={childIndex}
                         href={child.url}
                         className={styles.mobileSubMenuItem}
+                        onClick={() => handleMobileMenuItemClick(child.url)}
                       >
                         {child.label}
                       </Link>

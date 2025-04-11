@@ -37,14 +37,6 @@ const FooterComponent = () => {
             ></iframe>
           </div>
         </div>
-
-        <div className={styles.columnLeft}>
-          <h2 className={styles.titleService}>Services</h2>
-          <Link href={'#'}>Design Consultation</Link>
-          <Link href={'#'}>Design-project & 3d visualization</Link>
-          <Link href={'#'}>Custom furnitue</Link>
-          <Link href={'#'}>Exclusive accessories</Link>
-        </div>
       </div>
       <div className={styles.divider} />
       <div className={styles.containerCopyright}>

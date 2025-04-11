@@ -15,10 +15,32 @@ const SEOHeaderComponent = ({
     <Head>
       <title>{`AA DESIGN - ${title}`}</title>
       <meta name="description" content={description} />
-      {keywords && <meta name="keywords" content={keywords} />}
+      <meta name="keywords" content={keywords} />
       <meta name="author" content={'AA DESIGN'} />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta charSet="UTF-8" />
+
+      {/* Thêm Open Graph tags cho social media */}
+      <meta property="og:title" content={`AA DESIGN - ${title}`} />
+      <meta property="og:description" content={description} />
+      <meta property="og:type" content="website" />
+      {/* <meta property="og:image" content={ogImage} /> */}
+      {/* <meta property="og:url" content={currentUrl} /> */}
+
+      {/* Thêm Twitter Card tags */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={`AA DESIGN - ${title}`} />
+      <meta name="twitter:description" content={description} />
+      {/* <meta name="twitter:image" content={ogImage} /> */}
+
+      {/* Thêm structured data */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Organization',
+          name: 'AA DESIGN',
+          url: 'https://aa-design.vn',
+          // Thêm thông tin khác
+        })}
+      </script>
     </Head>
   );
 };
