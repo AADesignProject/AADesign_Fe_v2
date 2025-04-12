@@ -7,6 +7,8 @@ import axiosInstance from '@/services/axios';
 
 //styles
 import styles from '@/scss/home-page.module.scss';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 type TProject = {
   _id: string;
@@ -52,6 +54,7 @@ const itemVariants = {
 const OurProjectComponentPage = () => {
   const [isInView, setIsInView] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const router = useRouter();
   const loadMoreRef = useRef<HTMLDivElement>(null);
 
   const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage } =
@@ -147,6 +150,7 @@ const OurProjectComponentPage = () => {
                 className={styles.imageWrapper}
                 variants={itemVariants}
                 custom={index}
+                onClick={() => router.push(`/construction/${project._id}`)}
               >
                 <Image
                   src={`${process.env.NEXT_PUBLIC_LINK_S3}/${project.thumbnailMain}`}
@@ -171,6 +175,17 @@ const OurProjectComponentPage = () => {
           )}
         </motion.div>
         <div ref={loadMoreRef} style={{ height: '20px' }} />
+        <motion.div
+          className={styles.viewMoreContainer}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+        >
+          <Link href="/construction" className={styles.viewMoreButton}>
+            <span>Xem thêm dự án</span>
+            <div className={styles.buttonLine} />
+          </Link>
+        </motion.div>
       </div>
     </motion.div>
   );

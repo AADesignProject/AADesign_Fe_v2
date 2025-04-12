@@ -31,7 +31,7 @@ interface ProjectResponse {
 
 const fetchProjects = async ({ pageParam = 1 }: { pageParam?: number }) => {
   const response = await axiosInstance.get<ProjectResponse>(
-    `/projects/typical?page=${pageParam}&limit=9`
+    `/projects?page=${pageParam}&limit=9`
   );
   return response.data;
 };
