@@ -47,9 +47,12 @@ const ConstructionPage = () => {
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
     useInfiniteQuery({
-      queryKey: ['projects'],
+      queryKey: ['projects', 'all'],
       queryFn: fetchProjects,
       initialPageParam: 1,
+      gcTime: 5 * 60 * 1000,
+      refetchOnWindowFocus: true,
+      refetchOnMount: true,
       getNextPageParam: (lastPage) => {
         const { page, total, limit } = lastPage;
         const totalPages = Math.ceil(total / limit);

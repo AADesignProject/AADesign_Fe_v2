@@ -59,9 +59,12 @@ const OurProjectComponentPage = () => {
 
   const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfiniteQuery({
-      queryKey: ['projects'],
+      queryKey: ['projects', 'typical'],
       queryFn: fetchProjects,
       initialPageParam: 1,
+      gcTime: 5 * 60 * 1000,
+      refetchOnWindowFocus: true,
+      refetchOnMount: true,
       getNextPageParam: (lastPage) => {
         const { page, total, limit } = lastPage;
         const totalPages = Math.ceil(total / limit);
