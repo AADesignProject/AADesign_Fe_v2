@@ -42,7 +42,7 @@ jobs:
             cd AADesign_Fe_v2
             git pull
             npm install
-            if pm2 describe aa_design_fe > /dev/null 2>&1; then
+            if pm2 describe aa-design-fe > /dev/null 2>&1; then
               npm run restart-server
             else
               npm run start-server
