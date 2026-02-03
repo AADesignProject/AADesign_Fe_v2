@@ -2,11 +2,10 @@ import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import { memo } from 'react';
-import { useQuery } from '@tanstack/react-query';
 
 //components
-import axiosInstance from '@/services/axios';
-import { listApiUrl } from '@/utils/apiUrl';
+import staticContent from '@/data/static-content.json';
+import { resolveImageUrl } from '@/utils/resolveImageUrl';
 
 //scss
 import 'swiper/css/bundle';
@@ -20,16 +19,8 @@ type TDataImageBannerProps = {
   _id: string;
 };
 
-const fetchImages = async () => {
-  const { data } = await axiosInstance.get(listApiUrl.banner);
-  return data;
-};
-
 const CarouselComponent = () => {
-  const { data: dataImageBanners } = useQuery<TDataImageBannerProps[]>({
-    queryKey: ['images-banner'],
-    queryFn: fetchImages,
-  });
+  const dataImageBanners = staticContent.banners as TDataImageBannerProps[];
 
   return (
     <Swiper
@@ -44,11 +35,13 @@ const CarouselComponent = () => {
         <SwiperSlide key={index}>
           <div className={styles.slide}>
             <Image
-              src={`${process.env.NEXT_PUBLIC_LINK_S3}/${data?.url}`}
+              src={resolveImageUrl(data?.url)}
               alt={data.title}
               width={1920}
               height={1080}
-              quality={100}
+              quality={85}
+              sizes="100vw"
+              priority={index === 0}
             />
             {/* {image.content && (
               <div className={styles.content}>{image.content}</div>

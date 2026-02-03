@@ -49,7 +49,14 @@ const ButtonLanguageComponent = () => {
           onClick={() => changeLanguage(item.language)}
           className={`${styles.containerContent} ${i18n.language === item.language ? styles.active : ''}`}
         >
-          <Image src={item.flag} alt={item.altFlag} width={20} height={20} />
+          <Image
+            src={item.flag}
+            alt={item.altFlag}
+            width={20}
+            height={20}
+            sizes="20px"
+            quality={85}
+          />
           <span>{item.label}</span>
         </button>
       ))}

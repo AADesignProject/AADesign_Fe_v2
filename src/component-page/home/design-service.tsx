@@ -4,9 +4,8 @@ import { motion } from 'framer-motion';
 
 //styles
 import styles from '@/scss/home-page.module.scss';
-import axiosInstance from '@/services/axios';
-import { listApiUrl } from '@/utils/apiUrl';
-import { useQuery } from '@tanstack/react-query';
+import staticContent from '@/data/static-content.json';
+import { resolveImageUrl } from '@/utils/resolveImageUrl';
 
 type TDataImageBannerSmallProps = {
   title: string;
@@ -14,18 +13,12 @@ type TDataImageBannerSmallProps = {
   _id: string;
 };
 
-const fetchImages = async () => {
-  const { data } = await axiosInstance.get(listApiUrl.banner_small);
-  return data;
-};
-
 const DesignServiceComponentPage = () => {
   const [isInView, setIsInView] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>(null);
 
-  const { data: dataImageBannersSmall } = useQuery<
-    TDataImageBannerSmallProps[]
-  >({ queryKey: ['images-banner-small'], queryFn: fetchImages });
+  const dataImageBannersSmall =
+    staticContent.bannerSmall as TDataImageBannerSmallProps[];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -86,26 +79,32 @@ const DesignServiceComponentPage = () => {
         <div className={styles.imageContent}>
           <div className={styles.listImageLeft}>
             <Image
-              src={`${process.env.NEXT_PUBLIC_LINK_S3}/${dataImageBannersSmall?.[0]?.url || ''}`}
-              alt="image0"
+              src={resolveImageUrl(dataImageBannersSmall?.[0]?.url || '')}
+              alt={dataImageBannersSmall?.[0]?.title || 'Không gian thiết kế 1'}
               width={200}
               height={400}
               className={styles.image0}
+              sizes="(max-width: 768px) 45vw, 200px"
+              quality={85}
             />
 
             <Image
-              src={`${process.env.NEXT_PUBLIC_LINK_S3}/${dataImageBannersSmall?.[1]?.url || ''}`}
-              alt="image1"
+              src={resolveImageUrl(dataImageBannersSmall?.[1]?.url || '')}
+              alt={dataImageBannersSmall?.[1]?.title || 'Không gian thiết kế 2'}
               height={200}
               width={130}
+              sizes="(max-width: 768px) 35vw, 130px"
+              quality={85}
             />
           </div>
           <div className={styles.listImageRight}>
             <Image
-              src={`${process.env.NEXT_PUBLIC_LINK_S3}/${dataImageBannersSmall?.[2]?.url || ''}`}
-              alt="image2"
+              src={resolveImageUrl(dataImageBannersSmall?.[2]?.url || '')}
+              alt={dataImageBannersSmall?.[2]?.title || 'Không gian thiết kế 3'}
               height={300}
               width={200}
+              sizes="(max-width: 768px) 45vw, 200px"
+              quality={85}
             />
           </div>
         </div>

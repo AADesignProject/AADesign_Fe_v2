@@ -17,21 +17,15 @@ interface IComponentConfig {
 const components: IComponentConfig[] = [
   {
     id: 'design-service',
-    component: dynamic(() => import('@/component-page/home/design-service'), {
-      ssr: false,
-    }),
+    component: dynamic(() => import('@/component-page/home/design-service')),
   },
   {
     id: 'our-service',
-    component: dynamic(() => import('@/component-page/home/our-service'), {
-      ssr: false,
-    }),
+    component: dynamic(() => import('@/component-page/home/our-service')),
   },
   {
     id: 'our-project',
-    component: dynamic(() => import('@/component-page/home/our-project'), {
-      ssr: false,
-    }),
+    component: dynamic(() => import('@/component-page/home/our-project')),
   },
 ];
 

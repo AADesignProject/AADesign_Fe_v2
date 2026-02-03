@@ -1,14 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Image from 'next/image';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { motion } from 'framer-motion';
-import { useInfiniteQuery } from '@tanstack/react-query';
-import axiosInstance from '@/services/axios';
 
 //styles
 import styles from '@/scss/home-page.module.scss';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import staticContent from '@/data/static-content.json';
+import { resolveImageUrl } from '@/utils/resolveImageUrl';
 
 type TProject = {
   _id: string;
@@ -17,20 +17,8 @@ type TProject = {
   thumbnail: string;
   thumbnailMain: string;
   name: string;
-};
-
-type TProjectResponse = {
-  data: TProject[];
-  total: number;
-  page: number;
-  limit: number;
-};
-
-const fetchProjects = async ({ pageParam = 1 }: { pageParam?: number }) => {
-  const response = await axiosInstance.get<TProjectResponse>(
-    `/projects/typical?page=${pageParam}&limit=9`
-  );
-  return response.data;
+  isTypical?: boolean;
+  typical?: boolean;
 };
 
 const containerVariants = {
@@ -56,21 +44,8 @@ const OurProjectComponentPage = () => {
   const ref = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const loadMoreRef = useRef<HTMLDivElement>(null);
-
-  const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useInfiniteQuery({
-      queryKey: ['projects', 'typical'],
-      queryFn: fetchProjects,
-      initialPageParam: 1,
-      gcTime: 5 * 60 * 1000,
-      refetchOnWindowFocus: true,
-      refetchOnMount: true,
-      getNextPageParam: (lastPage) => {
-        const { page, total, limit } = lastPage;
-        const totalPages = Math.ceil(total / limit);
-        return page < totalPages ? page + 1 : undefined;
-      },
-    });
+  const [page, setPage] = useState(1);
+  const limit = 9;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -96,12 +71,23 @@ const OurProjectComponentPage = () => {
     };
   }, []);
 
+  const allProjects = useMemo(
+    () =>
+      (staticContent.projects as TProject[]).filter(
+        (project) => project.typical ?? project.isTypical
+      ),
+    []
+  );
+  const totalPages = Math.ceil(allProjects.length / limit) || 1;
+  const safePage = Math.min(page, totalPages);
+  const hasNextPage = safePage < totalPages;
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         const target = entries[0];
-        if (target.isIntersecting && hasNextPage && !isFetchingNextPage) {
-          fetchNextPage();
+        if (target.isIntersecting && hasNextPage) {
+          setPage((prev) => prev + 1);
         }
       },
       { threshold: 0.1 }
@@ -116,17 +102,8 @@ const OurProjectComponentPage = () => {
         observer.unobserve(loadMoreRef.current);
       }
     };
-  }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
-
-  if (error) {
-    return (
-      <div className={styles.errorContainer}>
-        <p>Đã có lỗi xảy ra khi tải dữ liệu. Vui lòng thử lại sau.</p>
-      </div>
-    );
-  }
-
-  const projects = data?.pages?.flatMap((page) => page?.data || []) || [];
+  }, [hasNextPage]);
+  const projects = allProjects.slice(0, safePage * limit);
 
   return (
     <motion.div
@@ -156,11 +133,12 @@ const OurProjectComponentPage = () => {
                 onClick={() => router.push(`/construction/${project._id}`)}
               >
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_LINK_S3}/${project.thumbnailMain}`}
+                  src={resolveImageUrl(project.thumbnailMain)}
                   alt={project.name}
                   width={1080}
                   height={1920}
-                  quality={100}
+                  quality={85}
+                  sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   priority={index < 6}
                 />
                 <div className={styles.overlay}>
