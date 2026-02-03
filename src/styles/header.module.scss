@@ -104,6 +104,16 @@
     .menuMobile {
       display: none;
     }
+    .menuIconButton {
+      background: transparent;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: inherit;
+    }
   }
 }
 

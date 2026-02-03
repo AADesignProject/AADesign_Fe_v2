@@ -1,0 +1,449 @@
+{
+  "banners": [
+    {
+      "_id": "banner-1",
+      "title": "Không gian sống đẳng cấp",
+      "description": "Thiết kế tinh tế, hài hòa công năng và thẩm mỹ.",
+      "url": "/images/project/banners/1743410060887-cover_4.webp"
+    },
+    {
+      "_id": "banner-2",
+      "title": "Kiến tạo trải nghiệm",
+      "description": "Biến ý tưởng thành hiện thực với giải pháp toàn diện.",
+      "url": "/images/project/banners/1743410060884-coover_2_1.webp"
+    },
+    {
+      "_id": "banner-3",
+      "title": "Không gian tinh tế",
+      "description": "Tối ưu công năng, nâng tầm thẩm mỹ.",
+      "url": "/images/project/banners/1743410060872-coover_3.webp"
+    }
+  ],
+  "bannerSmall": [
+    {
+      "_id": "banner-small-1",
+      "title": "Góc nghỉ dưỡng",
+      "url": "/images/project/banners_small/1743413345096-anh_con_-_phan_gioi_thieu_chung-03.webp"
+    },
+    {
+      "_id": "banner-small-2",
+      "title": "Phong cách tối giản",
+      "url": "/images/project/banners_small/1743413345098-anh_con_-_phan_gioi_thieu_chung-02.webp"
+    },
+    {
+      "_id": "banner-small-3",
+      "title": "Chi tiết tinh xảo",
+      "url": "/images/project/banners_small/1743413345084-anh_con_-_phan_gioi_thieu_chung-01.webp"
+    }
+  ],
+  "projects": [
+    {
+      "_id": "67f898307d268cfebb8c0af4",
+      "name": "Biệt thự âu cơ",
+      "type": "interior",
+      "address": "Âu cơ, hà nội",
+      "images": [
+        "/images/project/biet_thu_au_co/1744345135690-p_tho_1.webp",
+        "/images/project/biet_thu_au_co/1744345135683-p_tho_2.webp",
+        "/images/project/biet_thu_au_co/1744345135709-p_tho_4.webp",
+        "/images/project/biet_thu_au_co/1744345135652-p_trung_bay_1.webp",
+        "/images/project/biet_thu_au_co/1744345135863-p_trung_bay_2.webp",
+        "/images/project/biet_thu_au_co/1744345135946-p_trung_bay_3.webp",
+        "/images/project/biet_thu_au_co/1744345135904-p_trung_bay_4.webp",
+        "/images/project/biet_thu_au_co/1744345135950-p_trung_bay_8.webp",
+        "/images/project/biet_thu_au_co/1744345136082-p_trung_bay_9.webp",
+        "/images/project/biet_thu_au_co/1744345136157-p_trung_bay_11.webp"
+      ],
+      "thumbnail": "/images/project/biet_thu_au_co/thumbnail/1744345134336-P THO (1).jpg.webp",
+      "thumbnailMain": "/images/project/biet_thu_au_co/thumbnail-main/1744342711797-biet_thu_au_co_ha_noi.webp",
+      "typical": true
+    },
+    {
+      "_id": "67f9ed566644672a6bf73b4a",
+      "name": "Biệt thự văn phú",
+      "type": "architecture",
+      "address": "Hà Đông, Hà Nội",
+      "images": [
+        "/images/project/biet_thu_van_phu/1744432468939-6.webp",
+        "/images/project/biet_thu_van_phu/1744432469412-3.webp",
+        "/images/project/biet_thu_van_phu/1744432469364-2.webp",
+        "/images/project/biet_thu_van_phu/1744432469420-san_vn_bt_vn_ph_1.webp",
+        "/images/project/biet_thu_van_phu/1744432469731-san_vn_bt_vn_ph_2.webp",
+        "/images/project/biet_thu_van_phu/1744432470065-pa_2_3.webp",
+        "/images/project/biet_thu_van_phu/1744432470097-pa_2_1.webp"
+      ],
+      "thumbnail": "/images/project/biet_thu_van_phu/thumbnail/1744432467265-2.jpg.webp",
+      "thumbnailMain": "/images/project/biet_thu_van_phu/thumbnail-main/1744432468292-pa 2 (3).jpg.webp",
+      "typical": true
+    },
+    {
+      "_id": "67f90c4ff603a839446d4911",
+      "name": "Amour Resort Bavi",
+      "type": "interior",
+      "address": "Ba vì, hà nội",
+      "images": [
+        "/images/project/amour_resort_bavi/1744374862760-h1_1.webp",
+        "/images/project/amour_resort_bavi/1744374862744-h1_2.webp",
+        "/images/project/amour_resort_bavi/1744374862767-h1_3.webp",
+        "/images/project/amour_resort_bavi/1744374862746-h1_4.webp",
+        "/images/project/amour_resort_bavi/1744374863028-h1_5.webp",
+        "/images/project/amour_resort_bavi/1744374863020-h1_6.webp",
+        "/images/project/amour_resort_bavi/1744374863156-nha_hang_1.webp",
+        "/images/project/amour_resort_bavi/1744374862987-nha_hang_2.webp",
+        "/images/project/amour_resort_bavi/1744374863188-phoi_canh_phong_cigar_2.webp",
+        "/images/project/amour_resort_bavi/1744374863194-phong_an_vip_1.webp"
+      ],
+      "thumbnail": "/images/project/amour_resort_bavi/thumbnail/1744374861795-phong an vip (1).jpg.webp",
+      "typical": false
+    },
+    {
+      "_id": "67f9ef7a6644672a6bf73b57",
+      "name": "Hoa lan vinhome",
+      "type": "all",
+      "address": "Vinhome, Hà Nội",
+      "images": [
+        "/images/project/hoa_lan_vinhome/1744433015460-bep__an_1.webp",
+        "/images/project/hoa_lan_vinhome/1744433015130-sanh_2.webp",
+        "/images/project/hoa_lan_vinhome/1744433014596-ngu_master_5.webp",
+        "/images/project/hoa_lan_vinhome/1744433015153-ngu_master_1.webp",
+        "/images/project/hoa_lan_vinhome/1744433014942-thay_do_1.webp",
+        "/images/project/hoa_lan_vinhome/1744433017142-sanh_1.webp",
+        "/images/project/hoa_lan_vinhome/1744433018874-bep__an_2.webp",
+        "/images/project/hoa_lan_vinhome/1744433018142-khach_2.webp",
+        "/images/project/hoa_lan_vinhome/1744433018382-v2_2.webp",
+        "/images/project/hoa_lan_vinhome/1744433018861-v2_3.webp"
+      ],
+      "thumbnail": "/images/project/hoa_lan_vinhome/thumbnail/1744433012920-v4.jpg.webp",
+      "thumbnailMain": "/images/project/hoa_lan_vinhome/thumbnail-main/1744433014186-hoa lan vin home.png.webp",
+      "typical": true
+    },
+    {
+      "_id": "67f9f04f6644672a6bf73b5f",
+      "name": "Trường mầm non Bắc Ninh",
+      "type": "all",
+      "address": "Khai Minh Đức, Bắc Ninh",
+      "images": [
+        "/images/project/truong_mam_non_bac_ninh/1744433230151-4.webp",
+        "/images/project/truong_mam_non_bac_ninh/1744433230807-8.webp",
+        "/images/project/truong_mam_non_bac_ninh/1744433230483-9.webp",
+        "/images/project/truong_mam_non_bac_ninh/1744433230948-kmd_bac_ninh_facade_v3_entrance.webp",
+        "/images/project/truong_mam_non_bac_ninh/1744433230789-kmd_bac_ninh_facade_v1_close.webp",
+        "/images/project/truong_mam_non_bac_ninh/1744433231104-kmd_bac_ninh_facade_v2_color_2_open.webp",
+        "/images/project/truong_mam_non_bac_ninh/1744433231339-2.webp",
+        "/images/project/truong_mam_non_bac_ninh/1744433231415-6.webp",
+        "/images/project/truong_mam_non_bac_ninh/1744433231451-2a.webp",
+        "/images/project/truong_mam_non_bac_ninh/1744433231469-1.webp"
+      ],
+      "thumbnail": "/images/project/truong_mam_non_bac_ninh/thumbnail/1744433228254-8. View toÃ n cáº£nh.jpg.webp",
+      "thumbnailMain": "/images/project/truong_mam_non_bac_ninh/thumbnail-main/1744433229644-truong mam non.png.webp",
+      "typical": true
+    },
+    {
+      "_id": "67f9f0e06644672a6bf73b63",
+      "name": "Văn phòng lạc hồng",
+      "type": "interior",
+      "address": "Tây hồ, Hà Nội",
+      "images": [
+        "/images/project/van_phong_lac_hong/1744433374189-caffe_1.webp",
+        "/images/project/van_phong_lac_hong/1744433374328-nha_hang_1.webp",
+        "/images/project/van_phong_lac_hong/1744433373927-giam_doc_du_lich_1.webp",
+        "/images/project/van_phong_lac_hong/1744433375768-1_9.webp",
+        "/images/project/van_phong_lac_hong/1744433376224-1_11.webp",
+        "/images/project/van_phong_lac_hong/1744433375025-1_3.webp",
+        "/images/project/van_phong_lac_hong/1744433376763-sanh_le_tan_1.webp",
+        "/images/project/van_phong_lac_hong/1744433376268-vuon_nhat_1.webp",
+        "/images/project/van_phong_lac_hong/1744433376807-sanh_le_tan_4.webp"
+      ],
+      "thumbnail": "/images/project/van_phong_lac_hong/thumbnail/1744433372088-f (2).jpg.webp",
+      "thumbnailMain": "/images/project/van_phong_lac_hong/thumbnail-main/1744433373024-van phong lac hong.png.webp",
+      "typical": true
+    },
+    {
+      "_id": "67f9f24d6644672a6bf73b6b",
+      "name": "Biệt thự mẫu Kim đô 06",
+      "type": "interior",
+      "address": "Kim đô, Bắc Ninh",
+      "images": [
+        "/images/project/biet_thu_mau_kim_o/1744433737674-p_doc_2.webp",
+        "/images/project/biet_thu_mau_kim_o/1744433736476-p_khach_1.webp",
+        "/images/project/biet_thu_mau_kim_o/1744433736455-p_khach_2.webp",
+        "/images/project/biet_thu_mau_kim_o/1744433739204-p_khach_4.webp",
+        "/images/project/biet_thu_mau_kim_o/1744433739756-p_khach_8.webp",
+        "/images/project/biet_thu_mau_kim_o/1744433739674-p_khach_9.webp",
+        "/images/project/biet_thu_mau_kim_o/1744433739561-p_ngu_master_3.webp",
+        "/images/project/biet_thu_mau_kim_o/1744433740822-p_thay_do_master_1.webp",
+        "/images/project/biet_thu_mau_kim_o/1744433741269-p_thay_do_master_3.webp",
+        "/images/project/biet_thu_mau_kim_o/1744433740578-wc_master_3.webp"
+      ],
+      "thumbnail": "/images/project/biet_thu_mau_kim_o/thumbnail/1744433733928-p khach (1).jpg.webp",
+      "typical": false
+    },
+    {
+      "_id": "67f9f2a56644672a6bf73b6f",
+      "name": "Biệt thự quận 5",
+      "type": "interior",
+      "address": "Quận 5, Sài gòn",
+      "images": [
+        "/images/project/biet_thu_quan_5/1744433828803-z5842827749166_ff6c52c40eb2dcbd02204bb943c98126.webp",
+        "/images/project/biet_thu_quan_5/1744433828547-z5842827783526_49c320a32d7be7049301cc81bcb2913c.webp",
+        "/images/project/biet_thu_quan_5/1744433828640-z5875693744005_21bb9502fdbd09c881e5de40541992cb.webp",
+        "/images/project/biet_thu_quan_5/1744433828749-z5875693744008_a96dfbafd128d0e07ce6e0f23c4a3264.webp",
+        "/images/project/biet_thu_quan_5/1744433829218-z5875693743977_d5a759506aaf16b501d4bf5ea7ff8b81.webp",
+        "/images/project/biet_thu_quan_5/1744433829278-z5875693744003_24dee992865eb68d7370a80fa9bb3ec5.webp",
+        "/images/project/biet_thu_quan_5/1744433829336-z5875693744010_9a2a1a937849895ad2686fd738d6a301.webp"
+      ],
+      "thumbnail": "/images/project/biet_thu_quan_5/thumbnail/1744433827741-z5875693744010_9a2a1a937849895ad2686fd738d6a301.jpg.webp",
+      "typical": false
+    },
+    {
+      "_id": "67f9f3a96644672a6bf73b77",
+      "name": "Chung cư Vinhome",
+      "type": "all",
+      "address": "Sài gòn",
+      "images": [
+        "/images/project/chung_cu_vinhome/1744434088648-1.webp",
+        "/images/project/chung_cu_vinhome/1744434087855-4.webp",
+        "/images/project/chung_cu_vinhome/1744434088086-p_sanh_1.webp",
+        "/images/project/chung_cu_vinhome/1744434089082-p_khach_2.webp",
+        "/images/project/chung_cu_vinhome/1744434089298-p_khach_4.webp",
+        "/images/project/chung_cu_vinhome/1744434089235-p_khach_7.webp"
+      ],
+      "thumbnail": "/images/project/chung_cu_vinhome/thumbnail/1744434087043-p khach (2).jpg.webp",
+      "typical": false
+    },
+    {
+      "_id": "67f9f4086644672a6bf73b7b",
+      "name": "Biệt thự Nghĩa Lộ",
+      "type": "interior",
+      "address": "Nghĩa Lộ, Yên bái",
+      "images": [
+        "/images/project/biet_thu_nghia_lo/1744434181633-z6344737729875_c7f7f1f578d04c925270da6d13c2a189.webp",
+        "/images/project/biet_thu_nghia_lo/1744434181462-z6344737688128_2dacfe7bcc0f9c3f4e125c5ceb427581.webp",
+        "/images/project/biet_thu_nghia_lo/1744434181698-z6128125361885_e2cede3855ac38edce12ca273e498108.webp",
+        "/images/project/biet_thu_nghia_lo/1744434181686-z6128125388026_10c7551ae54fe4291004715b9a7cdbb6.webp",
+        "/images/project/biet_thu_nghia_lo/1744434181968-z6128125440187_df069aad7a32d080a07c63dae1f748c1.webp",
+        "/images/project/biet_thu_nghia_lo/1744434182006-z6128125455602_7f936c97a407325651fb274bf8cc8087.webp",
+        "/images/project/biet_thu_nghia_lo/1744434184309-2.webp",
+        "/images/project/biet_thu_nghia_lo/1744434184790-1.webp",
+        "/images/project/biet_thu_nghia_lo/1744434184606-5.webp"
+      ],
+      "thumbnail": "/images/project/biet_thu_nghia_lo/thumbnail/1744434180759-z6344737688128_2dacfe7bcc0f9c3f4e125c5ceb427581.jpg.webp",
+      "typical": false
+    },
+    {
+      "_id": "67f9f4386644672a6bf73b7f",
+      "name": "Khai sơn hill",
+      "type": "architecture",
+      "address": "Long biên, Hà Nội",
+      "images": [
+        "/images/project/khai_son_hill/1744434232161-1.webp",
+        "/images/project/khai_son_hill/1744434231891-fdsb_2.webp",
+        "/images/project/khai_son_hill/1744434232082-z5406248654307_f4569a93221046047a8c3ca1bd8310bd.webp",
+        "/images/project/khai_son_hill/1744434232183-z5406248694215_529c7cde4bb1dd116a50a3da10b83b78.webp",
+        "/images/project/khai_son_hill/1744434232389-bep_5.webp",
+        "/images/project/khai_son_hill/1744434232486-z5410887549266_e2cc4f497d4535d01e02dd15b72b480e.webp",
+        "/images/project/khai_son_hill/1744434232906-5.webp",
+        "/images/project/khai_son_hill/1744434232573-7.webp"
+      ],
+      "thumbnail": "/images/project/khai_son_hill/thumbnail/1744434231373-1.jpg.webp",
+      "typical": false
+    },
+    {
+      "_id": "67f9f4a46644672a6bf73b83",
+      "name": "Khu đô thị hiệp hòa",
+      "type": "interior",
+      "address": "Hiệp Hòa, Bắc Giang",
+      "images": [
+        "/images/project/khu_o_thi_hiep_hoa/1744434337797-a_1.webp",
+        "/images/project/khu_o_thi_hiep_hoa/1744434339452-a_2.webp",
+        "/images/project/khu_o_thi_hiep_hoa/1744434339160-a_4.webp",
+        "/images/project/khu_o_thi_hiep_hoa/1744434338614-a_5.webp",
+        "/images/project/khu_o_thi_hiep_hoa/1744434338859-a_6.webp",
+        "/images/project/khu_o_thi_hiep_hoa/1744434340004-a_7.webp",
+        "/images/project/khu_o_thi_hiep_hoa/1744434340058-a_8.webp"
+      ],
+      "thumbnail": "/images/project/khu_o_thi_hiep_hoa/thumbnail/1744434337184-a (1).jpg.webp",
+      "typical": false
+    },
+    {
+      "_id": "67f9f50f6644672a6bf73b87",
+      "name": "Khu nghỉ dưỡng Venus",
+      "type": "all",
+      "address": "Tam đảo, Vĩnh Phúc",
+      "images": [
+        "/images/project/khu_nghi_duong_venus/1744434445999-phoi_canh_mat_tien_nha_hang_nuong.webp",
+        "/images/project/khu_nghi_duong_venus/1744434447022-noi_that_pa2_3.webp",
+        "/images/project/khu_nghi_duong_venus/1744434447456-noi_that_pa2_2.webp",
+        "/images/project/khu_nghi_duong_venus/1744434446031-noi_that_pa1_5.webp",
+        "/images/project/khu_nghi_duong_venus/1744434447217-noi_that_pa1_2.webp",
+        "/images/project/khu_nghi_duong_venus/1744434446788-goc_sanh_phu_1.webp",
+        "/images/project/khu_nghi_duong_venus/1744434447702-phong_gym_pa2_4.webp",
+        "/images/project/khu_nghi_duong_venus/1744434447773-phong_gym_pa2_3.webp",
+        "/images/project/khu_nghi_duong_venus/1744434447822-phong_gym_pa2_2.webp"
+      ],
+      "thumbnail": "/images/project/khu_nghi_duong_venus/thumbnail/1744434444857-noi that pa2 (2).jpg.webp",
+      "typical": false
+    },
+    {
+      "_id": "67f9f5526644672a6bf73b8b",
+      "name": "Nhà số 9",
+      "type": "all",
+      "address": "Hàng Cháo, Hà nội",
+      "images": [
+        "/images/project/nha_so_9/1744434512937-wc_1.webp",
+        "/images/project/nha_so_9/1744434513423-p_khach_t2_4.webp",
+        "/images/project/nha_so_9/1744434513780-p_khach_t2_6.webp",
+        "/images/project/nha_so_9/1744434513087-p_khach_t2_8.webp",
+        "/images/project/nha_so_9/1744434513906-sanh_1.webp",
+        "/images/project/nha_so_9/1744434513812-p_ngu_4.webp",
+        "/images/project/nha_so_9/1744434514054-p_ngu_2.webp",
+        "/images/project/nha_so_9/1744434514314-p_ngu_1.webp",
+        "/images/project/nha_so_9/1744434514355-v2.webp"
+      ],
+      "thumbnail": "/images/project/nha_so_9/thumbnail/1744434512164-p khach t2 (4).jpg.webp",
+      "typical": false
+    },
+    {
+      "_id": "67fa23066644672a6bf73ba0",
+      "name": "Biệt thự Kim Đô",
+      "type": "interior",
+      "address": "Kim Đô, Bắc Ninh",
+      "images": [
+        "/images/project/biet_thu_kim_o/1744446207204-1_khu_bep__an_1.webp",
+        "/images/project/biet_thu_kim_o/1744446206072-8_phong_doc_1.webp",
+        "/images/project/biet_thu_kim_o/1744446207977-9_phong_sinh_hoat_chung_1.webp",
+        "/images/project/biet_thu_kim_o/1744446208227-9_phong_sinh_hoat_chung_2.webp",
+        "/images/project/biet_thu_kim_o/1744446213779-5_phong_ngu_con_gai_1.webp",
+        "/images/project/biet_thu_kim_o/1744446208702-4_phong_ngu_master_2.webp",
+        "/images/project/biet_thu_kim_o/1744446208853-4_phong_ngu_master_1.webp",
+        "/images/project/biet_thu_kim_o/1744446209078-3_phong_ngu_ong_ba_3.webp",
+        "/images/project/biet_thu_kim_o/1744446213805-2_khu_p_khach_1.webp",
+        "/images/project/biet_thu_kim_o/1744446212820-2_khu_p_khach_5.webp"
+      ],
+      "thumbnail": "/images/project/biet_thu_kim_o/thumbnail/1744446204651-2 Khu p khach (5).jpg.webp",
+      "typical": false
+    },
+    {
+      "_id": "67fa237d6644672a6bf73ba4",
+      "name": "Biệt thự vĩnh phúc",
+      "type": "all",
+      "address": "tam đảo, vĩnh phúc",
+      "images": [
+        "/images/project/biet_thu_vinh_phuc/1744446333230-phong_khach_5.webp",
+        "/images/project/biet_thu_vinh_phuc/1744446333716-phong_khach_6.webp",
+        "/images/project/biet_thu_vinh_phuc/1744446333892-phong_khach_7.webp",
+        "/images/project/biet_thu_vinh_phuc/1744446330259-phong_khach_4.webp",
+        "/images/project/biet_thu_vinh_phuc/1744446330803-phong_khach_3.webp",
+        "/images/project/biet_thu_vinh_phuc/1744446331431-phong_khach_2.webp",
+        "/images/project/biet_thu_vinh_phuc/1744446331939-phong_khach_1.webp",
+        "/images/project/biet_thu_vinh_phuc/1744446333807-p_a3.webp"
+      ],
+      "thumbnail": "/images/project/biet_thu_vinh_phuc/thumbnail/1744446328967-phong khach (6).jpg.webp",
+      "typical": false
+    },
+    {
+      "_id": "67fa23db6644672a6bf73ba8",
+      "name": "Bgr Diamon Residence",
+      "type": "all",
+      "address": "Lê văn lương, hà nội",
+      "images": [
+        "/images/project/bgr_diamon_residence/1744446426433-3.webp",
+        "/images/project/bgr_diamon_residence/1744446426315-1.webp",
+        "/images/project/bgr_diamon_residence/1744446426219-master_4.webp",
+        "/images/project/bgr_diamon_residence/1744446426188-master_2.webp",
+        "/images/project/bgr_diamon_residence/1744446426970-i_interactive_lightmix.webp",
+        "/images/project/bgr_diamon_residence/1744446426854-g_interactive_lightmix.webp",
+        "/images/project/bgr_diamon_residence/1744446426988-f_interactive_lightmix.webp",
+        "/images/project/bgr_diamon_residence/1744446427086-d_interactive_lightmix.webp",
+        "/images/project/bgr_diamon_residence/1744446427172-2.webp",
+        "/images/project/bgr_diamon_residence/1744446427239-con_gai_4.webp"
+      ],
+      "thumbnail": "/images/project/bgr_diamon_residence/thumbnail/1744446425553-3.jpg.webp",
+      "typical": false
+    },
+    {
+      "_id": "67fa23fd6644672a6bf73bac",
+      "name": "Phòng Thờ",
+      "type": "interior",
+      "address": "Hàng trống, Hà Nội",
+      "images": [
+        "/images/project/phong_tho/1744446461767-z5725591016526_3055577a4a80967631616e7021518da5.webp",
+        "/images/project/phong_tho/1744446461792-z5725591022108_d17d9d32fb7b5dbe5027feef6944a804.webp",
+        "/images/project/phong_tho/1744446461807-z5725591029383_d744db0bea72590e50fe4a99e9beda8c.webp",
+        "/images/project/phong_tho/1744446461821-z5725591055188_058f4a84126ba666ad38f4f86ce671dd.webp",
+        "/images/project/phong_tho/1744446461958-z5725591057462_e99503f246198b78ed804345367c0e8f.webp"
+      ],
+      "thumbnail": "/images/project/phong_tho/thumbnail/1744446461107-z5725591016526_3055577a4a80967631616e7021518da5.jpg.webp",
+      "typical": false
+    },
+    {
+      "_id": "67fa24db6644672a6bf73bb0",
+      "name": "Số 6 Nguyễn du",
+      "type": "all",
+      "address": "Nguyễn Du, Quy nhơn",
+      "images": [
+        "/images/project/so_6_nguyen_du/1744446680707-phong_khach_sua_1.webp",
+        "/images/project/so_6_nguyen_du/1744446681730-wc_1.webp",
+        "/images/project/so_6_nguyen_du/1744446680998-thang_tang_2.webp",
+        "/images/project/so_6_nguyen_du/1744446681111-tang_1_8.webp",
+        "/images/project/so_6_nguyen_du/1744446681961-tang_1_7.webp",
+        "/images/project/so_6_nguyen_du/1744446682017-tang_1_6.webp",
+        "/images/project/so_6_nguyen_du/1744446682476-tang_1_1.webp",
+        "/images/project/so_6_nguyen_du/1744446683133-phong_ngu_tang_3_2.webp",
+        "/images/project/so_6_nguyen_du/1744446682668-phong_tho_sua.webp",
+        "/images/project/so_6_nguyen_du/1744446683699-phong_ngu_tang_3_2.webp"
+      ],
+      "thumbnail": "/images/project/so_6_nguyen_du/thumbnail/1744446679713-phong khach (sua) (1).jpg.webp",
+      "typical": false
+    },
+    {
+      "_id": "67fa25306644672a6bf73bb4",
+      "name": "Biệt thự Lavida Residences",
+      "type": "interior",
+      "address": "Vũng Tàu",
+      "images": [
+        "/images/project/biet_thu_lavida_residences/1744446766456-z5786601244820_54b3bddefaedb0d8c4f3219b1f627ec3.webp",
+        "/images/project/biet_thu_lavida_residences/1744446766645-z5731183585135_3e1f44df2a2a5474fed3b73da3219fe7.webp",
+        "/images/project/biet_thu_lavida_residences/1744446767616-1.webp",
+        "/images/project/biet_thu_lavida_residences/1744446767947-3.webp",
+        "/images/project/biet_thu_lavida_residences/1744446767581-6.webp",
+        "/images/project/biet_thu_lavida_residences/1744446767430-z5786601412481_65438798e7507d58a2831bc80e4eb0bd.webp",
+        "/images/project/biet_thu_lavida_residences/1744446768121-z5819504987244_75e5715a0c816da41a5e667af9bf7290.webp",
+        "/images/project/biet_thu_lavida_residences/1744446768530-z5801234726470_ee099d016cbf454c546897760d87d256.webp",
+        "/images/project/biet_thu_lavida_residences/1744446768219-z5786599980104_33281973e274e001ae1e634362774478.webp"
+      ],
+      "thumbnail": "/images/project/biet_thu_lavida_residences/thumbnail/1744446765490-z5786601244820_54b3bddefaedb0d8c4f3219b1f627ec3.jpg.webp",
+      "typical": false
+    },
+    {
+      "_id": "67fa25856644672a6bf73bb8",
+      "name": "Công trình nhà cổ",
+      "type": "architecture",
+      "address": "Ba vì, Hà Nội",
+      "images": [
+        "/images/project/cong_trinh_nha_co/1744446853719-pc3.webp",
+        "/images/project/cong_trinh_nha_co/1744446853441-pc2.webp",
+        "/images/project/cong_trinh_nha_co/1744446853752-pc1.webp"
+      ],
+      "thumbnail": "/images/project/cong_trinh_nha_co/thumbnail/1744446852521-pc3.jpg.webp",
+      "typical": false
+    },
+    {
+      "_id": "67fa25f76644672a6bf73bbc",
+      "name": "Đại phú gia",
+      "type": "architecture",
+      "address": "Quy nhơn",
+      "images": [
+        "/images/project/ai_phu_gia/1744446962845-bep_1.webp",
+        "/images/project/ai_phu_gia/1744446960194-p_khach_3.webp",
+        "/images/project/ai_phu_gia/1744446964697-p_khach_2.webp",
+        "/images/project/ai_phu_gia/1744446966523-p_ngu_1.webp",
+        "/images/project/ai_phu_gia/1744446967324-p_thay_do_1.webp",
+        "/images/project/ai_phu_gia/1744446965825-p_ngu_3.webp",
+        "/images/project/ai_phu_gia/1744446966699-phong_tho.webp"
+      ],
+      "thumbnail": "/images/project/ai_phu_gia/thumbnail/1744446959009-p khach (3).jpg.webp",
+      "typical": false
+    }
+  ]
+}

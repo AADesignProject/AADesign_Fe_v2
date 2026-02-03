@@ -126,7 +126,14 @@ const HeaderComponent = () => {
             ))}
           </div>
           <div className={styles.menuMobile}>
-            <IoMenu size={28} onClick={toggleMobileMenu} />
+            <button
+              type="button"
+              className={styles.menuIconButton}
+              onClick={toggleMobileMenu}
+              aria-label="Mở menu"
+            >
+              <IoMenu size={28} />
+            </button>
           </div>
         </div>
       </div>
@@ -136,7 +143,14 @@ const HeaderComponent = () => {
         >
           <div className={styles.mobileMenuHeader}>
             <div className={styles.mobileLogo}>{`AA'Design`}</div>
-            <IoClose size={35} onClick={toggleMobileMenu} />
+            <button
+              type="button"
+              className={styles.menuIconButton}
+              onClick={toggleMobileMenu}
+              aria-label="Đóng menu"
+            >
+              <IoClose size={35} />
+            </button>
           </div>
           <div className={styles.mobileMenuContent}>
             {listMenu.map((menu, index) => (

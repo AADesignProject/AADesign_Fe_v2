@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useRef } from 'react';
+import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Image from 'next/image';
 import { useInView } from 'react-intersection-observer';
@@ -10,9 +10,9 @@ import HeaderTitlePage from '@/components/header-title-page';
 
 //styles
 import styles from '@/scss/construction-page.module.scss';
-import axiosInstance from '@/services/axios';
-import { useInfiniteQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
+import staticContent from '@/data/static-content.json';
+import { resolveImageUrl } from '@/utils/resolveImageUrl';
 
 interface Project {
   _id: string;
@@ -20,45 +20,173 @@ interface Project {
   type: string;
   address: string;
   thumbnail: string;
+  thumbnailMain?: string;
+  images?: string[];
+  isTypical?: boolean;
+  typical?: boolean;
 }
 
-interface ProjectResponse {
-  data: Project[];
-  total: number;
-  page: number;
-  limit: number;
-}
+type SelectDropdownProps = {
+  value: string;
+  options: string[];
+  placeholder: string;
+  ariaLabel: string;
+  onChange: (value: string) => void;
+};
 
-const fetchProjects = async ({ pageParam = 1 }: { pageParam?: number }) => {
-  const response = await axiosInstance.get<ProjectResponse>(
-    `/projects?page=${pageParam}&limit=9`
+const SelectDropdown = ({
+  value,
+  options,
+  placeholder,
+  ariaLabel,
+  onChange,
+}: SelectDropdownProps) => {
+  const [open, setOpen] = useState(false);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        wrapperRef.current &&
+        !wrapperRef.current.contains(event.target as Node)
+      ) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  return (
+    <div className={styles.selectWrapper} ref={wrapperRef}>
+      <button
+        type="button"
+        className={styles.selectButton}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        aria-label={ariaLabel}
+        onClick={() => setOpen((prev) => !prev)}
+      >
+        <span className={value ? styles.selectValue : styles.selectPlaceholder}>
+          {value || placeholder}
+        </span>
+        <span className={styles.selectChevron} aria-hidden="true">
+          ▾
+        </span>
+      </button>
+      {open && (
+        <div className={styles.selectMenu} role="listbox">
+          <button
+            type="button"
+            className={`${styles.selectOption} ${
+              !value ? styles.isSelected : ''
+            }`}
+            onClick={() => {
+              onChange('');
+              setOpen(false);
+            }}
+          >
+            {placeholder}
+          </button>
+          {options.map((option) => (
+            <button
+              type="button"
+              key={option}
+              className={`${styles.selectOption} ${
+                value === option ? styles.isSelected : ''
+              }`}
+              onClick={() => {
+                onChange(option);
+                setOpen(false);
+              }}
+            >
+              {option}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
   );
-  return response.data;
 };
 
 const ConstructionPage = () => {
   const { t } = useTranslation();
   const loadMoreRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+  const [page, setPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedType, setSelectedType] = useState('');
+  const [selectedLocation, setSelectedLocation] = useState('');
+  const limit = 9;
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
 
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
-    useInfiniteQuery({
-      queryKey: ['projects', 'all'],
-      queryFn: fetchProjects,
-      initialPageParam: 1,
-      gcTime: 5 * 60 * 1000,
-      refetchOnWindowFocus: true,
-      refetchOnMount: true,
-      getNextPageParam: (lastPage) => {
-        const { page, total, limit } = lastPage;
-        const totalPages = Math.ceil(total / limit);
-        return page < totalPages ? page + 1 : undefined;
-      },
+  const allProjects = useMemo(() => staticContent.projects as Project[], []);
+
+  const normalizeText = (value: string) =>
+    value
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+
+  const getLocationFromAddress = (address: string) => {
+    const parts = address.split(',').map((part) => part.trim());
+    return parts[parts.length - 1] || address;
+  };
+
+  const typeOptions = useMemo(() => {
+    const types = new Set(
+      allProjects.map((project) => project.type).filter(Boolean)
+    );
+    return Array.from(types);
+  }, [allProjects]);
+
+  const searchSuggestions = useMemo(() => {
+    const suggestions = new Set<string>();
+    allProjects.forEach((project) => {
+      if (project.name) suggestions.add(project.name);
+      if (project.address) suggestions.add(project.address);
+      if (project.type) suggestions.add(project.type);
     });
+    return Array.from(suggestions);
+  }, [allProjects]);
+
+  const locationOptions = useMemo(() => {
+    const locations = new Set(
+      allProjects
+        .map((project) => getLocationFromAddress(project.address))
+        .filter(Boolean)
+    );
+    return Array.from(locations);
+  }, [allProjects]);
+
+  const filteredProjects = useMemo(() => {
+    const normalizedSearch = normalizeText(searchTerm.trim());
+
+    return allProjects.filter((project) => {
+      const matchesType = !selectedType || project.type === selectedType;
+      const projectLocation = getLocationFromAddress(project.address);
+      const matchesLocation =
+        !selectedLocation || projectLocation === selectedLocation;
+      const matchesSearch =
+        !normalizedSearch ||
+        normalizeText(project.name).includes(normalizedSearch) ||
+        normalizeText(project.address).includes(normalizedSearch) ||
+        normalizeText(project.type).includes(normalizedSearch);
+
+      return matchesType && matchesLocation && matchesSearch;
+    });
+  }, [allProjects, searchTerm, selectedType, selectedLocation]);
+
+  const totalPages = Math.ceil(filteredProjects.length / limit) || 1;
+  const safePage = Math.min(page, totalPages);
+  const hasNextPage = safePage < totalPages;
+  const isLoading = false;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -85,8 +213,8 @@ const ConstructionPage = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         const target = entries[0];
-        if (target.isIntersecting && hasNextPage && !isFetchingNextPage) {
-          fetchNextPage();
+        if (target.isIntersecting && hasNextPage) {
+          setPage((prev) => prev + 1);
         }
       },
       { threshold: 0.1 }
@@ -101,9 +229,13 @@ const ConstructionPage = () => {
         observer.unobserve(loadMoreRef.current);
       }
     };
-  }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
+  }, [hasNextPage]);
 
-  const projects = data?.pages?.flatMap((page) => page?.data || []) || [];
+  useEffect(() => {
+    setPage(1);
+  }, [searchTerm, selectedType, selectedLocation]);
+
+  const projects = filteredProjects.slice(0, safePage * limit);
 
   return (
     <>
@@ -115,6 +247,51 @@ const ConstructionPage = () => {
       <div className={styles.wrapperConstructionPage}>
         <div className={styles.containerConstructionPage}>
           <HeaderTitlePage title={t('construction.title')} />
+          <div className={styles.filterBar}>
+            <div className={styles.searchBox}>
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={(event) => setSearchTerm(event.target.value)}
+                placeholder="Tìm theo tên, địa chỉ hoặc loại công trình"
+                aria-label="Tìm kiếm công trình"
+                list="project-search-suggestions"
+              />
+              <datalist id="project-search-suggestions">
+                {searchSuggestions.map((item) => (
+                  <option key={item} value={item} />
+                ))}
+              </datalist>
+            </div>
+            <div className={styles.filterGroup}>
+              <SelectDropdown
+                value={selectedType}
+                options={typeOptions}
+                placeholder="Tất cả loại công trình"
+                ariaLabel="Lọc theo loại công trình"
+                onChange={setSelectedType}
+              />
+              <SelectDropdown
+                value={selectedLocation}
+                options={locationOptions}
+                placeholder="Tất cả khu vực"
+                ariaLabel="Lọc theo khu vực"
+                onChange={setSelectedLocation}
+              />
+            </div>
+            <button
+              type="button"
+              className={styles.resetButton}
+              onClick={() => {
+                setSearchTerm('');
+                setSelectedType('');
+                setSelectedLocation('');
+              }}
+              disabled={!searchTerm && !selectedType && !selectedLocation}
+            >
+              Xóa lọc
+            </button>
+          </div>
           <motion.div
             ref={ref}
             initial="hidden"
@@ -130,11 +307,12 @@ const ConstructionPage = () => {
                 onClick={() => router.push(`/construction/${project._id}`)}
               >
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_LINK_S3}/${project.thumbnail}`}
+                  src={resolveImageUrl(project.thumbnail)}
                   alt={project.name}
                   width={1920}
                   height={1200}
-                  quality={100}
+                  quality={85}
+                  sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   priority={index < 6}
                 />
                 <div className={styles.overlay}>
@@ -146,7 +324,9 @@ const ConstructionPage = () => {
             ))}
 
             {projects.length === 0 && !isLoading && (
-              <div className={styles.emptyState}>No projects found</div>
+              <div className={styles.emptyState}>
+                Không có công trình phù hợp
+              </div>
             )}
             {isLoading && <div className={styles.loading}>Loading...</div>}
           </motion.div>

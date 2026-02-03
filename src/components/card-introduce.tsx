@@ -17,7 +17,14 @@ const CardIntroduceComponent = ({
 }: ICardIntroduceComponent) => {
   return (
     <div className={styles.wrapperCardIntroduce}>
-      <Image src={imgSrc} alt="design_2" width={400} height={250} />
+      <Image
+        src={imgSrc}
+        alt={titleCard}
+        width={400}
+        height={250}
+        sizes="(max-width: 768px) 90vw, 400px"
+        quality={85}
+      />
       <h2>{titleCard}</h2>
       <p className={styles.description}>{description}</p>
     </div>
