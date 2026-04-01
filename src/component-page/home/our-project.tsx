@@ -60,13 +60,14 @@ const OurProjectComponentPage = () => {
       { threshold: 0.1 }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
+    const currentRef = ref.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
@@ -93,13 +94,14 @@ const OurProjectComponentPage = () => {
       { threshold: 0.1 }
     );
 
-    if (loadMoreRef.current) {
-      observer.observe(loadMoreRef.current);
+    const currentLoadMoreRef = loadMoreRef.current;
+    if (currentLoadMoreRef) {
+      observer.observe(currentLoadMoreRef);
     }
 
     return () => {
-      if (loadMoreRef.current) {
-        observer.unobserve(loadMoreRef.current);
+      if (currentLoadMoreRef) {
+        observer.unobserve(currentLoadMoreRef);
       }
     };
   }, [hasNextPage]);

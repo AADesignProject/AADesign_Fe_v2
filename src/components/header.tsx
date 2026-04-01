@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect } from 'react';
+import React, { memo, useState } from 'react';
 import Link from 'next/link';
 import { BsFillTelephoneFill } from 'react-icons/bs';
 import { GoClock } from 'react-icons/go';
@@ -6,7 +6,6 @@ import { RiArrowDropDownLine } from 'react-icons/ri';
 import { IoMenu, IoClose } from 'react-icons/io5';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { useRouter } from 'next/router';
 
 //components
 import ButtonLanguageComponent from './button-language';
@@ -29,7 +28,7 @@ const HeaderComponent = () => {
     }
   };
 
-  const handleMobileMenuItemClick = (url: string) => {
+  const handleMobileMenuItemClick = () => {
     setIsMobileMenuOpen(false);
     setOpenMenu(null);
   };
@@ -56,7 +55,7 @@ const HeaderComponent = () => {
     },
     {
       label: t('header.menu.services'),
-      url: '#services',
+      url: '/#our-service',
     },
     {
       label: t('header.menu.contact'),
@@ -71,13 +70,13 @@ const HeaderComponent = () => {
       transition={{ duration: 0.5 }}
     >
       <div className={styles.headerContainerTop}>
-        <div className={`${styles.containerOption}`}>
+        <div className={styles.containerOption}>
           <div className={styles.wrapperInfo}>
-            <Link href={`tel: ${phoneNumber}`} className={styles.contentLink}>
+            <Link href={`tel:${phoneNumber}`} className={styles.contentLink}>
               <BsFillTelephoneFill />
               <span>{phoneNumber}</span>
             </Link>
-            <Link href={'#'} className={styles.contentLink}>
+            <Link href="#" className={styles.contentLink}>
               <GoClock size={18} />
               <span>{`24/7 ${t('header.emergency')}`}</span>
             </Link>
@@ -90,7 +89,7 @@ const HeaderComponent = () => {
       </div>
       <div className={styles.headerContainerBottom}>
         <div className={styles.containerContent}>
-          <Link href={'/'} className={styles.logo}>{`AA Design`}</Link>
+          <Link href="/" className={styles.logo}>{`AA Design`}</Link>
           <div className={styles.menuOption}>
             {listMenu.map((menu, index) => (
               <div key={index} className={styles.menuItem}>
@@ -137,58 +136,53 @@ const HeaderComponent = () => {
           </div>
         </div>
       </div>
-      {
-        <div
-          className={`${styles.mobileMenu} ${isMobileMenuOpen && styles.open}`}
-        >
-          <div className={styles.mobileMenuHeader}>
-            <div className={styles.mobileLogo}>{`AA'Design`}</div>
-            <button
-              type="button"
-              className={styles.menuIconButton}
-              onClick={toggleMobileMenu}
-              aria-label="Đóng menu"
-            >
-              <IoClose size={35} />
-            </button>
-          </div>
-          <div className={styles.mobileMenuContent}>
-            {listMenu.map((menu, index) => (
-              <div key={index} className={styles.mobileMenuItem}>
-                <div className={styles.mobileMenuLabel}>
-                  <Link
-                    href={menu.url}
-                    onClick={() => handleMobileMenuItemClick(menu.url)}
-                  >
-                    {menu.label}
-                  </Link>
-                  {menu.children && <RiArrowDropDownLine size={28} />}
-                </div>
-                {menu.children && openMenu === menu.label && (
-                  <div className={styles.mobileSubMenu}>
-                    {menu.children.map((child, childIndex) => (
-                      <Link
-                        key={childIndex}
-                        href={child.url}
-                        className={styles.mobileSubMenuItem}
-                        onClick={() => handleMobileMenuItemClick(child.url)}
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
+      <div
+        className={`${styles.mobileMenu} ${isMobileMenuOpen && styles.open}`}
+      >
+        <div className={styles.mobileMenuHeader}>
+          <div className={styles.mobileLogo}>{`AA'Design`}</div>
+          <button
+            type="button"
+            className={styles.menuIconButton}
+            onClick={toggleMobileMenu}
+            aria-label="Đóng menu"
+          >
+            <IoClose size={35} />
+          </button>
+        </div>
+        <div className={styles.mobileMenuContent}>
+          {listMenu.map((menu, index) => (
+            <div key={index} className={styles.mobileMenuItem}>
+              <div className={styles.mobileMenuLabel}>
+                <Link href={menu.url} onClick={handleMobileMenuItemClick}>
+                  {menu.label}
+                </Link>
+                {menu.children && <RiArrowDropDownLine size={28} />}
               </div>
-            ))}
-          </div>
-          <div className={styles.mobileMenuFooter}>
-            <div className={styles.contactInfo}>
-              <p>Call: {phoneNumber}</p>
-              <p>Email: {email}</p>
+              {menu.children && openMenu === menu.label && (
+                <div className={styles.mobileSubMenu}>
+                  {menu.children.map((child, childIndex) => (
+                    <Link
+                      key={childIndex}
+                      href={child.url}
+                      className={styles.mobileSubMenuItem}
+                      onClick={handleMobileMenuItemClick}
+                    >
+                      {child.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
+          ))}
+        </div>
+        <div className={styles.mobileMenuFooter}>
+          <div className={styles.contactInfo}>
+            <p>Call: {phoneNumber}</p>
+            <p>Email: {email}</p>
           </div>
         </div>
-      }
+      </div>
     </motion.div>
   );
 };

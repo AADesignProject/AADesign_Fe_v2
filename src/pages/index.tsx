@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import dynamic from 'next/dynamic';
 
@@ -31,48 +30,19 @@ const components: IComponentConfig[] = [
 
 const HomePage = () => {
   const { t } = useTranslation();
-  const [visible, setVisible] = useState<{ [key: string]: boolean }>({});
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisible((prev) => ({
-              ...prev,
-              [entry.target.id]: true,
-            }));
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    components.forEach(({ id }) => {
-      const element = document.getElementById(id);
-      if (element) observer.observe(element);
-    });
-
-    return () => {
-      components.forEach(({ id }) => {
-        const element = document.getElementById(id);
-        if (element) observer.unobserve(element);
-      });
-    };
-  }, []);
 
   return (
     <>
       <SEOHeaderComponent
         title={t('seo.title_homepage')}
         description={t('seo.description_homepage')}
-        keywords="AA DESIGN, design, interior design, Thiết kế nội thất, La văn phi, La thiên phi, aa design homepage, aa-design, aa-design.vn"
+        keywords="AA DESIGN, design, interior design, Thiết kế nội thất, La Van Phi, La Thien Phi, aa design homepage, aa-design, aa-design.vn"
       />
       <div className={styles.wrapperHomePage}>
         <CarouselComponent />
         {components.map(({ id, component: Component }) => (
           <div key={id} id={id}>
-            {visible[id] && <Component />}
+            <Component />
           </div>
         ))}
       </div>

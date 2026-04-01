@@ -16,11 +16,11 @@ const FooterComponent = () => {
       <div className={styles.containerContent}>
         <div className={styles.columnRight}>
           <h2 className={styles.titleContact}>Contact</h2>
-          <Link href={`tel: ${phoneNumber}`} className={styles.phoneNumber}>
+          <Link href={`tel:${phoneNumber}`} className={styles.phoneNumber}>
             <FaMobile />
             <span>{phoneNumber}</span>
           </Link>
-          <Link href={`mailto: ${email}`} className={styles.email}>
+          <Link href={`mailto:${email}`} className={styles.email}>
             <MdEmail />
             <span>{email}</span>
           </Link>

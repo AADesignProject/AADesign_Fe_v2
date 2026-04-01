@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 import type { AppProps } from 'next/app';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
 //i18n
-import '../i18n';
+import i18n from '../i18n';
 
 //components
 import LayoutComponent from '@/components/layout';
@@ -13,12 +12,16 @@ import LayoutComponent from '@/components/layout';
 ///scss
 import '@/scss/globals.scss';
 
-export default function App({ Component, pageProps }: AppProps) {
-  const { i18n } = useTranslation();
+export default function App({ Component, pageProps, router }: AppProps) {
+  const currentLocale = router.locale ?? router.defaultLocale ?? 'vi';
+
+  if (i18n.resolvedLanguage !== currentLocale) {
+    void i18n.changeLanguage(currentLocale);
+  }
 
   useEffect(() => {
-    document.documentElement.lang = i18n.language;
-  }, [i18n.language]);
+    document.documentElement.lang = currentLocale;
+  }, [currentLocale]);
 
   return (
     <LayoutComponent>

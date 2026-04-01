@@ -1,3 +1,8 @@
+import type {
+  GetStaticPaths,
+  GetStaticProps,
+  InferGetStaticPropsType,
+} from 'next';
 import React, { useMemo } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
@@ -6,16 +11,12 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import { motion } from 'framer-motion';
 
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 
-// Components
 import SEOHeaderComponent from '@/components/seo-header';
-
-// Styles
 import styles from '@/styles/construction-detail.module.scss';
 import staticContent from '@/data/static-content.json';
 import { resolveImageUrl } from '@/utils/resolveImageUrl';
@@ -32,58 +33,119 @@ interface Project {
   typical?: boolean;
 }
 
-const ConstructionDetail = () => {
+type ConstructionDetailProps = {
+  locale: string;
+  nextProject: Pick<Project, '_id' | 'name'> | null;
+  prevProject: Pick<Project, '_id' | 'name'> | null;
+  project: Project;
+};
+
+export const getStaticPaths: GetStaticPaths = async ({ locales = [] }) => {
+  const projects = staticContent.projects as Project[];
+  const targetLocales = locales.length > 0 ? locales : ['vi'];
+
+  return {
+    paths: projects.flatMap((project) =>
+      targetLocales.map((locale) =>
+        locale === 'vi'
+          ? {
+              params: { slug: project._id },
+            }
+          : {
+              locale,
+              params: { slug: project._id },
+            }
+      )
+    ),
+    fallback: false,
+  };
+};
+
+export const getStaticProps: GetStaticProps<ConstructionDetailProps> = async ({
+  locale = 'vi',
+  params,
+}) => {
+  const projects = staticContent.projects as Project[];
+  const projectId = Array.isArray(params?.slug) ? params.slug[0] : params?.slug;
+  const currentIndex = projects.findIndex((item) => item._id === projectId);
+  const project = currentIndex >= 0 ? projects[currentIndex] : null;
+
+  if (!project || !project.images) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      locale,
+      nextProject:
+        currentIndex < projects.length - 1
+          ? {
+              _id: projects[currentIndex + 1]._id,
+              name: projects[currentIndex + 1].name,
+            }
+          : null,
+      prevProject:
+        currentIndex > 0
+          ? {
+              _id: projects[currentIndex - 1]._id,
+              name: projects[currentIndex - 1].name,
+            }
+          : null,
+      project,
+    },
+  };
+};
+
+const ConstructionDetail = ({
+  locale,
+  nextProject,
+  prevProject,
+  project,
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
   const router = useRouter();
-  const { slug } = router.query;
   const [thumbsSwiper, setThumbsSwiper] = React.useState<SwiperClass | null>(
     null
   );
   const [activeIndex, setActiveIndex] = React.useState(0);
   const [lightboxOpen, setLightboxOpen] = React.useState(false);
-  const projectId = Array.isArray(slug) ? slug[0] : slug;
-  const project = useMemo(
+
+  const detailCopy = useMemo(
     () =>
-      (staticContent.projects as Project[]).find(
-        (item) => item._id === projectId
-      ),
-    [projectId]
+      locale === 'en'
+        ? {
+            back: 'Back to projects',
+            fullscreenHint: 'Click to view fullscreen',
+            galleryDescription: 'Explore the project through the image gallery',
+            galleryTitle: 'Project gallery',
+            next: 'Next project',
+            previous: 'Previous project',
+          }
+        : {
+            back: 'Quay lại danh sách',
+            fullscreenHint: 'Click vào ảnh để xem toàn màn hình',
+            galleryDescription:
+              'Khám phá chi tiết không gian qua bộ sưu tập hình ảnh',
+            galleryTitle: 'Hình ảnh công trình',
+            next: 'Dự án tiếp theo',
+            previous: 'Dự án trước',
+          },
+    [locale]
   );
-  const projects = staticContent.projects as Project[];
-  const currentIndex = useMemo(
-    () => projects.findIndex((item) => item._id === projectId),
-    [projects, projectId]
-  );
-  const prevProject = currentIndex > 0 ? projects[currentIndex - 1] : null;
-  const nextProject =
-    currentIndex >= 0 && currentIndex < projects.length - 1
-      ? projects[currentIndex + 1]
-      : null;
-  const isLoading = !router.isReady;
 
-  if (isLoading) {
-    return (
-      <div className={styles.loading}>
-        <div className={styles.loadingSpinner}></div>
-      </div>
-    );
-  }
-
-  if (!project || !project.images) {
-    return (
-      <div className={styles.error}>
-        <h1>Project not found</h1>
-        <button onClick={() => router.push('/construction')}>
-          Back to Projects
-        </button>
-      </div>
-    );
-  }
+  const seoDescription =
+    locale === 'en'
+      ? `${project.name} is one of AA Design's ${project.type} projects, showcasing the design language, materials, and completed spaces in detail.`
+      : `${project.name} là một trong những công trình ${project.type} của AA Design, giới thiệu chi tiết phong cách thiết kế, vật liệu và không gian hoàn thiện.`;
 
   const allImages = [
     project.thumbnailMain,
     project.thumbnail,
     ...project.images,
-  ].filter((image): image is string => Boolean(image));
+  ]
+    .filter((image): image is string => Boolean(image))
+    .filter((image, index, collection) => collection.indexOf(image) === index);
   const heroImage = (project.thumbnailMain ||
     project.thumbnail ||
     allImages[0]) as string;
@@ -114,12 +176,11 @@ const ConstructionDetail = () => {
     <>
       <SEOHeaderComponent
         title={project.name}
-        description={`Đây là dự án ${project.name} của ${project.type} thuộc về aa-design construction`}
+        description={seoDescription}
         keywords={`${project.type}, ${project.name}, interior design, construction`}
       />
 
       <div className={styles.projectDetail}>
-        {/* Hero Section */}
         <div className={styles.hero}>
           <div className={styles.heroImage}>
             <Image
@@ -161,7 +222,7 @@ const ConstructionDetail = () => {
                 className={styles.backButton}
                 onClick={() => router.push('/construction')}
               >
-                ← Quay lại danh sách
+                {detailCopy.back}
               </button>
               <div className={styles.navButtons}>
                 <button
@@ -173,7 +234,7 @@ const ConstructionDetail = () => {
                     router.push(`/construction/${prevProject._id}`)
                   }
                 >
-                  <span className={styles.navLabel}>← Dự án trước</span>
+                  <span className={styles.navLabel}>{detailCopy.previous}</span>
                   {prevProject && (
                     <span className={styles.navName}>{prevProject.name}</span>
                   )}
@@ -187,7 +248,7 @@ const ConstructionDetail = () => {
                     router.push(`/construction/${nextProject._id}`)
                   }
                 >
-                  <span className={styles.navLabel}>Dự án tiếp theo →</span>
+                  <span className={styles.navLabel}>{detailCopy.next}</span>
                   {nextProject && (
                     <span className={styles.navName}>{nextProject.name}</span>
                   )}
@@ -197,11 +258,10 @@ const ConstructionDetail = () => {
           </div>
         </div>
 
-        {/* Gallery Section */}
         <section className={styles.gallerySection}>
           <div className={styles.galleryHeader}>
-            <h2>Hình ảnh công trình</h2>
-            <p>Khám phá chi tiết không gian qua bộ sưu tập hình ảnh</p>
+            <h2>{detailCopy.galleryTitle}</h2>
+            <p>{detailCopy.galleryDescription}</p>
           </div>
           <div className={styles.sliderContainer}>
             <Swiper
@@ -231,7 +291,7 @@ const ConstructionDetail = () => {
                       priority={index === 0}
                     />
                     <div className={styles.slideOverlay}>
-                      <span>Click vào ảnh to để xem toàn màn hình</span>
+                      <span>{detailCopy.fullscreenHint}</span>
                     </div>
                   </div>
                 </SwiperSlide>
