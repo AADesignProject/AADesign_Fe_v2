@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 
 //images
@@ -8,14 +9,14 @@ import ukFlag from '@public/images/kingdom_flag.webp';
 
 //styles
 import styles from '@/scss/button-language.module.scss';
-import { STORAGE_KEY } from '@/constant/storage-key';
 
 const ButtonLanguageComponent = () => {
   const { i18n } = useTranslation();
+  const router = useRouter();
 
-  const changeLanguage = (lng: string) => {
-    localStorage.setItem(STORAGE_KEY.language, lng);
-    i18n.changeLanguage(lng);
+  const changeLanguage = async (lng: string) => {
+    await i18n.changeLanguage(lng);
+    await router.push(router.asPath, router.asPath, { locale: lng });
   };
 
   const listLanguage = [
@@ -33,19 +34,13 @@ const ButtonLanguageComponent = () => {
     },
   ];
 
-  // useLayoutEffect(() => {
-  //   const language = localStorage.getItem(STORAGE_KEY.language);
-  //   if (language) {
-  //     i18n.changeLanguage(language);
-  //   }
-  // }, [])
-
   return (
     <div className={styles.wrapperButtonLanguage}>
-      {listLanguage?.map((item, index) => (
+      {listLanguage.map((item) => (
         <button
+          type="button"
           aria-label="button-language"
-          key={index}
+          key={item.language}
           onClick={() => changeLanguage(item.language)}
           className={`${styles.containerContent} ${i18n.language === item.language ? styles.active : ''}`}
         >

@@ -16,8 +16,8 @@ const ContactPage = () => {
     <>
       <SEOHeaderComponent
         title="Contact"
-        description={t('description_homepage')}
-        keywords="construction, design, aa-design construction, aa design construction, la thien phi, công trình la thiên phi, công trình,"
+        description={t('seo.description_homepage')}
+        keywords="construction, design, aa-design construction, aa design construction, la thien phi, công trình la thiên phi, công trình"
       />
       <div className={styles.wrapperContactPage}>
         <div className={styles.containerContactPage}>
@@ -28,8 +28,8 @@ const ContactPage = () => {
               <h2 className={styles.title}>{t('contact.live')}</h2>
               <div className={styles.description}>
                 <p>Mr La thien phi</p>
-                <Link href={`tel: ${phoneNumber}`}>T: (+84) 988 998 123</Link>
-                <Link href={`mailto: ${email}`}>E: {email}</Link>
+                <Link href={`tel:${phoneNumber}`}>T: (+84) 988 998 123</Link>
+                <Link href={`mailto:${email}`}>E: {email}</Link>
               </div>
             </div>
             <div className={styles.boxContent}>
