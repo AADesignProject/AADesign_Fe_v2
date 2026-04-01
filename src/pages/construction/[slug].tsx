@@ -48,6 +48,16 @@ const ConstructionDetail = () => {
       ),
     [projectId]
   );
+  const projects = staticContent.projects as Project[];
+  const currentIndex = useMemo(
+    () => projects.findIndex((item) => item._id === projectId),
+    [projects, projectId]
+  );
+  const prevProject = currentIndex > 0 ? projects[currentIndex - 1] : null;
+  const nextProject =
+    currentIndex >= 0 && currentIndex < projects.length - 1
+      ? projects[currentIndex + 1]
+      : null;
   const isLoading = !router.isReady;
 
   if (isLoading) {
@@ -145,6 +155,45 @@ const ConstructionDetail = () => {
             >
               {project.type}
             </motion.span>
+            <div className={styles.heroActions}>
+              <button
+                type="button"
+                className={styles.backButton}
+                onClick={() => router.push('/construction')}
+              >
+                ← Quay lại danh sách
+              </button>
+              <div className={styles.navButtons}>
+                <button
+                  type="button"
+                  className={styles.navButton}
+                  disabled={!prevProject}
+                  onClick={() =>
+                    prevProject &&
+                    router.push(`/construction/${prevProject._id}`)
+                  }
+                >
+                  <span className={styles.navLabel}>← Dự án trước</span>
+                  {prevProject && (
+                    <span className={styles.navName}>{prevProject.name}</span>
+                  )}
+                </button>
+                <button
+                  type="button"
+                  className={styles.navButton}
+                  disabled={!nextProject}
+                  onClick={() =>
+                    nextProject &&
+                    router.push(`/construction/${nextProject._id}`)
+                  }
+                >
+                  <span className={styles.navLabel}>Dự án tiếp theo →</span>
+                  {nextProject && (
+                    <span className={styles.navName}>{nextProject.name}</span>
+                  )}
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 

@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { AppProps } from 'next/app';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 //i18n
 import '../i18n';
@@ -21,6 +23,8 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <LayoutComponent>
       <Component {...pageProps} />
+      <Analytics />
+      <SpeedInsights />
     </LayoutComponent>
   );
 }

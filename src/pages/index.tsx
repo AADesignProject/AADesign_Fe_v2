@@ -66,7 +66,7 @@ const HomePage = () => {
       <SEOHeaderComponent
         title={t('seo.title_homepage')}
         description={t('seo.description_homepage')}
-        keywords="AA DESIGN, design, interior design, Thiết kế nội thất, La văn phi, La thiên phi, aa design homepage"
+        keywords="AA DESIGN, design, interior design, Thiết kế nội thất, La văn phi, La thiên phi, aa design homepage, aa-design, aa-design.vn"
       />
       <div className={styles.wrapperHomePage}>
         <CarouselComponent />
