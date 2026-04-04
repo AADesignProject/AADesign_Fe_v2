@@ -24,9 +24,19 @@ export default class CustomDocument extends Document<CustomDocumentProps> {
   }
 
   render() {
+    const googleSiteVerification =
+      process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
+
     return (
       <Html lang={this.props.locale}>
-        <Head />
+        <Head>
+          {googleSiteVerification ? (
+            <meta
+              name="google-site-verification"
+              content={googleSiteVerification}
+            />
+          ) : null}
+        </Head>
         <body>
           <Main />
           <NextScript />
