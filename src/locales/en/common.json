@@ -1,33 +1,234 @@
 {
-  "seo": {
-    "title_homepage": "Luxury interior design and turnkey construction",
-    "description_homepage": "AA Design provides architecture, interior design and turnkey construction for villas, apartments, offices, restaurants and hotels.",
-    "title_construction": "Construction",
-    "description_construction": "Explore AA Design architecture, interior and turnkey construction projects across residential, hospitality, office and commercial spaces."
+  "aria": {
+    "close": "Close",
+    "loading": "Loading",
+    "mainNavigation": "Main navigation",
+    "mobileMenu": "Mobile navigation menu",
+    "nextImage": "Next image",
+    "openMenu": "Open menu",
+    "previousImage": "Previous image",
+    "skipToContent": "Skip to main content"
+  },
+  "breadcrumbs": {
+    "home": "Home"
+  },
+  "common": {
+    "email": "Email",
+    "phone": "Phone"
+  },
+  "contact": {
+    "actions": {
+      "call": "Call {{phone}}",
+      "email": "Send email"
+    },
+    "consultationDescription": "Call us or send a short email about your needs, current site and preferred consultation time. We will respond to arrange a focused design conversation.",
+    "consultationTitle": "Start a conversation about your space",
+    "description": "Speak directly with AA Design to define your space, design scope and consultation schedule.",
+    "live": "Meet in person",
+    "office": "Office",
+    "office_address": "Phu Thuong, Tay Ho, Hanoi",
+    "office_address_detail": "Lac Hong Westlake Building",
+    "personName": "Mr La Thien Phi",
+    "process": {
+      "listen": "Listen",
+      "orient": "Orient",
+      "propose": "Propose solution"
+    },
+    "sectionLabel": "Direct contact",
+    "time_active": "10h - 17h",
+    "title": "Contact"
+  },
+  "construction": {
+    "count": "{{count}} projects",
+    "description": "Explore selected AA Design projects across villas, apartments, hospitality, office and commercial spaces.",
+    "detail": {
+      "back": "Back to projects",
+      "facts": {
+        "location": "Location",
+        "scope": "Scope",
+        "scopeValue": "Design & construction",
+        "style": "Style",
+        "styleValue": "Refined modern",
+        "type": "Project type"
+      },
+      "fullscreenHint": "Click to view fullscreen",
+      "galleryDescription": "Explore the project through the image gallery",
+      "galleryTitle": "Project gallery",
+      "next": "Next project",
+      "overviewLabel": "Project notes",
+      "previous": "Previous project",
+      "seoDescription": "{{name}} is one of AA Design's {{type}} projects, showcasing the design language, materials and completed spaces in detail."
+    },
+    "empty": "No matching projects",
+    "filters": {
+      "allLocations": "All locations",
+      "allTypes": "All project types",
+      "reset": "Clear filters",
+      "searchAria": "Search projects",
+      "searchPlaceholder": "Search by name, address or project type",
+      "typeAria": "Filter by project type",
+      "locationAria": "Filter by location"
+    },
+    "keywords": "interior projects, villa design, hotel design, office design, AA Design",
+    "title": "Projects",
+    "viewProject": "View project {{name}}",
+    "view_more": "View more"
+  },
+  "footer": {
+    "copyright": "AA Design © {{year}}. All rights reserved.",
+    "description": "Architecture, interior design and turnkey construction for spaces that need identity, function and refined completion.",
+    "location": "Lac Hong Westlake, Tay Ho, Hanoi",
+    "navigationLabel": "Footer navigation",
+    "titleContact": "Contact"
   },
   "header": {
     "call": "Call",
     "emergency": "Emergency Service",
     "menu": {
+      "company": "Company",
+      "construction": "Projects",
+      "construction_image": "Construction images",
+      "contact": "Contact",
       "introduction": "Introduction",
       "my_name": "La Van Phi",
-      "company": "Company",
-      "construction": "Construction",
-      "services": "Services",
-      "contact": "Contact"
+      "services": "Services"
     }
   },
-  "construction": {
-    "title": "Construction",
-    "description": "Explore selected AA Design projects across villas, apartments, hospitality, office and commercial spaces.",
-    "view_more": "View more"
+  "home": {
+    "carousel": {
+      "actions": {
+        "consult": "Project consultation",
+        "projects": "View projects"
+      },
+      "eyebrow": "AA Design Studio",
+      "heroTitle": "Luxury interior design and turnkey construction"
+    },
+    "designService": {
+      "description": "We provide a complete interior and exterior design package, from concept development and 3D visualization to selecting refined decorative details that make every space feel complete.\nWith dedication and precision, we create elegant and distinctive spaces for villas, private apartments, restaurants, hotels and professional offices. Every project balances creativity, function and the client's individual style.",
+      "descriptionTitle": "Redefining space - elevating everyday living",
+      "imageAlt": "Designed interior space {{index}}",
+      "stats": {
+        "experience": "Years of experience",
+        "projects": "Projects",
+        "visualization": "Visualization"
+      },
+      "subtitle": "Comprehensive Design Solutions\nShaping Spaces, Realizing Ideas",
+      "title": "What we offer"
+    },
+    "ourProject": {
+      "description": "A selection of completed projects across different locations, purposes and client needs.",
+      "empty": "No projects to display",
+      "title": "Projects",
+      "viewMore": "View more projects",
+      "viewProject": "View project {{name}}"
+    },
+    "ourService": {
+      "description": "Professional solutions - Fast execution - Refined completion in every detail",
+      "items": {
+        "architecture": {
+          "description": "Create elevated living spaces with distinctive, sustainable designs that optimize function and balance architecture, style and environment.",
+          "title": "Architecture Design"
+        },
+        "construction": {
+          "description": "From drawing to reality, our construction process is professional, precise and schedule-conscious, ensuring a high-quality finish for every project.",
+          "title": "Construction"
+        },
+        "fengShui": {
+          "description": "Apply feng shui principles to architecture and interiors, creating balanced, nature-connected spaces that support prosperity, luck and peace.",
+          "title": "Feng Shui Consulting & Objects"
+        },
+        "interior": {
+          "description": "Turn ideas into ideal living spaces by combining aesthetics, comfort and personality, giving each project a distinctive personal mark.",
+          "title": "Interior Design"
+        }
+      },
+      "title": "Our Services"
+    }
   },
-  "contact": {
-    "title": "Contact",
-    "live": "Meet in person",
-    "office": "Office",
-    "office_address_detail": "Lac Hong Westlake Building",
-    "office_address": "Phu Thuong, Tay Ho, Hanoi",
-    "time_active": "10h - 17h"
+  "language": {
+    "switchTo": "Switch to {{label}}"
+  },
+  "profile": {
+    "experience": {
+      "clients": "Happy clients",
+      "projects": "Completed projects",
+      "title": "Experience",
+      "years": "Years of experience"
+    },
+    "hero": {
+      "eyebrow": "Founder profile",
+      "name": "La Thien Phi",
+      "role": "Architect & Interior Designer"
+    },
+    "imageAlt": "Interior space directed by AA Design",
+    "introduction": {
+      "paragraph1": "With nearly 20 years of experience in architecture and interior design, I have had the opportunity to work on a wide range of projects, from apartments and villas to offices and commercial spaces.",
+      "paragraph2": "Every project has its own story, and I believe design is not only about arranging interiors but also about shaping ideal spaces for living and working.",
+      "title": "Introduction"
+    },
+    "philosophy": {
+      "detail": {
+        "description": "Care for every detail, from spatial planning and material selection to lighting and color.",
+        "title": "Detail"
+      },
+      "harmony": {
+        "description": "Create a balanced relationship between function, aesthetics and the emotions of the people who use the space.",
+        "title": "Harmony"
+      },
+      "practical": {
+        "description": "Design should be beautiful while bringing comfort, convenience and optimized function.",
+        "title": "Practicality"
+      },
+      "title": "Design philosophy"
+    },
+    "quote": "Every project is its own story, where function, aesthetics and emotion meet."
+  },
+  "project": {
+    "types": {
+      "all": "Full service",
+      "architecture": "Architecture",
+      "interior": "Interior"
+    }
+  },
+  "seo": {
+    "defaultDescription": "AA Design provides architecture, interior design and turnkey construction for villas, apartments, offices, restaurants and hotels.",
+    "description_construction": "Explore AA Design architecture, interior and turnkey construction projects across residential, hospitality, office and commercial spaces.",
+    "description_contact": "Contact AA Design for architecture, interior design and turnkey construction consultation for villas, apartments, offices, restaurants and hotels.",
+    "description_homepage": "AA Design provides architecture, interior design and turnkey construction for villas, apartments, offices, restaurants and hotels.",
+    "description_profile": "With nearly 20 years of experience in architecture and interior design, La Thien Phi has completed diverse projects from apartments and villas to offices and commercial spaces.",
+    "keywords_contact": "contact AA Design, interior design consultation, interior construction, villa design",
+    "keywords_homepage": "AA DESIGN, design, interior design, luxury interior design, La Van Phi, La Thien Phi, aa design homepage, aa-design, aa-design.vn",
+    "keywords_profile": "La Thien Phi, interior design, architect, villa design, apartment design, office design",
+    "title_construction": "Projects",
+    "title_contact": "Interior design consultation contact",
+    "title_homepage": "Luxury interior design and turnkey construction",
+    "title_profile": "La Thien Phi - Architect & Interior Designer"
+  },
+  "static": {
+    "bannerSmall": {
+      "banner-small-1": {
+        "title": "Resort corner"
+      },
+      "banner-small-2": {
+        "title": "Minimal style"
+      },
+      "banner-small-3": {
+        "title": "Refined detail"
+      }
+    },
+    "banners": {
+      "banner-1": {
+        "description": "Refined design balancing function and aesthetics.",
+        "title": "Elevated living spaces"
+      },
+      "banner-2": {
+        "description": "Turn ideas into reality with comprehensive design solutions.",
+        "title": "Shaping experiences"
+      },
+      "banner-3": {
+        "description": "Optimize function and elevate aesthetics.",
+        "title": "Refined spaces"
+      }
+    }
   }
 }

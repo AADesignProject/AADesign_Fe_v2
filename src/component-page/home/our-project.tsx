@@ -2,12 +2,15 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Image from 'next/image';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
 
 //styles
 import styles from '@/scss/home-page.module.scss';
-import Link from 'next/link';
 import staticContent from '@/data/static-content.json';
 import { resolveImageUrl } from '@/utils/resolveImageUrl';
+import { getLocalizedProjects } from '@/utils/localizedProject';
 
 type TProject = {
   _id: string;
@@ -43,6 +46,8 @@ const OurProjectComponentPage = () => {
   const ref = useRef<HTMLDivElement>(null);
   const loadMoreRef = useRef<HTMLDivElement>(null);
   const [page, setPage] = useState(1);
+  const router = useRouter();
+  const { t } = useTranslation();
   const limit = 9;
 
   useEffect(() => {
@@ -72,10 +77,13 @@ const OurProjectComponentPage = () => {
 
   const allProjects = useMemo(
     () =>
-      (staticContent.projects as TProject[]).filter(
-        (project) => project.typical ?? project.isTypical
+      getLocalizedProjects(
+        (staticContent.projects as TProject[]).filter(
+          (project) => project.typical ?? project.isTypical
+        ),
+        router.locale
       ),
-    []
+    [router.locale]
   );
   const totalPages = Math.ceil(allProjects.length / limit) || 1;
   const safePage = Math.min(page, totalPages);
@@ -114,11 +122,8 @@ const OurProjectComponentPage = () => {
       className={styles.ourProject}
     >
       <div className={styles.wrapperProject}>
-        <h2 className={styles.title2}>Dự Án</h2>
-        <p className={styles.description}>
-          Những công trình mà chúng tôi đã hoàn thành tại nhiều địa điểm, phục
-          vụ cho các mục đích và khách hàng khác nhau.
-        </p>
+        <h2 className={styles.title2}>{t('home.ourProject.title')}</h2>
+        <p className={styles.description}>{t('home.ourProject.description')}</p>
         <motion.div
           className={styles.projectGallery}
           variants={containerVariants}
@@ -133,11 +138,13 @@ const OurProjectComponentPage = () => {
                 <Link
                   className={styles.imageWrapper}
                   href={`/construction/${project._id}`}
-                  aria-label={`Xem dự án ${project.name}`}
+                  aria-label={t('home.ourProject.viewProject', {
+                    name: project.displayName,
+                  })}
                 >
                   <Image
                     src={resolveImageUrl(project.thumbnailMain)}
-                    alt={project.name}
+                    alt={project.displayName}
                     width={1080}
                     height={1920}
                     quality={85}
@@ -145,21 +152,23 @@ const OurProjectComponentPage = () => {
                     priority={index < 6}
                   />
                   <div className={styles.overlay}>
-                    <p className={styles.topTitle}>{project.type}</p>
+                    <p className={styles.topTitle}>
+                      {t(`project.types.${project.type}`)}
+                    </p>
                     <AiOutlinePlus
                       className={styles.icon}
                       size={100}
                       aria-hidden="true"
                     />
-                    <p className={styles.address}>{project.address}</p>
-                    <p className={styles.name}>{project.name}</p>
+                    <p className={styles.address}>{project.displayAddress}</p>
+                    <p className={styles.name}>{project.displayName}</p>
                   </div>
                 </Link>
               </motion.div>
             ))
           ) : (
             <div className={styles.emptyState}>
-              <p>Không có dự án nào được hiển thị</p>
+              <p>{t('home.ourProject.empty')}</p>
             </div>
           )}
         </motion.div>
@@ -171,7 +180,7 @@ const OurProjectComponentPage = () => {
           transition={{ delay: 0.5 }}
         >
           <Link href="/construction" className={styles.viewMoreButton}>
-            <span>Xem thêm dự án</span>
+            <span>{t('home.ourProject.viewMore')}</span>
             <div className={styles.buttonLine} />
           </Link>
         </motion.div>

@@ -10,6 +10,7 @@ import { Swiper as SwiperClass } from 'swiper/types';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 import 'swiper/css';
 import 'swiper/css/free-mode';
@@ -21,6 +22,7 @@ import styles from '@/styles/construction-detail.module.scss';
 import staticContent from '@/data/static-content.json';
 import { resolveImageUrl } from '@/utils/resolveImageUrl';
 import { getProjectSlug } from '@/utils/projectSlug';
+import { getLocalizedProject } from '@/utils/localizedProject';
 
 interface Project {
   _id: string;
@@ -34,10 +36,12 @@ interface Project {
   typical?: boolean;
 }
 
+type NavigationProject = Pick<Project, '_id' | 'name'>;
+
 type ConstructionDetailProps = {
   locale: string;
-  nextProject: Pick<Project, '_id' | 'name'> | null;
-  prevProject: Pick<Project, '_id' | 'name'> | null;
+  nextProject: NavigationProject | null;
+  prevProject: NavigationProject | null;
   project: Project;
 };
 
@@ -79,23 +83,25 @@ export const getStaticProps: GetStaticProps<ConstructionDetailProps> = async ({
     };
   }
 
+  const nextProject =
+    currentIndex < projects.length - 1 ? projects[currentIndex + 1] : null;
+  const prevProject = currentIndex > 0 ? projects[currentIndex - 1] : null;
+
   return {
     props: {
       locale,
-      nextProject:
-        currentIndex < projects.length - 1
-          ? {
-              _id: getProjectSlug(projects[currentIndex + 1]),
-              name: projects[currentIndex + 1].name,
-            }
-          : null,
-      prevProject:
-        currentIndex > 0
-          ? {
-              _id: getProjectSlug(projects[currentIndex - 1]),
-              name: projects[currentIndex - 1].name,
-            }
-          : null,
+      nextProject: nextProject
+        ? {
+            _id: getProjectSlug(nextProject),
+            name: getLocalizedProject(nextProject, locale).displayName,
+          }
+        : null,
+      prevProject: prevProject
+        ? {
+            _id: getProjectSlug(prevProject),
+            name: getLocalizedProject(prevProject, locale).displayName,
+          }
+        : null,
       project,
     },
   };
@@ -107,6 +113,7 @@ const ConstructionDetail = ({
   prevProject,
   project,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const { t } = useTranslation();
   const [thumbsSwiper, setThumbsSwiper] = React.useState<SwiperClass | null>(
     null
   );
@@ -114,51 +121,34 @@ const ConstructionDetail = ({
   const [lightboxOpen, setLightboxOpen] = React.useState(false);
   const closeButtonRef = React.useRef<HTMLButtonElement>(null);
   const previousFocusRef = React.useRef<HTMLElement | null>(null);
-
-  const detailCopy = useMemo(
-    () =>
-      locale === 'en'
-        ? {
-            back: 'Back to projects',
-            fullscreenHint: 'Click to view fullscreen',
-            galleryDescription: 'Explore the project through the image gallery',
-            galleryTitle: 'Project gallery',
-            next: 'Next project',
-            previous: 'Previous project',
-          }
-        : {
-            back: 'Quay lại danh sách',
-            fullscreenHint: 'Click vào ảnh để xem toàn màn hình',
-            galleryDescription:
-              'Khám phá chi tiết không gian qua bộ sưu tập hình ảnh',
-            galleryTitle: 'Hình ảnh công trình',
-            next: 'Dự án tiếp theo',
-            previous: 'Dự án trước',
-          },
-    [locale]
+  const localizedProject = useMemo(
+    () => getLocalizedProject(project, locale),
+    [locale, project]
   );
-
-  const seoDescription =
-    locale === 'en'
-      ? `${project.name} is one of AA Design's ${project.type} projects, showcasing the design language, materials, and completed spaces in detail.`
-      : `${project.name} là một trong những công trình ${project.type} của AA Design, giới thiệu chi tiết phong cách thiết kế, vật liệu và không gian hoàn thiện.`;
+  const projectTypeLabel = t(`project.types.${project.type}`, {
+    defaultValue: project.type,
+  });
+  const seoDescription = t('construction.detail.seoDescription', {
+    name: localizedProject.displayName,
+    type: projectTypeLabel,
+  });
 
   const overviewFacts = [
     {
-      label: locale === 'en' ? 'Project type' : 'Loại công trình',
-      value: project.type,
+      label: t('construction.detail.facts.type'),
+      value: projectTypeLabel,
     },
     {
-      label: locale === 'en' ? 'Location' : 'Địa điểm',
-      value: project.address,
+      label: t('construction.detail.facts.location'),
+      value: localizedProject.displayAddress,
     },
     {
-      label: locale === 'en' ? 'Scope' : 'Hạng mục',
-      value: locale === 'en' ? 'Design & construction' : 'Thiết kế & thi công',
+      label: t('construction.detail.facts.scope'),
+      value: t('construction.detail.facts.scopeValue'),
     },
     {
-      label: locale === 'en' ? 'Style' : 'Phong cách',
-      value: locale === 'en' ? 'Refined modern' : 'Hiện đại, tinh tế',
+      label: t('construction.detail.facts.style'),
+      value: t('construction.detail.facts.styleValue'),
     },
   ];
 
@@ -221,28 +211,28 @@ const ConstructionDetail = ({
   return (
     <>
       <SEOHeaderComponent
-        title={project.name}
+        title={localizedProject.displayName}
         description={seoDescription}
-        keywords={`${project.type}, ${project.name}, interior design, construction`}
+        keywords={`${projectTypeLabel}, ${localizedProject.displayName}, interior design, construction`}
         image={toAbsoluteImageUrl(heroImage)}
         breadcrumbs={[
-          { name: locale === 'en' ? 'Home' : 'Trang chủ', url: '/' },
+          { name: t('breadcrumbs.home'), url: '/' },
           {
-            name: locale === 'en' ? 'Projects' : 'Công trình',
+            name: t('construction.title'),
             url: '/construction',
           },
           {
-            name: project.name,
+            name: localizedProject.displayName,
             url: `/construction/${getProjectSlug(project)}`,
           },
         ]}
         structuredData={{
           '@context': 'https://schema.org',
           '@type': 'CreativeWork',
-          name: project.name,
+          name: localizedProject.displayName,
           description: seoDescription,
           image: allImages.map((item) => toAbsoluteImageUrl(item)),
-          locationCreated: project.address,
+          locationCreated: localizedProject.displayAddress,
           creator: {
             '@type': 'Organization',
             name: 'AA Design',
@@ -255,7 +245,7 @@ const ConstructionDetail = ({
           <div className={styles.heroImage}>
             <Image
               src={resolveImageUrl(heroImage)}
-              alt={project.name}
+              alt={localizedProject.displayName}
               fill
               priority
               quality={90}
@@ -269,14 +259,14 @@ const ConstructionDetail = ({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              {project.name}
+              {localizedProject.displayName}
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              {project.address}
+              {localizedProject.displayAddress}
             </motion.p>
             <motion.span
               className={styles.heroTag}
@@ -284,11 +274,11 @@ const ConstructionDetail = ({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.35 }}
             >
-              {project.type}
+              {projectTypeLabel}
             </motion.span>
             <div className={styles.heroActions}>
               <Link href="/construction" className={styles.backButton}>
-                {detailCopy.back}
+                {t('construction.detail.back')}
               </Link>
               <div className={styles.navButtons}>
                 {prevProject ? (
@@ -297,14 +287,14 @@ const ConstructionDetail = ({
                     href={`/construction/${prevProject._id}`}
                   >
                     <span className={styles.navLabel}>
-                      {detailCopy.previous}
+                      {t('construction.detail.previous')}
                     </span>
                     <span className={styles.navName}>{prevProject.name}</span>
                   </Link>
                 ) : (
                   <span className={`${styles.navButton} ${styles.disabled}`}>
                     <span className={styles.navLabel}>
-                      {detailCopy.previous}
+                      {t('construction.detail.previous')}
                     </span>
                   </span>
                 )}
@@ -313,12 +303,16 @@ const ConstructionDetail = ({
                     className={styles.navButton}
                     href={`/construction/${nextProject._id}`}
                   >
-                    <span className={styles.navLabel}>{detailCopy.next}</span>
+                    <span className={styles.navLabel}>
+                      {t('construction.detail.next')}
+                    </span>
                     <span className={styles.navName}>{nextProject.name}</span>
                   </Link>
                 ) : (
                   <span className={`${styles.navButton} ${styles.disabled}`}>
-                    <span className={styles.navLabel}>{detailCopy.next}</span>
+                    <span className={styles.navLabel}>
+                      {t('construction.detail.next')}
+                    </span>
                   </span>
                 )}
               </div>
@@ -328,8 +322,8 @@ const ConstructionDetail = ({
 
         <section className={styles.overviewSection}>
           <div className={styles.overviewCopy}>
-            <span>Project notes</span>
-            <h2>{project.name}</h2>
+            <span>{t('construction.detail.overviewLabel')}</span>
+            <h2>{localizedProject.displayName}</h2>
             <p>{seoDescription}</p>
           </div>
           <dl className={styles.factList}>
@@ -344,8 +338,8 @@ const ConstructionDetail = ({
 
         <section className={styles.gallerySection}>
           <div className={styles.galleryHeader}>
-            <h2>{detailCopy.galleryTitle}</h2>
-            <p>{detailCopy.galleryDescription}</p>
+            <h2>{t('construction.detail.galleryTitle')}</h2>
+            <p>{t('construction.detail.galleryDescription')}</p>
           </div>
           <div className={styles.sliderContainer}>
             <Swiper
@@ -365,11 +359,11 @@ const ConstructionDetail = ({
                     type="button"
                     className={styles.slideWrapper}
                     onClick={() => setLightboxOpen(true)}
-                    aria-label={`${detailCopy.fullscreenHint}: ${project.name} ${index + 1}`}
+                    aria-label={`${t('construction.detail.fullscreenHint')}: ${localizedProject.displayName} ${index + 1}`}
                   >
                     <Image
                       src={resolveImageUrl(image)}
-                      alt={`${project.name} - Image ${index + 1}`}
+                      alt={`${localizedProject.displayName} - Image ${index + 1}`}
                       width={1920}
                       height={1080}
                       quality={90}
@@ -377,7 +371,7 @@ const ConstructionDetail = ({
                       priority={index === 0}
                     />
                     <div className={styles.slideOverlay}>
-                      <span>{detailCopy.fullscreenHint}</span>
+                      <span>{t('construction.detail.fullscreenHint')}</span>
                     </div>
                   </button>
                 </SwiperSlide>
@@ -399,7 +393,7 @@ const ConstructionDetail = ({
                     <div className={styles.thumbWrapper}>
                       <Image
                         src={resolveImageUrl(image)}
-                        alt={`${project.name} - Thumbnail ${index + 1}`}
+                        alt={`${localizedProject.displayName} - Thumbnail ${index + 1}`}
                         width={240}
                         height={135}
                         quality={80}
@@ -417,7 +411,7 @@ const ConstructionDetail = ({
             className={styles.lightbox}
             role="dialog"
             aria-modal="true"
-            aria-label={detailCopy.galleryTitle}
+            aria-label={t('construction.detail.galleryTitle')}
             onClick={(event) => {
               if (event.target === event.currentTarget) {
                 setLightboxOpen(false);
@@ -429,22 +423,22 @@ const ConstructionDetail = ({
               type="button"
               className={styles.lightboxClose}
               onClick={() => setLightboxOpen(false)}
-              aria-label="Đóng"
+              aria-label={t('aria.close')}
             >
-              ×
+              x
             </button>
             <button
               type="button"
               className={styles.lightboxNavLeft}
               onClick={goToPrev}
-              aria-label="Ảnh trước"
+              aria-label={t('aria.previousImage')}
             >
-              ‹
+              {'‹'}
             </button>
             <div className={styles.lightboxImage}>
               <Image
                 src={resolveImageUrl(lightboxImage)}
-                alt={`${project.name} - Fullscreen ${activeIndex + 1}`}
+                alt={`${localizedProject.displayName} - Fullscreen ${activeIndex + 1}`}
                 fill
                 sizes="(max-width: 1200px) 92vw, 1200px"
                 quality={90}
@@ -457,9 +451,9 @@ const ConstructionDetail = ({
               type="button"
               className={styles.lightboxNavRight}
               onClick={goToNext}
-              aria-label="Ảnh sau"
+              aria-label={t('aria.nextImage')}
             >
-              ›
+              {'›'}
             </button>
           </div>
         )}

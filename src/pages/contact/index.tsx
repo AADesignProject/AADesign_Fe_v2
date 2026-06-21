@@ -16,45 +16,43 @@ const ContactPage = () => {
   return (
     <>
       <SEOHeaderComponent
-        title="Liên hệ tư vấn thiết kế nội thất"
-        description="Liên hệ AA Design để tư vấn thiết kế kiến trúc, nội thất và thi công trọn gói cho biệt thự, căn hộ, văn phòng, nhà hàng, khách sạn."
-        keywords="liên hệ AA Design, tư vấn thiết kế nội thất, thi công nội thất, thiết kế biệt thự"
+        title={t('seo.title_contact')}
+        description={t('seo.description_contact')}
+        keywords={t('seo.keywords_contact')}
         breadcrumbs={[
-          { name: 'Trang chủ', url: '/' },
-          { name: 'Liên hệ', url: '/contact' },
+          { name: t('breadcrumbs.home'), url: '/' },
+          { name: t('contact.title'), url: '/contact' },
         ]}
       />
       <div className={styles.wrapperContactPage}>
         <div className={styles.containerContactPage}>
           <div className={styles.pageIntro}>
             <HeaderTitlePage title={t('contact.title')} />
-            <p>
-              Trao đổi trực tiếp với AA Design để bắt đầu định hướng không gian,
-              phạm vi thiết kế và lịch tư vấn phù hợp.
-            </p>
+            <p>{t('contact.description')}</p>
           </div>
 
           <div className={styles.wrapperContent}>
             <section className={styles.consultationPanel}>
-              <span>Direct contact</span>
-              <h2>Bắt đầu cuộc trao đổi về không gian của bạn</h2>
-              <p>
-                Gọi điện hoặc gửi email ngắn về nhu cầu, hiện trạng và thời gian
-                bạn muốn trao đổi. Chúng tôi sẽ phản hồi để sắp xếp buổi tư vấn.
-              </p>
+              <span>{t('contact.sectionLabel')}</span>
+              <h2>{t('contact.consultationTitle')}</h2>
+              <p>{t('contact.consultationDescription')}</p>
               <div className={styles.contactActions}>
-                <Link href={`tel:${phoneNumberHref}`}>Gọi {phoneNumber}</Link>
-                <Link href={`mailto:${email}`}>Gửi email</Link>
+                <Link href={`tel:${phoneNumberHref}`}>
+                  {t('contact.actions.call', { phone: phoneNumber })}
+                </Link>
+                <Link href={`mailto:${email}`}>
+                  {t('contact.actions.email')}
+                </Link>
               </div>
               <dl className={styles.contactDetails}>
                 <div>
-                  <dt>Điện thoại</dt>
+                  <dt>{t('common.phone')}</dt>
                   <dd>
                     <Link href={`tel:${phoneNumberHref}`}>{phoneNumber}</Link>
                   </dd>
                 </div>
                 <div>
-                  <dt>Email</dt>
+                  <dt>{t('common.email')}</dt>
                   <dd>
                     <Link href={`mailto:${email}`}>{email}</Link>
                   </dd>
@@ -65,7 +63,7 @@ const ContactPage = () => {
             <section className={styles.boxContent}>
               <h2 className={styles.title}>{t('contact.live')}</h2>
               <div className={styles.description}>
-                <p>Mr La Thiên Phi</p>
+                <p>{t('contact.personName')}</p>
                 <Link href={`tel:${phoneNumberHref}`}>T: {phoneNumber}</Link>
                 <Link href={`mailto:${email}`}>E: {email}</Link>
               </div>
@@ -84,15 +82,15 @@ const ContactPage = () => {
           <div className={styles.processStrip}>
             <div>
               <span>01</span>
-              <p>Lắng nghe</p>
+              <p>{t('contact.process.listen')}</p>
             </div>
             <div>
               <span>02</span>
-              <p>Định hướng</p>
+              <p>{t('contact.process.orient')}</p>
             </div>
             <div>
               <span>03</span>
-              <p>Đề xuất giải pháp</p>
+              <p>{t('contact.process.propose')}</p>
             </div>
           </div>
         </div>
