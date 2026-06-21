@@ -1,32 +1,10 @@
 import { useTranslation } from 'react-i18next';
-import dynamic from 'next/dynamic';
 
 //components
 import SEOHeaderComponent from '@/components/seo-header';
-import CarouselComponent from '@/components/carousel';
+import HomepageLandingComponent from '@/component-page/home/homepage-landing';
 
 //styles
-import styles from '@/scss/home-page.module.scss';
-
-interface IComponentConfig {
-  id: string;
-  component: React.ComponentType<object>;
-}
-
-const components: IComponentConfig[] = [
-  {
-    id: 'design-service',
-    component: dynamic(() => import('@/component-page/home/design-service')),
-  },
-  {
-    id: 'our-service',
-    component: dynamic(() => import('@/component-page/home/our-service')),
-  },
-  {
-    id: 'our-project',
-    component: dynamic(() => import('@/component-page/home/our-project')),
-  },
-];
 
 const HomePage = () => {
   const { t } = useTranslation();
@@ -38,14 +16,7 @@ const HomePage = () => {
         description={t('seo.description_homepage')}
         keywords={t('seo.keywords_homepage')}
       />
-      <div className={styles.wrapperHomePage}>
-        <CarouselComponent />
-        {components.map(({ id, component: Component }) => (
-          <div key={id} id={id}>
-            <Component />
-          </div>
-        ))}
-      </div>
+      <HomepageLandingComponent />
     </>
   );
 };

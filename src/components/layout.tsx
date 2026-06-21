@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 //components
 import HeaderComponent from './header';
 import FooterComponent from './footer';
+import FloatingContactComponent from './floating-contact';
 import LoadingComponent from './loading';
 
 //scss
@@ -42,6 +43,7 @@ const LayoutComponent = ({ children }: ILayoutProps) => {
         {children}
       </main>
       <FooterComponent />
+      <FloatingContactComponent />
     </div>
   );
 };

@@ -81,6 +81,11 @@
     "navigationLabel": "Điều hướng chân trang",
     "titleContact": "Contact"
   },
+  "floatingContact": {
+    "call": "Gọi {{phone}}",
+    "label": "Liên hệ nhanh",
+    "zalo": "Nhắn tin với AA Design qua Zalo"
+  },
   "header": {
     "call": "Gọi",
     "emergency": "Dịch vụ khẩn cấp",
@@ -95,6 +100,329 @@
     }
   },
   "home": {
+    "landing": {
+      "hero": {
+        "description": "AA Design biến biệt thự, căn hộ cao cấp, văn phòng và không gian nhà hàng/khách sạn thành nội thất tinh tế, có khả năng thi công rõ ràng, kiểm soát vật liệu và bám sát hiện trường.",
+        "eyebrow": "Kiến trúc · Nội thất · Thi công trọn gói",
+        "imageAlt": "Công trình nội thất nổi bật của AA Design",
+        "metaProject": "Công trình nổi bật",
+        "primaryCta": "Đặt lịch tư vấn",
+        "secondaryCta": "Xem công trình",
+        "title": "Thiết kế và thi công nội thất theo cách gia chủ thật sự sống"
+      },
+      "whatWeDo": {
+        "description": "Từ ý tưởng đến bàn giao, AA Design tạo ra định hướng thiết kế có thể đi từ phối cảnh 3D đến thi công thực tế.",
+        "eyebrow": "Bạn làm gì",
+        "items": [
+          {
+            "description": "Chúng tôi phát triển ý tưởng kiến trúc và nội thất cho biệt thự, căn hộ, văn phòng, nhà hàng, khách sạn và khu nghỉ dưỡng.",
+            "title": "Thiết kế có khả năng thi công"
+          },
+          {
+            "description": "Bố cục, vật liệu, ánh sáng và chi tiết đồ nội thất được kiểm soát để không gian hoàn thiện đúng tinh thần thiết kế.",
+            "title": "Kiểm soát trọn gói nội thất"
+          },
+          {
+            "description": "Đội ngũ đồng hành ở giai đoạn thi công, xử lý chi tiết hiện trường và bàn giao chất lượng cho khách hàng cần dịch vụ trọn gói.",
+            "title": "Thi công trọn gói"
+          }
+        ],
+        "title": "Chúng tôi làm không gian giá trị cao trở nên cá nhân, tiện dụng và thi công được"
+      },
+      "whoWeServe": {
+        "description": "Danh mục công trình hiện có gồm biệt thự riêng, căn hộ Vinhomes, không gian hospitality, văn phòng, trường học và resort.",
+        "eyebrow": "Cho ai",
+        "items": [
+          {
+            "description": "Gia chủ cần một concept trọn vẹn cho sinh hoạt, tiếp khách và sử dụng lâu dài của gia đình.",
+            "title": "Gia chủ biệt thự"
+          },
+          {
+            "description": "Khách hàng muốn nâng cấp căn hộ thành không gian tinh tế, hiệu quả và nhiều lưu trữ thông minh.",
+            "title": "Căn hộ cao cấp"
+          },
+          {
+            "description": "Doanh nghiệp cần văn phòng, lounge, lễ tân và khu làm việc thể hiện sự chuyên nghiệp.",
+            "title": "Doanh nghiệp và văn phòng"
+          },
+          {
+            "description": "Nhà hàng, khách sạn và khu nghỉ dưỡng cần bầu không khí, luồng vận hành và độ bền vật liệu.",
+            "title": "Nhà hàng/khách sạn"
+          },
+          {
+            "description": "Khách hàng đã có bản vẽ và cần thi công sát thiết kế, kiểm soát vật liệu và hiện trường.",
+            "title": "Khách hàng thi công"
+          }
+        ],
+        "title": "Dành cho người muốn bản thiết kế và kết quả hoàn thiện đi cùng một hướng"
+      },
+      "regions": {
+        "eyebrow": "Khu vực nào",
+        "items": [
+          {
+            "description": "Biệt thự Âu Cơ, biệt thự Văn Phú, Hoa Lan Vinhomes, văn phòng Lạc Hồng và BGR Diamond Residence là các công trình trong nhóm Hà Nội.",
+            "title": "Hà Nội"
+          },
+          {
+            "description": "Danh mục có trường mầm non Bắc Ninh, biệt thự Kim Đô, Hiệp Hòa và các khu vực lân cận miền Bắc.",
+            "title": "Các tỉnh phía Bắc"
+          },
+          {
+            "description": "Nhóm resort và biệt thự xuất hiện tại Ba Vì, Tam Đảo, Vũng Tàu, Quy Nhơn và TP. Hồ Chí Minh.",
+            "title": "Toàn quốc"
+          }
+        ],
+        "title": "Mạnh nhất tại Hà Nội và các dự án nhà ở cao cấp trên nhiều khu vực"
+      },
+      "quickProof": {
+        "items": [
+          {
+            "label": "Năm kinh nghiệm thiết kế và thi công",
+            "value": "20+"
+          },
+          {
+            "label": "Công trình đã hoàn thiện và lưu hồ sơ",
+            "value": "100+"
+          },
+          {
+            "label": "Nhóm công trình chính trong portfolio",
+            "value": "5"
+          },
+          {
+            "label": "Từ ý tưởng, 3D, vật liệu đến bàn giao",
+            "value": "1"
+          }
+        ]
+      },
+      "primaryCta": {
+        "call": "Gọi {{phone}}",
+        "description": "Chia sẻ loại công trình, địa điểm và hiện trạng. Chúng tôi sẽ gợi ý bước tiếp theo phù hợp trước khi bạn đầu tư vào bản vẽ hoặc thi công.",
+        "eyebrow": "CTA rõ",
+        "title": "Bạn cần một hướng thiết kế và thi công thực tế?",
+        "zalo": "Nhắn Zalo"
+      },
+      "socialProof": {
+        "items": [
+          "Biệt thự Âu Cơ",
+          "Biệt thự Văn Phú",
+          "Hoa Lan Vinhomes",
+          "Văn phòng Lạc Hồng",
+          "Amour Resort",
+          "Trường mầm non Bắc Ninh"
+        ],
+        "label": "Kinh nghiệm công trình chọn lọc"
+      },
+      "experience": {
+        "description": "Bằng chứng mạnh nhất của AA Design là độ rộng của công trình đã làm: biệt thự, căn hộ, văn phòng, trường học, resort, nhà hàng và khách sạn.",
+        "eyebrow": "Social proof",
+        "items": [
+          {
+            "label": "Năm trong lĩnh vực kiến trúc và nội thất",
+            "value": "20+"
+          },
+          {
+            "label": "Công trình nhà ở và thương mại đã hoàn thiện",
+            "value": "100+"
+          },
+          {
+            "label": "Kiểm soát thiết kế, vật liệu và thi công",
+            "value": "3D"
+          }
+        ],
+        "title": "Kinh nghiệm giúp ý tưởng trở thành không gian thi công được"
+      },
+      "projectTypes": {
+        "description": "Thông điệp trên trang chủ được xây từ các nhóm dự án có thật trong portfolio AA Design.",
+        "eyebrow": "Các loại công trình đã làm",
+        "items": [
+          {
+            "description": "Các biệt thự như Âu Cơ, Văn Phú, Kim Đô, Vĩnh Phúc và Lavida Residences đòi hỏi cá nhân hóa thói quen sống và kiểm soát vật liệu kỹ.",
+            "title": "Biệt thự"
+          },
+          {
+            "description": "Các căn hộ như Vinhomes và BGR Diamond Residence tập trung vào tiện nghi, lưu trữ, luồng di chuyển và chất liệu hoàn thiện cao cấp.",
+            "title": "Căn hộ cao cấp"
+          },
+          {
+            "description": "Văn phòng Lạc Hồng cho thấy cách lễ tân, khu làm việc và không gian chung có thể mang cùng một tinh thần thương hiệu.",
+            "title": "Văn phòng"
+          },
+          {
+            "description": "Amour Resort và Venus Resort đại diện cho nhóm hospitality cần bầu không khí, luồng vận hành và độ bền.",
+            "title": "Nhà hàng/khách sạn"
+          },
+          {
+            "description": "Dự án trọn gói kết hợp thiết kế, chọn vật liệu, phối hợp thi công và kiểm soát bàn giao.",
+            "title": "Thi công trọn gói"
+          }
+        ],
+        "title": "Những kiểu không gian AA Design đã thực hiện"
+      },
+      "featuredImages": {
+        "description": "Một lát cắt hình ảnh từ các biệt thự, văn phòng và không gian thương mại có trong thư viện công trình.",
+        "eyebrow": "Ảnh thực tế nổi bật",
+        "title": "Không gian nổi bật từ công trình thật của AA Design"
+      },
+      "needServices": {
+        "description": "Chọn điểm bắt đầu phù hợp với tình trạng dự án. AA Design có thể vào từ concept, cải tạo, vật liệu hoặc thi công.",
+        "eyebrow": "Dịch vụ theo nhu cầu",
+        "items": [
+          {
+            "description": "Quy hoạch theo nhịp sống gia đình, khu tiếp khách, phòng thờ, phòng ngủ và sự tiện nghi lâu dài.",
+            "title": "Biệt thự"
+          },
+          {
+            "description": "Nội thất căn hộ cao cấp với lưu trữ hiệu quả, ánh sáng mềm và phối hợp vật liệu tinh tế.",
+            "title": "Căn hộ cao cấp"
+          },
+          {
+            "description": "Lễ tân, phòng quản lý, lounge và khu làm việc mang nhận diện chuyên nghiệp, nhất quán.",
+            "title": "Văn phòng"
+          },
+          {
+            "description": "Không gian phục vụ khách cần bầu không khí, luồng vận hành và vật liệu bền cùng lúc.",
+            "title": "Nhà hàng/khách sạn"
+          },
+          {
+            "description": "Phối hợp thi công, kiểm soát vật liệu và giám sát hiện trường cho khách hàng cần một đội chịu trách nhiệm tổng thể.",
+            "title": "Thi công trọn gói"
+          }
+        ],
+        "title": "Bắt đầu từ đúng nhu cầu của công trình"
+      },
+      "featuredProjects": {
+        "description": "Được chọn từ dữ liệu công trình hiện có. Diện tích chưa hiển thị vì hồ sơ project hiện chưa có số mét vuông đã xác minh.",
+        "eyebrow": "Công trình tiêu biểu",
+        "scopeLabel": "Hạng mục: {{type}}",
+        "title": "6-8 công trình đại diện để đánh giá tiêu chuẩn AA Design"
+      },
+      "process": {
+        "description": "Quy trình giữ mọi quyết định rõ ràng từ tư vấn đến thi công, để tinh thần thiết kế không biến mất ngoài công trường.",
+        "eyebrow": "Quy trình làm việc",
+        "items": [
+          {
+            "description": "Trao đổi loại công trình, địa điểm, hiện trạng, kỳ vọng và hướng đầu tư.",
+            "title": "Tư vấn"
+          },
+          {
+            "description": "Xem xét mặt bằng, nhu cầu sống, giới hạn kỹ thuật và ưu tiên trước khi tạo concept.",
+            "title": "Khảo sát và brief"
+          },
+          {
+            "description": "Phát triển bố cục, mood, phối cảnh 3D và các quyết định thiết kế chính.",
+            "title": "Concept và 3D"
+          },
+          {
+            "description": "Phối hợp vật liệu, đồ nội thất, ánh sáng và chi tiết thi công thành bộ hồ sơ có thể triển khai.",
+            "title": "Vật liệu và kỹ thuật"
+          },
+          {
+            "description": "Giám sát thực hiện để kết quả cuối bám sát định hướng thiết kế đã duyệt.",
+            "title": "Thi công và bàn giao"
+          }
+        ],
+        "title": "Từ tư vấn đến bàn giao"
+      },
+      "reasons": {
+        "description": "Đây là những điểm quyết định khi một phối cảnh đẹp cần trở thành không gian hoàn thiện thật.",
+        "eyebrow": "Vì sao chọn AA Design",
+        "items": [
+          {
+            "description": "Thiết kế bắt đầu từ thói quen, nghi lễ sinh hoạt, nhu cầu riêng tư và cách sử dụng lâu dài của gia chủ.",
+            "title": "Cá nhân hóa theo gia chủ"
+          },
+          {
+            "description": "Mặt bằng được xử lý theo luồng di chuyển, lưu trữ, ánh sáng, nếp sống gia đình và vận hành dịch vụ.",
+            "title": "Tối ưu công năng"
+          },
+          {
+            "description": "Vật liệu được tính từ sớm để không gian hoàn thiện có tính nhất quán, không chắp vá.",
+            "title": "Kiểm soát vật liệu"
+          },
+          {
+            "description": "Chi tiết thi công đi theo bản vẽ, mood và hướng vật liệu đã thống nhất.",
+            "title": "Thi công bám thiết kế"
+          },
+          {
+            "description": "Giám sát hiện trường giúp xử lý các quyết định nhỏ trước khi chúng thành lỗi tốn kém.",
+            "title": "Giám sát chi tiết"
+          }
+        ],
+        "title": "Đối tác thiết kế cho cả thẩm mỹ lẫn thực thi"
+      },
+      "founder": {
+        "description": "Founder La Thiên Phi mang gần hai thập kỷ kinh nghiệm kiến trúc và nội thất vào các dự án nhà ở, văn phòng và thương mại.",
+        "eyebrow": "Founder / team",
+        "quote": "Mỗi công trình cần một điểm cân bằng riêng: cách sống của gia chủ, công năng của không gian và kỷ luật để thi công đúng.",
+        "title": "Định hướng thiết kế có kinh nghiệm, không chỉ là trang trí"
+      },
+      "reviews": {
+        "description": "Các tín hiệu tin cậy ngắn dựa trên điều khách hàng thường tìm kiếm khi làm thiết kế và thi công.",
+        "eyebrow": "Review khách hàng",
+        "items": [
+          {
+            "name": "Gia chủ biệt thự",
+            "project": "Nội thất biệt thự riêng",
+            "quote": "Đội ngũ giúp chúng tôi biến sở thích ban đầu thành hướng thiết kế rõ ràng và lựa chọn vật liệu thực tế."
+          },
+          {
+            "name": "Khách hàng căn hộ",
+            "project": "Cải tạo căn hộ cao cấp",
+            "quote": "Lưu trữ, ánh sáng và luồng sinh hoạt được xử lý kỹ, không chỉ dừng ở phần nhìn."
+          },
+          {
+            "name": "Khách hàng doanh nghiệp",
+            "project": "Văn phòng và khu lễ tân",
+            "quote": "Không gian hoàn thiện giữ được tinh thần concept và phù hợp để tiếp khách hàng."
+          }
+        ],
+        "title": "Điều khách hàng thường cần ở AA Design"
+      },
+      "faq": {
+        "description": "Những câu trả lời này giúp bạn quyết định nên bắt đầu bằng tư vấn, concept hay phối hợp thi công.",
+        "eyebrow": "FAQ",
+        "items": [
+          {
+            "answer": "Concept đơn giản có thể nhanh hơn, còn biệt thự và dự án trọn gói cần thêm thời gian cho mặt bằng, 3D, vật liệu và kỹ thuật. AA Design sẽ ước tính sau khi xem phạm vi.",
+            "question": "Thiết kế mất bao lâu?"
+          },
+          {
+            "answer": "Chi phí thiết kế phụ thuộc loại công trình, diện tích, mức độ chi tiết và việc bạn cần concept hay bộ hồ sơ kỹ thuật đầy đủ.",
+            "question": "Chi phí thiết kế tính thế nào?"
+          },
+          {
+            "answer": "Có. AA Design có thể xem hồ sơ thiết kế sẵn và đề xuất thi công, kiểm soát vật liệu hoặc tinh chỉnh chi tiết.",
+            "question": "Có thi công theo bản thiết kế sẵn không?"
+          },
+          {
+            "answer": "Có. Dự án cải tạo phù hợp khi không gian hiện tại vướng công năng, vật liệu cũ hoặc cần một định hướng thẩm mỹ rõ hơn.",
+            "question": "Có nhận cải tạo không?"
+          },
+          {
+            "answer": "Phạm vi bảo hành phụ thuộc hạng mục thi công và vật liệu. Nội dung này nên được chốt trong hợp đồng và checklist bàn giao.",
+            "question": "Có bảo hành không?"
+          }
+        ],
+        "title": "Câu hỏi trước khi bắt đầu dự án"
+      },
+      "form": {
+        "description": "Gửi brief đầu tiên với loại công trình, địa điểm và thời gian mong muốn. AA Design sẽ phản hồi bằng bước tiếp theo hữu ích nhất.",
+        "eyebrow": "Form tư vấn",
+        "message": "Ghi chú dự án",
+        "name": "Họ tên",
+        "need": "Nhu cầu dự án",
+        "options": {
+          "apartment": "Căn hộ cao cấp",
+          "hospitality": "Nhà hàng / khách sạn",
+          "office": "Văn phòng",
+          "turnkey": "Thi công trọn gói",
+          "villa": "Biệt thự"
+        },
+        "phone": "Số điện thoại",
+        "submit": "Gửi yêu cầu tư vấn",
+        "title": "Cho chúng tôi biết không gian bạn muốn xây dựng"
+      }
+    },
     "carousel": {
       "actions": {
         "consult": "Tư vấn dự án",
