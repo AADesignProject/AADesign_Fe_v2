@@ -1,11 +1,13 @@
 @import './variables.module.scss';
 
 .siteHeader {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 1000;
+  left: 0;
+  z-index: 2600;
   width: 100%;
   color: $text-color;
+  box-shadow: 0 14px 32px rgba(23, 23, 20, 0.08);
 }
 
 .headerContainerTop {

@@ -81,6 +81,11 @@
     "navigationLabel": "Footer navigation",
     "titleContact": "Contact"
   },
+  "floatingContact": {
+    "call": "Call {{phone}}",
+    "label": "Quick contact",
+    "zalo": "Chat with AA Design on Zalo"
+  },
   "header": {
     "call": "Call",
     "emergency": "Emergency Service",
@@ -95,6 +100,329 @@
     }
   },
   "home": {
+    "landing": {
+      "hero": {
+        "description": "AA Design turns villas, premium apartments, offices and hospitality spaces into refined, buildable interiors with clear scope, controlled materials and close site supervision.",
+        "eyebrow": "Architecture · Interior · Turnkey construction",
+        "imageAlt": "AA Design featured interior project",
+        "metaProject": "Featured project",
+        "primaryCta": "Book consultation",
+        "secondaryCta": "View projects",
+        "title": "Interior design and construction shaped around the way you live"
+      },
+      "whatWeDo": {
+        "description": "From concept to handover, AA Design builds a design direction that can move cleanly from 3D visualization into real construction.",
+        "eyebrow": "What we do",
+        "items": [
+          {
+            "description": "We develop architecture and interior concepts for villas, apartments, offices, restaurants, hotels and resort spaces.",
+            "title": "Design with a buildable direction"
+          },
+          {
+            "description": "We coordinate layout, materials, lighting and furniture details so the finished space follows the design intent.",
+            "title": "Control the full interior package"
+          },
+          {
+            "description": "We manage construction details, site coordination and handover quality for clients who need a complete service.",
+            "title": "Deliver turnkey construction"
+          }
+        ],
+        "title": "We make high-value spaces feel personal, functional and ready to build"
+      },
+      "whoWeServe": {
+        "description": "The portfolio already includes private villas, Vinhomes apartments, hospitality spaces, offices, schools and resort projects.",
+        "eyebrow": "Who we serve",
+        "items": [
+          {
+            "description": "Owners who need a complete concept for living, receiving guests and long-term family use.",
+            "title": "Villa owners"
+          },
+          {
+            "description": "Clients upgrading apartments into refined, efficient and storage-smart homes.",
+            "title": "Premium apartments"
+          },
+          {
+            "description": "Businesses that need offices, lounges, reception areas and customer-facing spaces to feel professional.",
+            "title": "Companies and offices"
+          },
+          {
+            "description": "Restaurants, hotels and resorts that need atmosphere, flow and durable execution.",
+            "title": "Hospitality operators"
+          },
+          {
+            "description": "Clients who already have drawings and need construction that stays close to the design.",
+            "title": "Turnkey construction clients"
+          }
+        ],
+        "title": "For owners who want the design and the finished result to stay aligned"
+      },
+      "regions": {
+        "eyebrow": "Project areas",
+        "items": [
+          {
+            "description": "Au Co Villa, Van Phu Villa, Hoa Lan Vinhomes, Lac Hong Office and BGR Diamond Residence are part of the Hanoi portfolio.",
+            "title": "Hanoi"
+          },
+          {
+            "description": "Projects include Bac Ninh Kindergarten, Kim Do villas, Hiep Hoa and surrounding northern provinces.",
+            "title": "Northern provinces"
+          },
+          {
+            "description": "Hospitality and villa work appears across Ba Vi, Tam Dao, Vung Tau, Quy Nhon and Ho Chi Minh City.",
+            "title": "Wider Vietnam"
+          }
+        ],
+        "title": "Strongest experience in Hanoi and high-end residential projects across Vietnam"
+      },
+      "quickProof": {
+        "items": [
+          {
+            "label": "Years of design and construction experience",
+            "value": "20+"
+          },
+          {
+            "label": "Completed and documented projects",
+            "value": "100+"
+          },
+          {
+            "label": "Project categories in the current portfolio",
+            "value": "5"
+          },
+          {
+            "label": "From concept, 3D and materials to handover",
+            "value": "1"
+          }
+        ]
+      },
+      "primaryCta": {
+        "call": "Call {{phone}}",
+        "description": "Share the project type, location and current status. We will suggest the right next step before you invest in drawings or construction.",
+        "eyebrow": "Clear next step",
+        "title": "Need a realistic design and construction direction?",
+        "zalo": "Chat on Zalo"
+      },
+      "socialProof": {
+        "items": [
+          "Au Co Villa",
+          "Van Phu Villa",
+          "Hoa Lan Vinhomes",
+          "Lac Hong Office",
+          "Amour Resort",
+          "Bac Ninh Kindergarten"
+        ],
+        "label": "Selected project experience"
+      },
+      "experience": {
+        "description": "AA Design's strongest proof is the range of completed work: villas, apartments, offices, schools, resorts, restaurants and hotels.",
+        "eyebrow": "Proof in numbers",
+        "items": [
+          {
+            "label": "Years in architecture and interior design",
+            "value": "20+"
+          },
+          {
+            "label": "Completed projects across residential and commercial spaces",
+            "value": "100+"
+          },
+          {
+            "label": "Integrated design, material and construction control",
+            "value": "3D"
+          }
+        ],
+        "title": "Experience that helps decisions become buildable"
+      },
+      "projectTypes": {
+        "description": "The homepage messaging is based on real project groups already present in the AA Design portfolio.",
+        "eyebrow": "Project types",
+        "items": [
+          {
+            "description": "Villas such as Au Co, Van Phu, Kim Do, Vinh Phuc and Lavida Residences require personal living rituals and strong material control.",
+            "title": "Villas"
+          },
+          {
+            "description": "Apartment projects such as Vinhomes and BGR Diamond Residence focus on comfort, storage, flow and refined finishes.",
+            "title": "Premium apartments"
+          },
+          {
+            "description": "Lac Hong Office shows how reception, working areas and shared spaces can carry a consistent brand atmosphere.",
+            "title": "Offices"
+          },
+          {
+            "description": "Amour Resort and Venus Resort point to hospitality spaces where mood, circulation and durability matter.",
+            "title": "Restaurants and hotels"
+          },
+          {
+            "description": "Full-service projects combine design, material selection, construction coordination and handover control.",
+            "title": "Turnkey construction"
+          }
+        ],
+        "title": "The types of spaces AA Design has already delivered"
+      },
+      "featuredImages": {
+        "description": "A quick visual pass through selected villas, offices and commercial interiors from the project library.",
+        "eyebrow": "Real project images",
+        "title": "Featured spaces from real AA Design work"
+      },
+      "needServices": {
+        "description": "Choose the starting point that matches your situation. AA Design can enter from concept, renovation, material direction or construction.",
+        "eyebrow": "Services by need",
+        "items": [
+          {
+            "description": "Personalized planning for family routines, guest areas, worship rooms, bedrooms and long-term living comfort.",
+            "title": "Villa design"
+          },
+          {
+            "description": "High-end apartment interiors with efficient storage, soft lighting and premium material coordination.",
+            "title": "Premium apartments"
+          },
+          {
+            "description": "Professional reception, management rooms, lounges and working spaces with a consistent visual identity.",
+            "title": "Office interiors"
+          },
+          {
+            "description": "Guest-facing spaces where atmosphere, service flow and durable finishes need to work together.",
+            "title": "Restaurant and hotel spaces"
+          },
+          {
+            "description": "Construction coordination, material control and site supervision for clients who need one accountable team.",
+            "title": "Turnkey construction"
+          }
+        ],
+        "title": "Start from the service your project actually needs"
+      },
+      "featuredProjects": {
+        "description": "Curated from existing project data. Area is not shown because the current project records do not include verified square-meter values.",
+        "eyebrow": "Featured projects",
+        "scopeLabel": "Scope: {{type}}",
+        "title": "6-8 representative projects to judge the AA Design standard"
+      },
+      "process": {
+        "description": "The workflow keeps decisions visible from consultation through construction, so design intent does not disappear on site.",
+        "eyebrow": "Working process",
+        "items": [
+          {
+            "description": "Discuss project type, location, current state, expectations and investment direction.",
+            "title": "Consultation"
+          },
+          {
+            "description": "Review the site, lifestyle needs, technical limits and priorities before shaping the concept.",
+            "title": "Survey and brief"
+          },
+          {
+            "description": "Develop layout, mood, 3D visualization and core design decisions for approval.",
+            "title": "Concept and 3D"
+          },
+          {
+            "description": "Coordinate materials, furniture, lighting and construction details into a buildable package.",
+            "title": "Material and technical control"
+          },
+          {
+            "description": "Supervise execution so the final result follows the approved design direction.",
+            "title": "Construction and handover"
+          }
+        ],
+        "title": "From consultation to handover"
+      },
+      "reasons": {
+        "description": "These are the details that matter when a beautiful render has to become a finished space.",
+        "eyebrow": "Why choose AA Design",
+        "items": [
+          {
+            "description": "The design starts from the owner's habits, rituals, privacy needs and long-term use.",
+            "title": "Personalized to the owner"
+          },
+          {
+            "description": "Layouts are shaped around circulation, storage, light, family routines and service flow.",
+            "title": "Functional optimization"
+          },
+          {
+            "description": "Materials are considered early so the finished space feels coherent, not improvised.",
+            "title": "Material control"
+          },
+          {
+            "description": "Construction details follow the approved drawings, mood and material direction.",
+            "title": "Builds close to the design"
+          },
+          {
+            "description": "Site supervision helps catch small decisions before they become expensive problems.",
+            "title": "Detailed supervision"
+          }
+        ],
+        "title": "A design partner for both taste and execution"
+      },
+      "founder": {
+        "description": "Founder La Thien Phi brings nearly two decades of architecture and interior design experience into residential, office and commercial projects.",
+        "eyebrow": "Founder and team",
+        "quote": "Every project needs its own balance: the owner's way of living, the function of the space and the discipline to build it properly.",
+        "title": "A senior design direction, not just decorative styling"
+      },
+      "reviews": {
+        "description": "Short trust signals based on the kind of outcomes clients look for in design and construction work.",
+        "eyebrow": "Client perspective",
+        "items": [
+          {
+            "name": "Villa owner",
+            "project": "Private villa interior",
+            "quote": "The team helped us turn broad preferences into a clear design direction and practical material choices."
+          },
+          {
+            "name": "Apartment client",
+            "project": "Premium apartment renovation",
+            "quote": "Storage, lighting and daily flow were handled carefully, not just the visual style."
+          },
+          {
+            "name": "Business client",
+            "project": "Office and reception space",
+            "quote": "The finished space felt consistent with the original concept and suitable for meeting customers."
+          }
+        ],
+        "title": "What clients usually need from AA Design"
+      },
+      "faq": {
+        "description": "These answers help you decide whether to start with consultation, concept design or construction coordination.",
+        "eyebrow": "FAQ",
+        "items": [
+          {
+            "answer": "A simple concept can move faster, while villas and full-service projects need more time for layout, 3D, material and technical coordination. AA Design will estimate timing after reviewing the scope.",
+            "question": "How long does design take?"
+          },
+          {
+            "answer": "Design cost depends on project type, area, detail level and whether you need concept only or a full technical package.",
+            "question": "How is design cost calculated?"
+          },
+          {
+            "answer": "Yes. AA Design can review an existing design package and propose construction coordination, material control or detail refinement.",
+            "question": "Can AA Design build from an existing design?"
+          },
+          {
+            "answer": "Yes. Renovation projects are suitable when the current space has functional problems, outdated finishes or needs a stronger visual direction.",
+            "question": "Do you accept renovation projects?"
+          },
+          {
+            "answer": "Warranty scope depends on construction items and materials. It should be clarified with the final contract and handover checklist.",
+            "question": "Is there warranty after handover?"
+          }
+        ],
+        "title": "Questions before starting a project"
+      },
+      "form": {
+        "description": "Send the first brief with your project type, location and timeline. AA Design will respond with the most useful next step.",
+        "eyebrow": "Consultation form",
+        "message": "Project note",
+        "name": "Your name",
+        "need": "Project need",
+        "options": {
+          "apartment": "Premium apartment",
+          "hospitality": "Restaurant / hotel",
+          "office": "Office",
+          "turnkey": "Turnkey construction",
+          "villa": "Villa"
+        },
+        "phone": "Phone number",
+        "submit": "Send consultation request",
+        "title": "Tell us about the space you want to build"
+      }
+    },
     "carousel": {
       "actions": {
         "consult": "Project consultation",
