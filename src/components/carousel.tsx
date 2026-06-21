@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import { memo } from 'react';
@@ -25,11 +26,12 @@ const CarouselComponent = () => {
   return (
     <Swiper
       modules={[Autoplay]}
-      autoplay={{ delay: 5000 }}
+      autoplay={{ delay: 6500, disableOnInteraction: false }}
       scrollbar={{ draggable: true }}
       loop={true}
       spaceBetween={50}
       slidesPerView={1}
+      aria-label="AA Design featured projects"
     >
       {dataImageBanners?.map((data, index) => (
         <SwiperSlide key={index}>
@@ -43,9 +45,20 @@ const CarouselComponent = () => {
               sizes="100vw"
               priority={index === 0}
             />
-            {/* {image.content && (
-              <div className={styles.content}>{image.content}</div>
-            )} */}
+            <div className={styles.overlay} />
+            <div className={styles.content}>
+              <span className={styles.eyebrow}>AA Design Studio</span>
+              {index === 0 ? (
+                <h1>Thiết kế nội thất cao cấp, thi công trọn gói</h1>
+              ) : (
+                <h2>{data.title}</h2>
+              )}
+              <p>{data.description}</p>
+              <div className={styles.actions}>
+                <Link href="/construction">Xem công trình</Link>
+                <Link href="/contact">Tư vấn dự án</Link>
+              </div>
+            </div>
           </div>
         </SwiperSlide>
       ))}

@@ -1,15 +1,17 @@
+@import './variables.module.scss';
+
 .wrapperHeaderTitle {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 200px;
-  border-bottom: 1px solid #333;
-  border-top: 1px solid #333;
+  align-items: flex-end;
   width: 100%;
+
   h1 {
-    font-size: 45px;
-    font-weight: 700;
-    color: #333;
-    text-transform: uppercase;
+    color: $secondary-color;
+    font-family: var(--font-heading);
+    font-size: clamp(52px, 8vw, 112px);
+    font-weight: 400;
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+    text-transform: none;
   }
 }

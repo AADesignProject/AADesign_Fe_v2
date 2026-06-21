@@ -39,14 +39,15 @@ const ButtonLanguageComponent = () => {
       {listLanguage.map((item) => (
         <button
           type="button"
-          aria-label="button-language"
+          aria-label={`Chuyển sang ${item.label}`}
+          aria-pressed={i18n.language === item.language}
           key={item.language}
           onClick={() => changeLanguage(item.language)}
           className={`${styles.containerContent} ${i18n.language === item.language ? styles.active : ''}`}
         >
           <Image
             src={item.flag}
-            alt={item.altFlag}
+            alt=""
             width={20}
             height={20}
             sizes="20px"

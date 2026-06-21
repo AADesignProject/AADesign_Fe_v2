@@ -46,7 +46,7 @@ const DesignServiceComponentPage = () => {
   }, []);
 
   return (
-    <motion.div
+    <motion.section
       ref={ref}
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -55,16 +55,16 @@ const DesignServiceComponentPage = () => {
     >
       <div className={styles.container}>
         <div className={styles.textContent}>
-          {/* <h2 className={styles.title}>What we offer</h2> */}
-          <p className={styles.subTitle}>
+          <span className={styles.title}>What we offer</span>
+          <h2 className={styles.subTitle}>
             Giải Pháp Thiết Kế Toàn Diện
             <br />
             Kiến Tạo Không Gian, Hiện Thực Ý Tưởng
-          </p>
+          </h2>
           <p className={styles.descriptionTitle}>
             Tái định nghĩa không gian - nâng tầm trải nghiệm sống
           </p>
-          <span className={styles.description}>
+          <p className={styles.description}>
             Chúng tôi cung cấp một gói dịch vụ thiết kế nội - ngoại thất trọn
             gói, bao gồm từ lên ý tưởng, dựng bản thiết kế 3D cho đến lựa chọn
             các phụ kiện trang trí cao cấp, giúp không gian của bạn trở nên hoàn
@@ -73,7 +73,21 @@ const DesignServiceComponentPage = () => {
             độc đáo, từ biệt thự, căn hộ cá nhân đến các dự án nhà hàng, khách
             sạn và văn phòng làm việc chuyên nghiệp. Mỗi dự án đều là sự kết hợp
             hài hòa giữa sáng tạo, công năng và phong cách riêng của khách hàng.
-          </span>
+          </p>
+          <div className={styles.containerNumberInfo}>
+            <div className={styles.boxContent}>
+              <span className={styles.number}>20+</span>
+              <span className={styles.note}>Năm kinh nghiệm</span>
+            </div>
+            <div className={styles.boxContent}>
+              <span className={styles.number}>100+</span>
+              <span className={styles.note}>Công trình</span>
+            </div>
+            <div className={styles.boxContent}>
+              <span className={styles.number}>3D</span>
+              <span className={styles.note}>Trực quan hóa</span>
+            </div>
+          </div>
         </div>
 
         <div className={styles.imageContent}>
@@ -109,7 +123,7 @@ const DesignServiceComponentPage = () => {
           </div>
         </div>
       </div>
-    </motion.div>
+    </motion.section>
   );
 };
 

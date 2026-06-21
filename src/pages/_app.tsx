@@ -23,6 +23,20 @@ export default function App({ Component, pageProps, router }: AppProps) {
     document.documentElement.lang = currentLocale;
   }, [currentLocale]);
 
+  useEffect(() => {
+    const preventImageContextMenu = (event: MouseEvent) => {
+      if (event.target instanceof HTMLImageElement) {
+        event.preventDefault();
+      }
+    };
+
+    document.addEventListener('contextmenu', preventImageContextMenu);
+
+    return () => {
+      document.removeEventListener('contextmenu', preventImageContextMenu);
+    };
+  }, []);
+
   return (
     <LayoutComponent>
       <Component {...pageProps} />
