@@ -11,7 +11,7 @@ import ukFlag from '@public/images/kingdom_flag.webp';
 import styles from '@/scss/button-language.module.scss';
 
 const ButtonLanguageComponent = () => {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const router = useRouter();
 
   const changeLanguage = async (lng: string) => {
@@ -39,7 +39,7 @@ const ButtonLanguageComponent = () => {
       {listLanguage.map((item) => (
         <button
           type="button"
-          aria-label={`Chuyển sang ${item.label}`}
+          aria-label={t('language.switchTo', { label: item.label })}
           aria-pressed={i18n.language === item.language}
           key={item.language}
           onClick={() => changeLanguage(item.language)}

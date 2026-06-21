@@ -1,34 +1,234 @@
 {
-  "seo": {
-    "title_homepage": "Thiết kế & thi công nội thất cao cấp",
-    "description_homepage": "AA DESIGN - Thiết kế & thi công nội thất chuyên nghiệp, kiến tạo không gian sống tinh tế, tối ưu công năng và thẩm mỹ.",
-    "title_construction": "Công trình",
-    "description_construction": "Bộ sưu tập công trình kiến trúc, nội thất và thi công trọn gói của AA Design tại biệt thự, căn hộ, văn phòng, nhà hàng và khách sạn."
+  "aria": {
+    "close": "Đóng",
+    "loading": "Đang tải",
+    "mainNavigation": "Điều hướng chính",
+    "mobileMenu": "Menu điều hướng",
+    "nextImage": "Ảnh sau",
+    "openMenu": "Mở menu",
+    "previousImage": "Ảnh trước",
+    "skipToContent": "Bỏ qua đến nội dung chính"
+  },
+  "breadcrumbs": {
+    "home": "Trang chủ"
+  },
+  "common": {
+    "email": "Email",
+    "phone": "Điện thoại"
+  },
+  "contact": {
+    "actions": {
+      "call": "Gọi {{phone}}",
+      "email": "Gửi email"
+    },
+    "consultationDescription": "Gọi điện hoặc gửi email ngắn về nhu cầu, hiện trạng và thời gian bạn muốn trao đổi. Chúng tôi sẽ phản hồi để sắp xếp buổi tư vấn.",
+    "consultationTitle": "Bắt đầu cuộc trao đổi về không gian của bạn",
+    "description": "Trao đổi trực tiếp với AA Design để bắt đầu định hướng không gian, phạm vi thiết kế và lịch tư vấn phù hợp.",
+    "live": "Trực tiếp",
+    "office": "Văn phòng",
+    "office_address": "Phú thượng, Tây Hồ, Hà Nội",
+    "office_address_detail": "Toà nhà Lạc Hồng Westlake",
+    "personName": "Mr La Thiên Phi",
+    "process": {
+      "listen": "Lắng nghe",
+      "orient": "Định hướng",
+      "propose": "Đề xuất giải pháp"
+    },
+    "sectionLabel": "Direct contact",
+    "time_active": "10h - 17h",
+    "title": "Liên hệ"
+  },
+  "construction": {
+    "count": "{{count}} công trình",
+    "description": "Khám phá các công trình tiêu biểu của AA Design, từ biệt thự, căn hộ đến không gian thương mại, văn phòng, nhà hàng và khách sạn.",
+    "detail": {
+      "back": "Quay lại danh sách",
+      "facts": {
+        "location": "Địa điểm",
+        "scope": "Hạng mục",
+        "scopeValue": "Thiết kế & thi công",
+        "style": "Phong cách",
+        "styleValue": "Hiện đại, tinh tế",
+        "type": "Loại công trình"
+      },
+      "fullscreenHint": "Click vào ảnh để xem toàn màn hình",
+      "galleryDescription": "Khám phá chi tiết không gian qua bộ sưu tập hình ảnh",
+      "galleryTitle": "Hình ảnh công trình",
+      "next": "Dự án tiếp theo",
+      "overviewLabel": "Project notes",
+      "previous": "Dự án trước",
+      "seoDescription": "{{name}} là một trong những công trình {{type}} của AA Design, giới thiệu chi tiết phong cách thiết kế, vật liệu và không gian hoàn thiện."
+    },
+    "empty": "Không có công trình phù hợp",
+    "filters": {
+      "allLocations": "Tất cả khu vực",
+      "allTypes": "Tất cả loại công trình",
+      "reset": "Xóa lọc",
+      "searchAria": "Tìm kiếm công trình",
+      "searchPlaceholder": "Tìm theo tên, địa chỉ hoặc loại công trình",
+      "typeAria": "Lọc theo loại công trình",
+      "locationAria": "Lọc theo khu vực"
+    },
+    "keywords": "công trình nội thất, thiết kế biệt thự, thiết kế khách sạn, thiết kế văn phòng, AA Design",
+    "title": "Công trình",
+    "viewProject": "Xem công trình {{name}}",
+    "view_more": "Xem thêm"
+  },
+  "footer": {
+    "copyright": "AA Design © {{year}}. All rights reserved.",
+    "description": "Thiết kế kiến trúc, nội thất và thi công trọn gói cho những không gian cần bản sắc, công năng và độ hoàn thiện cao.",
+    "location": "Lạc Hồng Westlake, Tây Hồ, Hà Nội",
+    "navigationLabel": "Điều hướng chân trang",
+    "titleContact": "Contact"
   },
   "header": {
     "call": "Gọi",
     "emergency": "Dịch vụ khẩn cấp",
     "menu": {
-      "introduction": "Giới thiệu",
-      "my_name": "La Văn Phi",
       "company": "Công ty",
       "construction": "Công trình",
       "construction_image": "Hình ảnh thi công",
-      "services": "Dịch vụ",
-      "contact": "Liên hệ"
+      "contact": "Liên hệ",
+      "introduction": "Giới thiệu",
+      "my_name": "La Văn Phi",
+      "services": "Dịch vụ"
     }
   },
-  "construction": {
-    "title": "Công trình",
-    "description": "Khám phá các công trình tiêu biểu của AA Design, từ biệt thự, căn hộ đến không gian thương mại, văn phòng, nhà hàng và khách sạn.",
-    "view_more": "Xem thêm"
+  "home": {
+    "carousel": {
+      "actions": {
+        "consult": "Tư vấn dự án",
+        "projects": "Xem công trình"
+      },
+      "eyebrow": "AA Design Studio",
+      "heroTitle": "Thiết kế nội thất cao cấp, thi công trọn gói"
+    },
+    "designService": {
+      "description": "Chúng tôi cung cấp một gói dịch vụ thiết kế nội - ngoại thất trọn gói, bao gồm từ lên ý tưởng, dựng bản thiết kế 3D cho đến lựa chọn các phụ kiện trang trí cao cấp, giúp không gian của bạn trở nên hoàn mỹ nhất.\nVới sự tận tâm và tỉ mỉ chúng tôi tạo ra những không gian tinh tế và độc đáo, từ biệt thự, căn hộ cá nhân đến các dự án nhà hàng, khách sạn và văn phòng làm việc chuyên nghiệp. Mỗi dự án đều là sự kết hợp hài hòa giữa sáng tạo, công năng và phong cách riêng của khách hàng.",
+      "descriptionTitle": "Tái định nghĩa không gian - nâng tầm trải nghiệm sống",
+      "imageAlt": "Không gian thiết kế {{index}}",
+      "stats": {
+        "experience": "Năm kinh nghiệm",
+        "projects": "Công trình",
+        "visualization": "Trực quan hóa"
+      },
+      "subtitle": "Giải Pháp Thiết Kế Toàn Diện\nKiến Tạo Không Gian, Hiện Thực Ý Tưởng",
+      "title": "What we offer"
+    },
+    "ourProject": {
+      "description": "Những công trình mà chúng tôi đã hoàn thành tại nhiều địa điểm, phục vụ cho các mục đích và khách hàng khác nhau.",
+      "empty": "Không có dự án nào được hiển thị",
+      "title": "Dự Án",
+      "viewMore": "Xem thêm dự án",
+      "viewProject": "Xem dự án {{name}}"
+    },
+    "ourService": {
+      "description": "Giải pháp chuyên nghiệp - Thi công nhanh chóng - Hoàn thiện tỉ mỉ từng chi tiết",
+      "items": {
+        "architecture": {
+          "description": "Kiến tạo không gian sống đẳng cấp với những thiết kế độc đáo, bền vững và tối ưu công năng, đảm bảo sự hài hòa giữa kiến trúc, phong cách và môi trường.",
+          "title": "Thiết Kế Kiến Trúc"
+        },
+        "construction": {
+          "description": "Từ bản vẽ đến thực tế - quy trình thi công chuyên nghiệp, chính xác và đúng tiến độ, đảm bảo chất lượng hoàn thiện cao nhất cho từng công trình.",
+          "title": "Thi Công"
+        },
+        "fengShui": {
+          "description": "Ứng dụng các nguyên tắc phong thủy vào thiết kế kiến trúc và nội thất, tạo nên không gian cân bằng năng lượng, hài hòa thiên nhiên và mang lại sự thịnh vượng, may mắn, bình an cho gia chủ.",
+          "title": "Tư Vấn & Cung Cấp Vật Phẩm Phong Thủy"
+        },
+        "interior": {
+          "description": "Biến ý tưởng thành không gian sống lý tưởng, kết hợp giữa thẩm mỹ, tiện nghi và cá tính, mang đến dấu ấn cá nhân cho từng công trình.",
+          "title": "Thiết Kế Nội Thất"
+        }
+      },
+      "title": "DỊCH VỤ CỦA CHÚNG TÔI"
+    }
   },
-  "contact": {
-    "title": "Liên hệ",
-    "live": "Trực tiếp",
-    "office": "Văn phòng",
-    "office_address_detail": "Toà nhà Lạc Hồng Westlake",
-    "office_address": "Phú thượng, Tây Hồ, Hà Nội",
-    "time_active": "10h - 17h"
+  "language": {
+    "switchTo": "Chuyển sang {{label}}"
+  },
+  "profile": {
+    "experience": {
+      "clients": "Khách hàng hài lòng",
+      "projects": "Dự án hoàn thành",
+      "title": "Kinh nghiệm",
+      "years": "Năm kinh nghiệm"
+    },
+    "hero": {
+      "eyebrow": "Founder profile",
+      "name": "La Thiên Phi",
+      "role": "Kiến trúc sư & Nhà thiết kế nội thất"
+    },
+    "imageAlt": "Không gian nội thất do AA Design định hướng",
+    "introduction": {
+      "paragraph1": "Với gần 20 năm kinh nghiệm trong lĩnh vực thiết kế kiến trúc - nội thất, tôi đã có cơ hội thực hiện nhiều dự án đa dạng, từ chung cư, biệt thự, văn phòng đến các không gian thương mại.",
+      "paragraph2": "Mỗi công trình là một câu chuyện riêng, và tôi luôn tâm niệm rằng thiết kế không chỉ đơn thuần là việc sắp đặt nội thất mà còn là nghệ thuật kiến tạo không gian sống và làm việc lý tưởng.",
+      "title": "Giới thiệu"
+    },
+    "philosophy": {
+      "detail": {
+        "description": "Chú trọng đến từng chi tiết, từ cách bố trí không gian, lựa chọn vật liệu, ánh sáng đến màu sắc.",
+        "title": "Chi tiết"
+      },
+      "harmony": {
+        "description": "Đảm bảo sự cân bằng hoàn hảo giữa công năng, thẩm mỹ và cảm xúc của người sử dụng.",
+        "title": "Sự hài hòa"
+      },
+      "practical": {
+        "description": "Thiết kế không chỉ đẹp mắt mà còn mang lại sự tiện nghi, thoải mái và tối ưu công năng sử dụng.",
+        "title": "Tính ứng dụng"
+      },
+      "title": "Triết lý thiết kế"
+    },
+    "quote": "Mỗi công trình là một câu chuyện riêng, nơi công năng, thẩm mỹ và cảm xúc gặp nhau."
+  },
+  "project": {
+    "types": {
+      "all": "Trọn gói",
+      "architecture": "Kiến trúc",
+      "interior": "Nội thất"
+    }
+  },
+  "seo": {
+    "defaultDescription": "AA Design thiết kế kiến trúc, nội thất và thi công trọn gói cho biệt thự, căn hộ, văn phòng, nhà hàng và khách sạn.",
+    "description_construction": "Bộ sưu tập công trình kiến trúc, nội thất và thi công trọn gói của AA Design tại biệt thự, căn hộ, văn phòng, nhà hàng và khách sạn.",
+    "description_contact": "Liên hệ AA Design để tư vấn thiết kế kiến trúc, nội thất và thi công trọn gói cho biệt thự, căn hộ, văn phòng, nhà hàng, khách sạn.",
+    "description_homepage": "AA DESIGN - Thiết kế & thi công nội thất chuyên nghiệp, kiến tạo không gian sống tinh tế, tối ưu công năng và thẩm mỹ.",
+    "description_profile": "Với gần 20 năm kinh nghiệm trong lĩnh vực thiết kế kiến trúc - nội thất, La Thiên Phi đã thực hiện nhiều dự án đa dạng, từ chung cư, biệt thự đến văn phòng và không gian thương mại.",
+    "keywords_contact": "liên hệ AA Design, tư vấn thiết kế nội thất, thi công nội thất, thiết kế biệt thự",
+    "keywords_homepage": "AA DESIGN, design, interior design, Thiết kế nội thất, La Van Phi, La Thien Phi, aa design homepage, aa-design, aa-design.vn",
+    "keywords_profile": "La Thiên Phi, thiết kế nội thất, kiến trúc sư, thiết kế biệt thự, thiết kế chung cư, thiết kế văn phòng",
+    "title_construction": "Công trình",
+    "title_contact": "Liên hệ tư vấn thiết kế nội thất",
+    "title_homepage": "Thiết kế & thi công nội thất cao cấp",
+    "title_profile": "La Thiên Phi - Kiến trúc sư & Nhà thiết kế nội thất"
+  },
+  "static": {
+    "bannerSmall": {
+      "banner-small-1": {
+        "title": "Góc nghỉ dưỡng"
+      },
+      "banner-small-2": {
+        "title": "Phong cách tối giản"
+      },
+      "banner-small-3": {
+        "title": "Chi tiết tinh xảo"
+      }
+    },
+    "banners": {
+      "banner-1": {
+        "description": "Thiết kế tinh tế, hài hòa công năng và thẩm mỹ.",
+        "title": "Không gian sống đẳng cấp"
+      },
+      "banner-2": {
+        "description": "Biến ý tưởng thành hiện thực với giải pháp toàn diện.",
+        "title": "Kiến tạo trải nghiệm"
+      },
+      "banner-3": {
+        "description": "Tối ưu công năng, nâng tầm thẩm mỹ.",
+        "title": "Không gian tinh tế"
+      }
+    }
   }
 }

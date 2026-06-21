@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React, { memo, useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 //styles
 import styles from '@/scss/home-page.module.scss';
@@ -16,9 +17,12 @@ type TDataImageBannerSmallProps = {
 const DesignServiceComponentPage = () => {
   const [isInView, setIsInView] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
 
   const dataImageBannersSmall =
     staticContent.bannerSmall as TDataImageBannerSmallProps[];
+  const subtitleLines = t('home.designService.subtitle').split('\n');
+  const descriptionLines = t('home.designService.description').split('\n');
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -55,37 +59,44 @@ const DesignServiceComponentPage = () => {
     >
       <div className={styles.container}>
         <div className={styles.textContent}>
-          <span className={styles.title}>What we offer</span>
+          <span className={styles.title}>{t('home.designService.title')}</span>
           <h2 className={styles.subTitle}>
-            Giải Pháp Thiết Kế Toàn Diện
-            <br />
-            Kiến Tạo Không Gian, Hiện Thực Ý Tưởng
+            {subtitleLines.map((line) => (
+              <React.Fragment key={line}>
+                {line}
+                <br />
+              </React.Fragment>
+            ))}
           </h2>
           <p className={styles.descriptionTitle}>
-            Tái định nghĩa không gian - nâng tầm trải nghiệm sống
+            {t('home.designService.descriptionTitle')}
           </p>
           <p className={styles.description}>
-            Chúng tôi cung cấp một gói dịch vụ thiết kế nội - ngoại thất trọn
-            gói, bao gồm từ lên ý tưởng, dựng bản thiết kế 3D cho đến lựa chọn
-            các phụ kiện trang trí cao cấp, giúp không gian của bạn trở nên hoàn
-            mỹ nhất. <br />
-            Với sự tận tâm và tỉ mỉ chúng tôi tạo ra những không gian tinh tế và
-            độc đáo, từ biệt thự, căn hộ cá nhân đến các dự án nhà hàng, khách
-            sạn và văn phòng làm việc chuyên nghiệp. Mỗi dự án đều là sự kết hợp
-            hài hòa giữa sáng tạo, công năng và phong cách riêng của khách hàng.
+            {descriptionLines.map((line, index) => (
+              <React.Fragment key={line}>
+                {line}
+                {index < descriptionLines.length - 1 ? <br /> : null}
+              </React.Fragment>
+            ))}
           </p>
           <div className={styles.containerNumberInfo}>
             <div className={styles.boxContent}>
               <span className={styles.number}>20+</span>
-              <span className={styles.note}>Năm kinh nghiệm</span>
+              <span className={styles.note}>
+                {t('home.designService.stats.experience')}
+              </span>
             </div>
             <div className={styles.boxContent}>
               <span className={styles.number}>100+</span>
-              <span className={styles.note}>Công trình</span>
+              <span className={styles.note}>
+                {t('home.designService.stats.projects')}
+              </span>
             </div>
             <div className={styles.boxContent}>
               <span className={styles.number}>3D</span>
-              <span className={styles.note}>Trực quan hóa</span>
+              <span className={styles.note}>
+                {t('home.designService.stats.visualization')}
+              </span>
             </div>
           </div>
         </div>
@@ -94,7 +105,7 @@ const DesignServiceComponentPage = () => {
           <div className={styles.listImageLeft}>
             <Image
               src={resolveImageUrl(dataImageBannersSmall?.[0]?.url || '')}
-              alt={dataImageBannersSmall?.[0]?.title || 'Không gian thiết kế 1'}
+              alt={t('home.designService.imageAlt', { index: 1 })}
               width={200}
               height={400}
               className={styles.image0}
@@ -104,7 +115,7 @@ const DesignServiceComponentPage = () => {
 
             <Image
               src={resolveImageUrl(dataImageBannersSmall?.[1]?.url || '')}
-              alt={dataImageBannersSmall?.[1]?.title || 'Không gian thiết kế 2'}
+              alt={t('home.designService.imageAlt', { index: 2 })}
               height={200}
               width={130}
               sizes="(max-width: 768px) 35vw, 130px"
@@ -114,7 +125,7 @@ const DesignServiceComponentPage = () => {
           <div className={styles.listImageRight}>
             <Image
               src={resolveImageUrl(dataImageBannersSmall?.[2]?.url || '')}
-              alt={dataImageBannersSmall?.[2]?.title || 'Không gian thiết kế 3'}
+              alt={t('home.designService.imageAlt', { index: 3 })}
               height={300}
               width={200}
               sizes="(max-width: 768px) 45vw, 200px"

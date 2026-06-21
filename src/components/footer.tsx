@@ -3,6 +3,7 @@ import { FaMobile } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 import { FaLocationDot } from 'react-icons/fa6';
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 
 //constants
 import { email, phoneNumber, phoneNumberHref } from '@/constant/general';
@@ -12,6 +13,14 @@ import styles from '@/scss/footer.module.scss';
 
 const FooterComponent = () => {
   const currentYear = new Date().getFullYear();
+  const { t } = useTranslation();
+
+  const footerLinks = [
+    { href: '/profile', label: t('header.menu.introduction') },
+    { href: '/construction', label: t('header.menu.construction') },
+    { href: '/#our-service', label: t('header.menu.services') },
+    { href: '/contact', label: t('header.menu.contact') },
+  ];
 
   return (
     <footer className={styles.wrapperFooter}>
@@ -20,19 +29,20 @@ const FooterComponent = () => {
           <Link href="/" className={styles.footerLogo}>
             AA Design
           </Link>
-          <p>
-            Thiết kế kiến trúc, nội thất và thi công trọn gói cho những không
-            gian cần bản sắc, công năng và độ hoàn thiện cao.
-          </p>
-          <nav className={styles.footerNav} aria-label="Điều hướng chân trang">
-            <Link href="/profile">Giới thiệu</Link>
-            <Link href="/construction">Công trình</Link>
-            <Link href="/#our-service">Dịch vụ</Link>
-            <Link href="/contact">Liên hệ</Link>
+          <p>{t('footer.description')}</p>
+          <nav
+            className={styles.footerNav}
+            aria-label={t('footer.navigationLabel')}
+          >
+            {footerLinks.map((item) => (
+              <Link key={item.href} href={item.href}>
+                {item.label}
+              </Link>
+            ))}
           </nav>
         </div>
         <div className={styles.columnRight}>
-          <h2 className={styles.titleContact}>Contact</h2>
+          <h2 className={styles.titleContact}>{t('footer.titleContact')}</h2>
           <Link href={`tel:${phoneNumberHref}`} className={styles.phoneNumber}>
             <FaMobile />
             <span>{phoneNumber}</span>
@@ -43,7 +53,7 @@ const FooterComponent = () => {
           </Link>
           <address className={styles.location}>
             <FaLocationDot />
-            <span>Lac hong westlake, Tay ho, HN</span>
+            <span>{t('footer.location')}</span>
           </address>
           <div className={styles.mapContainer}>
             <iframe
@@ -59,7 +69,7 @@ const FooterComponent = () => {
       </div>
       <div className={styles.divider} />
       <div className={styles.containerCopyright}>
-        <p>AA Design © {currentYear}. All rights reserved.</p>
+        <p>{t('footer.copyright', { year: currentYear })}</p>
       </div>
     </footer>
   );

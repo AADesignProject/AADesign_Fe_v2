@@ -1,13 +1,14 @@
 import React from 'react';
+import { Montserrat, Playfair_Display } from 'next/font/google';
+import { useTranslation } from 'react-i18next';
 
 //components
 import HeaderComponent from './header';
+import FooterComponent from './footer';
+import LoadingComponent from './loading';
 
 //scss
 import styles from '@/scss/layout.module.scss';
-import FooterComponent from './footer';
-import { Montserrat, Playfair_Display } from 'next/font/google';
-import LoadingComponent from './loading';
 import { useLoadingStore } from '@/services/zustand/loading';
 
 interface ILayoutProps {
@@ -26,14 +27,15 @@ const playfair = Playfair_Display({
 
 const LayoutComponent = ({ children }: ILayoutProps) => {
   const { loading } = useLoadingStore();
-  return loading ? (
-    <LoadingComponent />
-  ) : (
+  const { t } = useTranslation();
+
+  return (
     <div
       className={`${styles.container} ${monterast.variable} ${playfair.variable} ${monterast.className}`}
     >
+      {loading && <LoadingComponent />}
       <a href="#main-content" className={styles.skipLink}>
-        Bỏ qua đến nội dung chính
+        {t('aria.skipToContent')}
       </a>
       <HeaderComponent />
       <main id="main-content" className={styles.content}>

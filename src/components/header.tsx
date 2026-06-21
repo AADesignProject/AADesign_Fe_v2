@@ -81,7 +81,10 @@ const HeaderComponent = () => {
       <div className={styles.headerContainerBottom}>
         <div className={styles.containerContent}>
           <Link href="/" className={styles.logo}>{`AA Design`}</Link>
-          <nav className={styles.menuOption} aria-label="Điều hướng chính">
+          <nav
+            className={styles.menuOption}
+            aria-label={t('aria.mainNavigation')}
+          >
             {listMenu.map((menu, index) => (
               <Link
                 key={index}
@@ -99,7 +102,9 @@ const HeaderComponent = () => {
               type="button"
               className={styles.menuIconButton}
               onClick={toggleMobileMenu}
-              aria-label={isMobileMenuOpen ? 'Đóng menu' : 'Mở menu'}
+              aria-label={
+                isMobileMenuOpen ? t('aria.close') : t('aria.openMenu')
+              }
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-menu"
             >
@@ -115,7 +120,7 @@ const HeaderComponent = () => {
             className={styles.mobileMenu}
             role="dialog"
             aria-modal="true"
-            aria-label="Menu điều hướng"
+            aria-label={t('aria.mobileMenu')}
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
@@ -133,12 +138,12 @@ const HeaderComponent = () => {
                 type="button"
                 className={styles.menuIconButton}
                 onClick={toggleMobileMenu}
-                aria-label="Đóng menu"
+                aria-label={t('aria.close')}
               >
                 <IoClose size={35} />
               </button>
             </div>
-            <nav className={styles.mobileMenuContent} aria-label="Menu mobile">
+            <nav className={styles.mobileMenuContent} aria-label="Mobile menu">
               {listMenu.map((menu, index) => (
                 <Link
                   key={index}

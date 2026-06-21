@@ -1,101 +1,59 @@
+@import './variables.module.scss';
+
 .wrapperLoading {
-  position: absolute;
-  z-index: 999;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  background-color: #000;
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 18px;
+  background: linear-gradient(rgba(23, 23, 20, 0.72), rgba(23, 23, 20, 0.64)),
+    rgba(252, 249, 243, 0.18);
+  backdrop-filter: blur(12px);
+  color: $white-color;
+}
 
-  .loader {
-    position: relative;
-    width: 2.5rem;
-    height: 2.5rem;
-    transform: rotate(165deg);
+.loader {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-radius: 50%;
+
+  &::before,
+  &::after {
+    content: '';
     position: absolute;
-    top: calc(50% - 1.25rem);
-    left: calc(50% - 1.25rem);
-    &::before,
-    &::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      display: block;
-      width: 0.5rem;
-      height: 0.5rem;
-      border-radius: 0.25em;
-      transform: translate(-50%, -50%);
-    }
+    border-radius: 50%;
+  }
 
-    &::before {
-      animation: before8 2s infinite;
-    }
+  &::before {
+    inset: 7px;
+    border: 2px solid transparent;
+    border-top-color: $accent-color;
+    border-right-color: $accent-color;
+    animation: spin 0.85s linear infinite;
+  }
 
-    &::after {
-      animation: after6 2s infinite;
-    }
+  &::after {
+    inset: 18px;
+    background: $accent-color;
+    box-shadow: 0 0 22px rgba(185, 129, 66, 0.62);
   }
 }
 
-@keyframes before8 {
-  0% {
-    width: 0.5em;
-    box-shadow:
-      1em -0.5em rgba(225, 20, 98, 0.75),
-      -1em 0.5em rgba(111, 202, 220, 0.75);
-  }
-
-  35% {
-    width: 2.5em;
-    box-shadow:
-      0 -0.5em rgba(225, 20, 98, 0.75),
-      0 0.5em rgba(111, 202, 220, 0.75);
-  }
-
-  70% {
-    width: 0.5em;
-    box-shadow:
-      -1em -0.5em rgba(225, 20, 98, 0.75),
-      1em 0.5em rgba(111, 202, 220, 0.75);
-  }
-
-  100% {
-    box-shadow:
-      1em -0.5em rgba(225, 20, 98, 0.75),
-      -1em 0.5em rgba(111, 202, 220, 0.75);
-  }
+.loadingText {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
-@keyframes after6 {
-  0% {
-    height: 0.5em;
-    box-shadow:
-      0.5em 1em rgba(61, 184, 143, 0.75),
-      -0.5em -1em rgba(233, 169, 32, 0.75);
-  }
-
-  35% {
-    height: 2.5em;
-    box-shadow:
-      0.5em 0 rgba(61, 184, 143, 0.75),
-      -0.5em 0 rgba(233, 169, 32, 0.75);
-  }
-
-  70% {
-    height: 0.5em;
-    box-shadow:
-      0.5em -1em rgba(61, 184, 143, 0.75),
-      -0.5em 1em rgba(233, 169, 32, 0.75);
-  }
-
-  100% {
-    box-shadow:
-      0.5em 1em rgba(61, 184, 143, 0.75),
-      -0.5em -1em rgba(233, 169, 32, 0.75);
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
 }

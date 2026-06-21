@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
 import { email, phoneNumberHref } from '@/constant/general';
 
 interface ISEOHeadProps {
@@ -25,6 +26,7 @@ const SEOHeaderComponent = ({
   structuredData,
 }: ISEOHeadProps) => {
   const router = useRouter();
+  const { t } = useTranslation();
   const siteUrl = (
     process.env.NEXT_PUBLIC_SITE_URL || 'https://aa-design.vn'
   ).replace(/\/$/, '');
@@ -53,9 +55,7 @@ const SEOHeaderComponent = ({
   const pageTitle = title.includes('AA DESIGN')
     ? title
     : `${title} | AA Design`;
-  const pageDescription =
-    description ||
-    'AA Design thiết kế kiến trúc, nội thất và thi công trọn gói cho biệt thự, căn hộ, văn phòng, nhà hàng và khách sạn.';
+  const pageDescription = description || t('seo.defaultDescription');
   const socialImage = image?.startsWith('http')
     ? image
     : `${siteUrl}${image || '/images/our_service_bg.webp'}`;
