@@ -5,18 +5,35 @@ import { FaLocationDot } from 'react-icons/fa6';
 import Link from 'next/link';
 
 //constants
-import { email, phoneNumber } from '@/constant/general';
+import { email, phoneNumber, phoneNumberHref } from '@/constant/general';
 
 //styles
 import styles from '@/scss/footer.module.scss';
 
 const FooterComponent = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className={styles.wrapperFooter}>
       <div className={styles.containerContent}>
+        <div className={styles.brandColumn}>
+          <Link href="/" className={styles.footerLogo}>
+            AA Design
+          </Link>
+          <p>
+            Thiết kế kiến trúc, nội thất và thi công trọn gói cho những không
+            gian cần bản sắc, công năng và độ hoàn thiện cao.
+          </p>
+          <nav className={styles.footerNav} aria-label="Điều hướng chân trang">
+            <Link href="/profile">Giới thiệu</Link>
+            <Link href="/construction">Công trình</Link>
+            <Link href="/#our-service">Dịch vụ</Link>
+            <Link href="/contact">Liên hệ</Link>
+          </nav>
+        </div>
         <div className={styles.columnRight}>
           <h2 className={styles.titleContact}>Contact</h2>
-          <Link href={`tel:${phoneNumber}`} className={styles.phoneNumber}>
+          <Link href={`tel:${phoneNumberHref}`} className={styles.phoneNumber}>
             <FaMobile />
             <span>{phoneNumber}</span>
           </Link>
@@ -24,10 +41,10 @@ const FooterComponent = () => {
             <MdEmail />
             <span>{email}</span>
           </Link>
-          <p className={styles.location}>
+          <address className={styles.location}>
             <FaLocationDot />
             <span>Lac hong westlake, Tay ho, HN</span>
-          </p>
+          </address>
           <div className={styles.mapContainer}>
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3722.7169064245427!2d105.80781677587349!3d21.083966085879066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135aa9463936459%3A0x6e366b579f34c4fc!2zTOG6oWMgSOG7k25nIFdlc3RsYWtl!5e0!3m2!1svi!2sus!4v1730779456521!5m2!1svi!2sus"
@@ -35,13 +52,14 @@ const FooterComponent = () => {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
+              sandbox="allow-scripts allow-same-origin allow-popups"
             ></iframe>
           </div>
         </div>
       </div>
       <div className={styles.divider} />
       <div className={styles.containerCopyright}>
-        <p>AA Design ©. All rights reserved.</p>
+        <p>AA Design © {currentYear}. All rights reserved.</p>
       </div>
     </footer>
   );

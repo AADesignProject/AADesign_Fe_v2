@@ -6,7 +6,6 @@ import { motion } from 'framer-motion';
 //styles
 import styles from '@/scss/home-page.module.scss';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import staticContent from '@/data/static-content.json';
 import { resolveImageUrl } from '@/utils/resolveImageUrl';
 
@@ -42,7 +41,6 @@ const itemVariants = {
 const OurProjectComponentPage = () => {
   const [isInView, setIsInView] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-  const router = useRouter();
   const loadMoreRef = useRef<HTMLDivElement>(null);
   const [page, setPage] = useState(1);
   const limit = 9;
@@ -108,7 +106,7 @@ const OurProjectComponentPage = () => {
   const projects = allProjects.slice(0, safePage * limit);
 
   return (
-    <motion.div
+    <motion.section
       ref={ref}
       variants={containerVariants}
       initial="hidden"
@@ -129,26 +127,34 @@ const OurProjectComponentPage = () => {
             projects.map((project, index) => (
               <motion.div
                 key={project._id}
-                className={styles.imageWrapper}
                 variants={itemVariants}
                 custom={index}
-                onClick={() => router.push(`/construction/${project._id}`)}
               >
-                <Image
-                  src={resolveImageUrl(project.thumbnailMain)}
-                  alt={project.name}
-                  width={1080}
-                  height={1920}
-                  quality={85}
-                  sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  priority={index < 6}
-                />
-                <div className={styles.overlay}>
-                  <p className={styles.topTitle}>{project.type}</p>
-                  <AiOutlinePlus className={styles.icon} size={100} />
-                  <p className={styles.address}>{project.address}</p>
-                  <p className={styles.name}>{project.name}</p>
-                </div>
+                <Link
+                  className={styles.imageWrapper}
+                  href={`/construction/${project._id}`}
+                  aria-label={`Xem dự án ${project.name}`}
+                >
+                  <Image
+                    src={resolveImageUrl(project.thumbnailMain)}
+                    alt={project.name}
+                    width={1080}
+                    height={1920}
+                    quality={85}
+                    sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    priority={index < 6}
+                  />
+                  <div className={styles.overlay}>
+                    <p className={styles.topTitle}>{project.type}</p>
+                    <AiOutlinePlus
+                      className={styles.icon}
+                      size={100}
+                      aria-hidden="true"
+                    />
+                    <p className={styles.address}>{project.address}</p>
+                    <p className={styles.name}>{project.name}</p>
+                  </div>
+                </Link>
               </motion.div>
             ))
           ) : (
@@ -170,7 +176,7 @@ const OurProjectComponentPage = () => {
           </Link>
         </motion.div>
       </div>
-    </motion.div>
+    </motion.section>
   );
 };
 

@@ -1,9 +1,9 @@
 {
   "seo": {
-    "title_homepage": "Home",
-    "description_homepage": "This is the home screen of the AA DESIGN website - Professional interior design website",
+    "title_homepage": "Luxury interior design and turnkey construction",
+    "description_homepage": "AA Design provides architecture, interior design and turnkey construction for villas, apartments, offices, restaurants and hotels.",
     "title_construction": "Construction",
-    "description_construction": ""
+    "description_construction": "Explore AA Design architecture, interior and turnkey construction projects across residential, hospitality, office and commercial spaces."
   },
   "header": {
     "call": "Call",
@@ -19,7 +19,7 @@
   },
   "construction": {
     "title": "Construction",
-    "description": "We are proud to bring you the most beautiful and luxurious construction projects. We are always ready to serve you.",
+    "description": "Explore selected AA Design projects across villas, apartments, hospitality, office and commercial spaces.",
     "view_more": "View more"
   },
   "contact": {

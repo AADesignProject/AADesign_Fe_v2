@@ -77,7 +77,7 @@ const OurServiceComponentPage = () => {
   }, []);
 
   return (
-    <motion.div
+    <motion.section
       ref={ref}
       initial="hidden"
       animate={isInView ? 'visible' : 'hidden'}
@@ -99,14 +99,16 @@ const OurServiceComponentPage = () => {
               key={index}
               className={styles.serviceBox}
             >
-              <div className={styles.icon}>{item.icon}</div>
+              <div className={styles.icon} aria-hidden="true">
+                {item.icon}
+              </div>
               <h3 className={styles.title}>{item.title}</h3>
               <p className={styles.description}>{item.description}</p>
             </motion.div>
           ))}
         </motion.div>
       </div>
-    </motion.div>
+    </motion.section>
   );
 };
 

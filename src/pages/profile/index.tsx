@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
@@ -42,6 +43,10 @@ const ProfilePage = () => {
         title="La Thiên Phi - Kiến trúc sư & Nhà thiết kế nội thất"
         description="Với gần 20 năm kinh nghiệm trong lĩnh vực thiết kế kiến trúc - nội thất, La Thiên Phi đã thực hiện nhiều dự án đa dạng, từ chung cư, biệt thự đến văn phòng và không gian thương mại."
         keywords="La Thiên Phi, thiết kế nội thất, kiến trúc sư, thiết kế biệt thự, thiết kế chung cư, thiết kế văn phòng"
+        breadcrumbs={[
+          { name: 'Trang chủ', url: '/' },
+          { name: 'Giới thiệu', url: '/profile' },
+        ]}
       />
 
       <motion.div
@@ -51,27 +56,26 @@ const ProfilePage = () => {
         variants={containerVariants}
         className={styles.profileContainer}
       >
-        {/* Hero Section */}
-        <div className={styles.hero}>
+        <section className={styles.hero}>
           <motion.div className={styles.heroContent} variants={itemVariants}>
+            <span>Founder profile</span>
             <h1>La Thiên Phi</h1>
             <h2>Kiến trúc sư & Nhà thiết kế nội thất</h2>
           </motion.div>
-        </div>
+        </section>
 
-        {/* Introduction Section */}
-        <div className={styles.introduction}>
+        <section className={styles.introduction}>
           <motion.div className={styles.imageSection} variants={itemVariants}>
-            {/* <div className={styles.imageWrapper}>
+            <div className={styles.imageWrapper}>
               <Image
-                src="/images/architect.jpg"
-                alt="La Thiên Phi - Kiến trúc sư"
+                src="/images/photo-1618221195710-dd6b41faaea6.avif"
+                alt="Không gian nội thất do AA Design định hướng"
                 width={600}
                 height={800}
-                quality={100}
+                quality={90}
                 priority
               />
-            </div> */}
+            </div>
           </motion.div>
 
           <motion.div className={styles.textSection} variants={itemVariants}>
@@ -87,10 +91,9 @@ const ProfilePage = () => {
               nghệ thuật kiến tạo không gian sống và làm việc lý tưởng.
             </p>
           </motion.div>
-        </div>
+        </section>
 
-        {/* Philosophy Section */}
-        <motion.div className={styles.philosophy} variants={itemVariants}>
+        <motion.section className={styles.philosophy} variants={itemVariants}>
           <div className={styles.philosophyContent}>
             <h3>Triết lý thiết kế</h3>
             <div className={styles.philosophyGrid}>
@@ -134,10 +137,9 @@ const ProfilePage = () => {
               </motion.div>
             </div>
           </div>
-        </motion.div>
+        </motion.section>
 
-        {/* Experience Section */}
-        <motion.div className={styles.experience} variants={itemVariants}>
+        <motion.section className={styles.experience} variants={itemVariants}>
           <div className={styles.experienceContent}>
             <h3>Kinh nghiệm</h3>
             <div className={styles.experienceGrid}>
@@ -172,7 +174,14 @@ const ProfilePage = () => {
               </motion.div>
             </div>
           </div>
-        </motion.div>
+        </motion.section>
+
+        <motion.section className={styles.quoteSection} variants={itemVariants}>
+          <p>
+            Mỗi công trình là một câu chuyện riêng, nơi công năng, thẩm mỹ và
+            cảm xúc gặp nhau.
+          </p>
+        </motion.section>
       </motion.div>
     </>
   );

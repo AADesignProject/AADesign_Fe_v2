@@ -6,7 +6,7 @@ import HeaderComponent from './header';
 //scss
 import styles from '@/scss/layout.module.scss';
 import FooterComponent from './footer';
-import { Montserrat } from 'next/font/google';
+import { Montserrat, Playfair_Display } from 'next/font/google';
 import LoadingComponent from './loading';
 import { useLoadingStore } from '@/services/zustand/loading';
 
@@ -16,6 +16,12 @@ interface ILayoutProps {
 
 const monterast = Montserrat({
   subsets: ['latin'],
+  variable: '--font-body',
+});
+
+const playfair = Playfair_Display({
+  subsets: ['latin', 'vietnamese'],
+  variable: '--font-heading',
 });
 
 const LayoutComponent = ({ children }: ILayoutProps) => {
@@ -23,9 +29,16 @@ const LayoutComponent = ({ children }: ILayoutProps) => {
   return loading ? (
     <LoadingComponent />
   ) : (
-    <div className={`${styles.container} ${monterast.className}`}>
+    <div
+      className={`${styles.container} ${monterast.variable} ${playfair.variable} ${monterast.className}`}
+    >
+      <a href="#main-content" className={styles.skipLink}>
+        Bỏ qua đến nội dung chính
+      </a>
       <HeaderComponent />
-      <main className={styles.content}>{children}</main>
+      <main id="main-content" className={styles.content}>
+        {children}
+      </main>
       <FooterComponent />
     </div>
   );

@@ -1,25 +1,35 @@
 .wrapperButtonLanguage {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 8px;
+
   .containerContent {
     display: flex;
     align-items: center;
-    gap: 12px;
-    background-color: transparent;
-    border: none;
+    gap: 8px;
+    min-height: 36px;
+    padding: 6px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+    background-color: rgba(255, 255, 255, 0.08);
+    color: white;
     cursor: pointer;
-    opacity: 0.5;
-    scale: 0.9;
-    transition: all 0.5s ease;
+    opacity: 0.65;
+    transition:
+      opacity 0.2s ease,
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+
     span {
       font-size: 12px;
-      color: white;
+      font-weight: 700;
+      letter-spacing: 0.04em;
     }
 
     &.active {
       opacity: 1;
-      scale: 1;
+      border-color: rgba(255, 255, 255, 0.48);
+      background-color: rgba(255, 255, 255, 0.16);
     }
   }
 }

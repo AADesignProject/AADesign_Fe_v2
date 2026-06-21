@@ -4,8 +4,8 @@ import type {
   InferGetStaticPropsType,
 } from 'next';
 import React, { useMemo } from 'react';
-import { useRouter } from 'next/router';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Swiper as SwiperClass } from 'swiper/types';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
@@ -20,6 +20,7 @@ import SEOHeaderComponent from '@/components/seo-header';
 import styles from '@/styles/construction-detail.module.scss';
 import staticContent from '@/data/static-content.json';
 import { resolveImageUrl } from '@/utils/resolveImageUrl';
+import { getProjectSlug } from '@/utils/projectSlug';
 
 interface Project {
   _id: string;
@@ -49,11 +50,11 @@ export const getStaticPaths: GetStaticPaths = async ({ locales = [] }) => {
       targetLocales.map((locale) =>
         locale === 'vi'
           ? {
-              params: { slug: project._id },
+              params: { slug: getProjectSlug(project) },
             }
           : {
               locale,
-              params: { slug: project._id },
+              params: { slug: getProjectSlug(project) },
             }
       )
     ),
@@ -67,7 +68,9 @@ export const getStaticProps: GetStaticProps<ConstructionDetailProps> = async ({
 }) => {
   const projects = staticContent.projects as Project[];
   const projectId = Array.isArray(params?.slug) ? params.slug[0] : params?.slug;
-  const currentIndex = projects.findIndex((item) => item._id === projectId);
+  const currentIndex = projects.findIndex(
+    (item) => item._id === projectId || getProjectSlug(item) === projectId
+  );
   const project = currentIndex >= 0 ? projects[currentIndex] : null;
 
   if (!project || !project.images) {
@@ -82,14 +85,14 @@ export const getStaticProps: GetStaticProps<ConstructionDetailProps> = async ({
       nextProject:
         currentIndex < projects.length - 1
           ? {
-              _id: projects[currentIndex + 1]._id,
+              _id: getProjectSlug(projects[currentIndex + 1]),
               name: projects[currentIndex + 1].name,
             }
           : null,
       prevProject:
         currentIndex > 0
           ? {
-              _id: projects[currentIndex - 1]._id,
+              _id: getProjectSlug(projects[currentIndex - 1]),
               name: projects[currentIndex - 1].name,
             }
           : null,
@@ -104,12 +107,13 @@ const ConstructionDetail = ({
   prevProject,
   project,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const router = useRouter();
   const [thumbsSwiper, setThumbsSwiper] = React.useState<SwiperClass | null>(
     null
   );
   const [activeIndex, setActiveIndex] = React.useState(0);
   const [lightboxOpen, setLightboxOpen] = React.useState(false);
+  const closeButtonRef = React.useRef<HTMLButtonElement>(null);
+  const previousFocusRef = React.useRef<HTMLElement | null>(null);
 
   const detailCopy = useMemo(
     () =>
@@ -139,6 +143,25 @@ const ConstructionDetail = ({
       ? `${project.name} is one of AA Design's ${project.type} projects, showcasing the design language, materials, and completed spaces in detail.`
       : `${project.name} là một trong những công trình ${project.type} của AA Design, giới thiệu chi tiết phong cách thiết kế, vật liệu và không gian hoàn thiện.`;
 
+  const overviewFacts = [
+    {
+      label: locale === 'en' ? 'Project type' : 'Loại công trình',
+      value: project.type,
+    },
+    {
+      label: locale === 'en' ? 'Location' : 'Địa điểm',
+      value: project.address,
+    },
+    {
+      label: locale === 'en' ? 'Scope' : 'Hạng mục',
+      value: locale === 'en' ? 'Design & construction' : 'Thiết kế & thi công',
+    },
+    {
+      label: locale === 'en' ? 'Style' : 'Phong cách',
+      value: locale === 'en' ? 'Refined modern' : 'Hiện đại, tinh tế',
+    },
+  ];
+
   const allImages = [
     project.thumbnailMain,
     project.thumbnail,
@@ -150,27 +173,50 @@ const ConstructionDetail = ({
     project.thumbnail ||
     allImages[0]) as string;
   const lightboxImage = allImages[activeIndex] as string;
+  const siteUrl = (
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://aa-design.vn'
+  ).replace(/\/$/, '');
+  const toAbsoluteImageUrl = (image: string) => {
+    const resolvedImage = resolveImageUrl(image);
+    return resolvedImage.startsWith('http')
+      ? resolvedImage
+      : `${siteUrl}${resolvedImage}`;
+  };
 
-  const goToPrev = () => {
+  const goToPrev = React.useCallback(() => {
     setActiveIndex((prev) => (prev === 0 ? allImages.length - 1 : prev - 1));
-  };
+  }, [allImages.length]);
 
-  const goToNext = () => {
+  const goToNext = React.useCallback(() => {
     setActiveIndex((prev) => (prev === allImages.length - 1 ? 0 : prev + 1));
-  };
+  }, [allImages.length]);
 
   React.useEffect(() => {
     if (!lightboxOpen) return;
+
+    previousFocusRef.current = document.activeElement as HTMLElement;
+    closeButtonRef.current?.focus();
+    document.body.style.overflow = 'hidden';
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         setLightboxOpen(false);
       }
+      if (event.key === 'ArrowLeft') {
+        goToPrev();
+      }
+      if (event.key === 'ArrowRight') {
+        goToNext();
+      }
     };
 
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [lightboxOpen]);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
+      previousFocusRef.current?.focus();
+    };
+  }, [goToNext, goToPrev, lightboxOpen]);
 
   return (
     <>
@@ -178,6 +224,30 @@ const ConstructionDetail = ({
         title={project.name}
         description={seoDescription}
         keywords={`${project.type}, ${project.name}, interior design, construction`}
+        image={toAbsoluteImageUrl(heroImage)}
+        breadcrumbs={[
+          { name: locale === 'en' ? 'Home' : 'Trang chủ', url: '/' },
+          {
+            name: locale === 'en' ? 'Projects' : 'Công trình',
+            url: '/construction',
+          },
+          {
+            name: project.name,
+            url: `/construction/${getProjectSlug(project)}`,
+          },
+        ]}
+        structuredData={{
+          '@context': 'https://schema.org',
+          '@type': 'CreativeWork',
+          name: project.name,
+          description: seoDescription,
+          image: allImages.map((item) => toAbsoluteImageUrl(item)),
+          locationCreated: project.address,
+          creator: {
+            '@type': 'Organization',
+            name: 'AA Design',
+          },
+        }}
       />
 
       <div className={styles.projectDetail}>
@@ -217,46 +287,60 @@ const ConstructionDetail = ({
               {project.type}
             </motion.span>
             <div className={styles.heroActions}>
-              <button
-                type="button"
-                className={styles.backButton}
-                onClick={() => router.push('/construction')}
-              >
+              <Link href="/construction" className={styles.backButton}>
                 {detailCopy.back}
-              </button>
+              </Link>
               <div className={styles.navButtons}>
-                <button
-                  type="button"
-                  className={styles.navButton}
-                  disabled={!prevProject}
-                  onClick={() =>
-                    prevProject &&
-                    router.push(`/construction/${prevProject._id}`)
-                  }
-                >
-                  <span className={styles.navLabel}>{detailCopy.previous}</span>
-                  {prevProject && (
+                {prevProject ? (
+                  <Link
+                    className={styles.navButton}
+                    href={`/construction/${prevProject._id}`}
+                  >
+                    <span className={styles.navLabel}>
+                      {detailCopy.previous}
+                    </span>
                     <span className={styles.navName}>{prevProject.name}</span>
-                  )}
-                </button>
-                <button
-                  type="button"
-                  className={styles.navButton}
-                  disabled={!nextProject}
-                  onClick={() =>
-                    nextProject &&
-                    router.push(`/construction/${nextProject._id}`)
-                  }
-                >
-                  <span className={styles.navLabel}>{detailCopy.next}</span>
-                  {nextProject && (
+                  </Link>
+                ) : (
+                  <span className={`${styles.navButton} ${styles.disabled}`}>
+                    <span className={styles.navLabel}>
+                      {detailCopy.previous}
+                    </span>
+                  </span>
+                )}
+                {nextProject ? (
+                  <Link
+                    className={styles.navButton}
+                    href={`/construction/${nextProject._id}`}
+                  >
+                    <span className={styles.navLabel}>{detailCopy.next}</span>
                     <span className={styles.navName}>{nextProject.name}</span>
-                  )}
-                </button>
+                  </Link>
+                ) : (
+                  <span className={`${styles.navButton} ${styles.disabled}`}>
+                    <span className={styles.navLabel}>{detailCopy.next}</span>
+                  </span>
+                )}
               </div>
             </div>
           </div>
         </div>
+
+        <section className={styles.overviewSection}>
+          <div className={styles.overviewCopy}>
+            <span>Project notes</span>
+            <h2>{project.name}</h2>
+            <p>{seoDescription}</p>
+          </div>
+          <dl className={styles.factList}>
+            {overviewFacts.map((fact) => (
+              <div key={fact.label}>
+                <dt>{fact.label}</dt>
+                <dd>{fact.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
 
         <section className={styles.gallerySection}>
           <div className={styles.galleryHeader}>
@@ -277,9 +361,11 @@ const ConstructionDetail = ({
             >
               {allImages.map((image, index) => (
                 <SwiperSlide key={index}>
-                  <div
+                  <button
+                    type="button"
                     className={styles.slideWrapper}
                     onClick={() => setLightboxOpen(true)}
+                    aria-label={`${detailCopy.fullscreenHint}: ${project.name} ${index + 1}`}
                   >
                     <Image
                       src={resolveImageUrl(image)}
@@ -293,7 +379,7 @@ const ConstructionDetail = ({
                     <div className={styles.slideOverlay}>
                       <span>{detailCopy.fullscreenHint}</span>
                     </div>
-                  </div>
+                  </button>
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -327,8 +413,19 @@ const ConstructionDetail = ({
           </div>
         </section>
         {lightboxOpen && (
-          <div className={styles.lightbox}>
+          <div
+            className={styles.lightbox}
+            role="dialog"
+            aria-modal="true"
+            aria-label={detailCopy.galleryTitle}
+            onClick={(event) => {
+              if (event.target === event.currentTarget) {
+                setLightboxOpen(false);
+              }
+            }}
+          >
             <button
+              ref={closeButtonRef}
               type="button"
               className={styles.lightboxClose}
               onClick={() => setLightboxOpen(false)}

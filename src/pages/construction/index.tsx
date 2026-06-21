@@ -1,6 +1,7 @@
 import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'framer-motion';
 
@@ -10,9 +11,9 @@ import HeaderTitlePage from '@/components/header-title-page';
 
 //styles
 import styles from '@/scss/construction-page.module.scss';
-import { useRouter } from 'next/router';
 import staticContent from '@/data/static-content.json';
 import { resolveImageUrl } from '@/utils/resolveImageUrl';
+import { getProjectSlug } from '@/utils/projectSlug';
 
 interface Project {
   _id: string;
@@ -41,73 +42,21 @@ const SelectDropdown = ({
   ariaLabel,
   onChange,
 }: SelectDropdownProps) => {
-  const [open, setOpen] = useState(false);
-  const wrapperRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        wrapperRef.current &&
-        !wrapperRef.current.contains(event.target as Node)
-      ) {
-        setOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
   return (
-    <div className={styles.selectWrapper} ref={wrapperRef}>
-      <button
-        type="button"
-        className={styles.selectButton}
-        aria-haspopup="listbox"
-        aria-expanded={open}
+    <div className={styles.selectWrapper}>
+      <select
+        className={value ? styles.selectValue : styles.selectPlaceholder}
         aria-label={ariaLabel}
-        onClick={() => setOpen((prev) => !prev)}
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
       >
-        <span className={value ? styles.selectValue : styles.selectPlaceholder}>
-          {value || placeholder}
-        </span>
-        <span className={styles.selectChevron} aria-hidden="true">
-          ▾
-        </span>
-      </button>
-      {open && (
-        <div className={styles.selectMenu} role="listbox">
-          <button
-            type="button"
-            className={`${styles.selectOption} ${
-              !value ? styles.isSelected : ''
-            }`}
-            onClick={() => {
-              onChange('');
-              setOpen(false);
-            }}
-          >
-            {placeholder}
-          </button>
-          {options.map((option) => (
-            <button
-              type="button"
-              key={option}
-              className={`${styles.selectOption} ${
-                value === option ? styles.isSelected : ''
-              }`}
-              onClick={() => {
-                onChange(option);
-                setOpen(false);
-              }}
-            >
-              {option}
-            </button>
-          ))}
-        </div>
-      )}
+        <option value="">{placeholder}</option>
+        {options.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
     </div>
   );
 };
@@ -115,7 +64,6 @@ const SelectDropdown = ({
 const ConstructionPage = () => {
   const { t } = useTranslation();
   const loadMoreRef = useRef<HTMLDivElement>(null);
-  const router = useRouter();
   const [page, setPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedType, setSelectedType] = useState('');
@@ -243,11 +191,19 @@ const ConstructionPage = () => {
       <SEOHeaderComponent
         title={t('seo.title_construction')}
         description={t('seo.description_construction')}
-        keywords="construction, design, aa-design construction, aa design construction, la thien phi, công trình la thiên phi, công trình,"
+        keywords="công trình nội thất, thiết kế biệt thự, thiết kế khách sạn, thiết kế văn phòng, AA Design"
+        breadcrumbs={[
+          { name: 'AA Design', url: '/' },
+          { name: t('construction.title'), url: '/construction' },
+        ]}
       />
       <div className={styles.wrapperConstructionPage}>
         <div className={styles.containerConstructionPage}>
-          <HeaderTitlePage title={t('construction.title')} />
+          <div className={styles.pageIntro}>
+            <HeaderTitlePage title={t('construction.title')} />
+            <p>{t('construction.description')}</p>
+            <span>{filteredProjects.length} công trình</span>
+          </div>
           <div className={styles.filterBar}>
             <div className={styles.searchBox}>
               <input
@@ -301,26 +257,27 @@ const ConstructionPage = () => {
             className={styles.wrapperCardConstruction}
           >
             {projects.map((project, index) => (
-              <motion.div
-                key={project._id}
-                className={styles.imageWrapper}
-                variants={itemVariants}
-                onClick={() => router.push(`/construction/${project._id}`)}
-              >
-                <Image
-                  src={resolveImageUrl(project.thumbnail)}
-                  alt={project.name}
-                  width={1920}
-                  height={1200}
-                  quality={85}
-                  sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  priority={index < 6}
-                />
-                <div className={styles.overlay}>
-                  <span className={styles.topTitle}>{project.type}</span>
-                  <span className={styles.address}>{project.address}</span>
-                  <span className={styles.name}>{project.name}</span>
-                </div>
+              <motion.div key={project._id} variants={itemVariants}>
+                <Link
+                  href={`/construction/${getProjectSlug(project)}`}
+                  className={styles.imageWrapper}
+                  aria-label={`Xem công trình ${project.name}`}
+                >
+                  <Image
+                    src={resolveImageUrl(project.thumbnail)}
+                    alt={project.name}
+                    width={1920}
+                    height={1200}
+                    quality={85}
+                    sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    priority={index < 6}
+                  />
+                  <div className={styles.overlay}>
+                    <span className={styles.topTitle}>{project.type}</span>
+                    <span className={styles.address}>{project.address}</span>
+                    <span className={styles.name}>{project.name}</span>
+                  </div>
+                </Link>
               </motion.div>
             ))}
 

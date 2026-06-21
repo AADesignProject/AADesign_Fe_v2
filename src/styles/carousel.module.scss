@@ -1,26 +1,188 @@
+@import './variables.module.scss';
+
 .slide {
   position: relative;
   width: 100%;
-  height: clamp(420px, 70vh, 760px);
+  height: clamp(640px, 86vh, 920px);
   overflow: hidden;
-
-  @media (max-width: 767px) {
-    height: clamp(260px, 40vh, 420px);
-  }
+  background: $secondary-color;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transform: scale(1.02);
   }
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+      90deg,
+      rgba(13, 18, 13, 0.88) 0%,
+      rgba(13, 18, 13, 0.5) 48%,
+      rgba(13, 18, 13, 0.1) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(13, 18, 13, 0.14) 0%,
+      rgba(13, 18, 13, 0.68) 100%
+    );
 }
 
 .content {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  text-align: center;
+  left: max(20px, calc((100vw - #{$max-content-width}) / 2 + 48px));
+  bottom: clamp(84px, 14vh, 150px);
   z-index: 1;
+  display: flex;
+  width: min(760px, calc(100vw - 40px));
+  flex-direction: column;
+  align-items: flex-start;
+  color: $white-color;
+
+  .eyebrow {
+    margin-bottom: 22px;
+    color: $accent-color;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  h1,
+  h2 {
+    margin: 0;
+    color: $white-color;
+    font-family: var(--font-heading);
+    font-size: clamp(54px, 8.5vw, 126px);
+    font-weight: 400;
+    line-height: 0.9;
+    letter-spacing: -0.055em;
+    text-transform: none;
+  }
+
+  p {
+    max-width: 590px;
+    margin: 28px 0 0;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: clamp(16px, 1.6vw, 20px);
+    line-height: 1.8;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 34px;
+
+  a {
+    display: inline-flex;
+    min-height: 50px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 24px;
+    border: 1px solid rgba(255, 255, 255, 0.62);
+    border-radius: 0;
+    color: $white-color;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      color 0.2s ease,
+      transform 0.2s ease;
+
+    &:first-child {
+      border-color: $accent-color;
+      background: $accent-color;
+      color: $secondary-color;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      border-color: $white-color;
+      background: $white-color;
+      color: $secondary-color;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .slide {
+    height: clamp(600px, 78vh, 780px);
+  }
+
+  .content {
+    bottom: clamp(68px, 10vh, 112px);
+    width: min(680px, calc(100vw - 40px));
+
+    h1,
+    h2 {
+      font-size: clamp(50px, 9vw, 88px);
+      line-height: 0.95;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .slide {
+    height: clamp(520px, 76vh, 660px);
+  }
+
+  .overlay {
+    background: linear-gradient(
+        180deg,
+        rgba(13, 18, 13, 0.24) 0%,
+        rgba(13, 18, 13, 0.9) 100%
+      ),
+      linear-gradient(
+        90deg,
+        rgba(13, 18, 13, 0.58) 0%,
+        rgba(13, 18, 13, 0.18) 100%
+      );
+  }
+
+  .content {
+    left: 16px;
+    right: 16px;
+    bottom: 42px;
+    width: auto;
+
+    .eyebrow {
+      margin-bottom: 16px;
+      font-size: 11px;
+    }
+
+    h1,
+    h2 {
+      font-size: clamp(36px, 11vw, 56px);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+
+    p {
+      max-width: 100%;
+      margin-top: 18px;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+  }
+
+  .actions {
+    width: 100%;
+    gap: 10px;
+
+    a {
+      flex: 1 1 160px;
+      min-height: 48px;
+      padding: 0 16px;
+      font-size: 11px;
+      text-align: center;
+    }
+  }
 }

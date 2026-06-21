@@ -1,12 +1,22 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fcf9f3;
+  --foreground: #171714;
+  --primary: #4f6f52;
+  --primary-dark: #24372a;
+  --accent: #b98142;
+  --muted: #69675f;
+  --border: rgba(36, 55, 42, 0.16);
+  --focus-ring: rgba(185, 129, 66, 0.45);
+  --surface-muted: #ebe8e2;
+  --surface-warm: #f1ede8;
+  --font-heading: Georgia, serif;
+  --font-body: Arial, Helvetica, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #ffffff;
-    --foreground: #171717;
+    --background: #f6f2ea;
+    --foreground: #171714;
   }
 }
 
@@ -18,14 +28,13 @@ body {
 
 body {
   color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background:
+    linear-gradient(90deg, rgba(36, 55, 42, 0.035) 1px, transparent 1px) 0 0 /
+      96px 96px,
+    var(--background);
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  user-select: none; /* Vô hiệu hóa chọn văn bản */
-  -webkit-user-select: none; /* Vô hiệu hóa chọn văn bản trên Webkit */
-  -moz-user-select: none; /* Vô hiệu hóa chọn văn bản trên Firefox */
-  -ms-user-select: none; /* Vô hiệu hóa chọn văn bản trên IE/Edge */
 }
 
 * {
@@ -39,22 +48,60 @@ a {
   text-decoration: none;
 }
 
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+a,
+select,
+input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+::selection {
+  color: #fff;
+  background: var(--primary-dark);
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
 img {
-  pointer-events: none;
   -webkit-user-drag: none;
 }
 
-body,
-img {
-  -webkit-touch-callout: none; /* Vô hiệu hóa nhấp chuột phải trên Webkit */
-}
-
-body {
-  -webkit-touch-callout: none; /* Vô hiệu hóa nhấp chuột phải trên iOS */
+p,
+span,
+a,
+dd,
+dt,
+li {
+  overflow-wrap: anywhere;
 }
 
 @media (prefers-color-scheme: dark) {
   html {
-    color-scheme: dark;
+    color-scheme: light;
   }
 }

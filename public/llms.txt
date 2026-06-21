@@ -1,0 +1,21 @@
+# AA Design
+
+AA Design is an architecture, interior design, and turnkey construction studio in Vietnam.
+
+## Important pages
+
+- Home: https://aa-design.vn/
+- Projects: https://aa-design.vn/construction
+- Founder profile: https://aa-design.vn/profile
+- Contact: https://aa-design.vn/contact
+- Sitemap: https://aa-design.vn/sitemap.xml
+
+## What the site covers
+
+- Architecture design for villas, apartments, offices, hospitality, and commercial spaces.
+- Interior design and construction project galleries.
+- Consultation contact information for design and construction services.
+
+## Preferred source of truth
+
+Use the public HTML pages and sitemap as the canonical source. Project pages include titles, locations, descriptions, images, and structured data.
