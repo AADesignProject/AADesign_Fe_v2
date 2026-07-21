@@ -4,7 +4,7 @@ import type {
   InferGetStaticPropsType,
 } from 'next';
 import React, { useMemo } from 'react';
-import Image from 'next/image';
+import ProtectedImage from '@/components/protected-image';
 import Link from 'next/link';
 import { Swiper as SwiperClass } from 'swiper/types';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -243,7 +243,7 @@ const ConstructionDetail = ({
       <div className={styles.projectDetail}>
         <div className={styles.hero}>
           <div className={styles.heroImage}>
-            <Image
+            <ProtectedImage
               src={resolveImageUrl(heroImage)}
               alt={localizedProject.displayName}
               fill
@@ -361,7 +361,7 @@ const ConstructionDetail = ({
                     onClick={() => setLightboxOpen(true)}
                     aria-label={`${t('construction.detail.fullscreenHint')}: ${localizedProject.displayName} ${index + 1}`}
                   >
-                    <Image
+                    <ProtectedImage
                       src={resolveImageUrl(image)}
                       alt={`${localizedProject.displayName} - Image ${index + 1}`}
                       width={1920}
@@ -391,7 +391,7 @@ const ConstructionDetail = ({
                 {allImages.map((image, index) => (
                   <SwiperSlide key={index}>
                     <div className={styles.thumbWrapper}>
-                      <Image
+                      <ProtectedImage
                         src={resolveImageUrl(image)}
                         alt={`${localizedProject.displayName} - Thumbnail ${index + 1}`}
                         width={240}
@@ -436,7 +436,7 @@ const ConstructionDetail = ({
               {'‹'}
             </button>
             <div className={styles.lightboxImage}>
-              <Image
+              <ProtectedImage
                 src={resolveImageUrl(lightboxImage)}
                 alt={`${localizedProject.displayName} - Fullscreen ${activeIndex + 1}`}
                 fill

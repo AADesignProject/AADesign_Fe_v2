@@ -11,6 +11,7 @@ import styles from '@/scss/home-page.module.scss';
 import staticContent from '@/data/static-content.json';
 import { resolveImageUrl } from '@/utils/resolveImageUrl';
 import { getLocalizedProjects } from '@/utils/localizedProject';
+import { getProjectSlug } from '@/utils/projectSlug';
 
 type TProject = {
   _id: string;
@@ -137,7 +138,7 @@ const OurProjectComponentPage = () => {
               >
                 <Link
                   className={styles.imageWrapper}
-                  href={`/construction/${project._id}`}
+                  href={`/construction/${getProjectSlug(project)}`}
                   aria-label={t('home.ourProject.viewProject', {
                     name: project.displayName,
                   })}

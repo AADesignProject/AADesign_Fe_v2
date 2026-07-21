@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import Image from 'next/image';
+import ProtectedImage from '@/components/protected-image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useInView } from 'react-intersection-observer';
@@ -298,7 +298,7 @@ const ConstructionPage = () => {
                     name: project.displayName,
                   })}
                 >
-                  <Image
+                  <ProtectedImage
                     src={resolveImageUrl(project.thumbnail)}
                     alt={project.displayName}
                     width={1920}

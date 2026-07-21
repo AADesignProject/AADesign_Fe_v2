@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import ProtectedImage from '@/components/protected-image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useMemo } from 'react';
@@ -13,6 +13,7 @@ import {
 import staticContent from '@/data/static-content.json';
 import styles from '@/scss/home-page.module.scss';
 import { getLocalizedProjects } from '@/utils/localizedProject';
+import { getProjectSlug } from '@/utils/projectSlug';
 import { resolveImageUrl } from '@/utils/resolveImageUrl';
 
 type Project = {
@@ -135,7 +136,7 @@ const HomepageLandingComponent = () => {
     <div className={styles.landingPage}>
       <section id="hero" className={styles.heroSection}>
         {heroImage ? (
-          <Image
+          <ProtectedImage
             src={resolveImageUrl(heroImage)}
             alt={heroProject?.displayName ?? t('home.landing.hero.imageAlt')}
             fill
@@ -299,11 +300,11 @@ const HomepageLandingComponent = () => {
         <div className={styles.imageMosaic}>
           {galleryProjects.map((project, index) => (
             <Link
-              href={`/construction/${project._id}`}
+              href={`/construction/${getProjectSlug(project)}`}
               key={project._id}
               className={styles.mosaicItem}
             >
-              <Image
+              <ProtectedImage
                 src={resolveImageUrl(getProjectImage(project))}
                 alt={project.displayName}
                 width={900}
@@ -346,11 +347,11 @@ const HomepageLandingComponent = () => {
         <div className={styles.projectGrid}>
           {featuredProjects.map((project, index) => (
             <Link
-              href={`/construction/${project._id}`}
+              href={`/construction/${getProjectSlug(project)}`}
               className={styles.projectCard}
               key={project._id}
             >
-              <Image
+              <ProtectedImage
                 src={resolveImageUrl(getProjectImage(project))}
                 alt={project.displayName}
                 width={900}

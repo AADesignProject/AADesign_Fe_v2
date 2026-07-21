@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
+import ProtectedImage from '@/components/protected-image';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useTranslation } from 'react-i18next';
@@ -69,7 +69,7 @@ const ProfilePage = () => {
         <section className={styles.introduction}>
           <motion.div className={styles.imageSection} variants={itemVariants}>
             <div className={styles.imageWrapper}>
-              <Image
+              <ProtectedImage
                 src="/images/photo-1618221195710-dd6b41faaea6.avif"
                 alt={t('profile.imageAlt')}
                 width={600}
