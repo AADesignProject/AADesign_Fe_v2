@@ -72,13 +72,13 @@ assertRatio('secondary-color', 'surface-color', 7);
 
 assertNotIncludes(
   homeStyles,
-  '.eyebrow {\n  display: inline-flex;\n  color: $accent-color;',
-  'Small eyebrow text on light backgrounds should not use the low-contrast accent color'
+  'color: $accent-color;\n  font-size: 12px',
+  'Small text on light backgrounds should not use the low-contrast accent color'
 );
 assertIncludes(
   homeStyles,
-  '.mosaicItem {\n    position: relative;',
-  'Mosaic items should keep captions positioned over images'
+  '.frame {\n  position: relative;',
+  'Project frames should keep captions positioned over images'
 );
 assertIncludes(
   homeStyles,

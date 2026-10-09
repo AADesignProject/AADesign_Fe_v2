@@ -1,79 +1,131 @@
 @import './variables.module.scss';
 
-.wrapperFooter {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-  background: linear-gradient(135deg, rgba(185, 129, 66, 0.08), transparent 36%),
-    $secondary-color;
+$line: rgba(255, 255, 255, 0.14);
+$text-soft: rgba(255, 255, 255, 0.68);
+
+.footer {
+  background: $secondary-color;
   color: $white-color;
-}
 
-.containerContent {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.62fr);
-  gap: clamp(42px, 8vw, 120px);
-  width: 100%;
-  max-width: $max-content-width;
-  padding: clamp(68px, 9vw, 124px) clamp(20px, 4vw, 48px) 42px;
-}
-
-.brandColumn {
-  max-width: 760px;
-
-  .footerLogo {
-    display: inline-flex;
-    color: $white-color;
-    font-family: var(--font-heading);
-    font-size: clamp(54px, 9vw, 118px);
-    font-weight: 400;
-    line-height: 0.9;
-    letter-spacing: -0.055em;
+  a:focus-visible {
+    outline: 2px solid $accent-light;
+    outline-offset: 4px;
   }
+}
+
+.inner {
+  @include container;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(16px, 2vw, 32px);
+  row-gap: 56px;
+  padding: clamp(64px, 8vw, 120px) $gutter clamp(56px, 6vw, 88px);
+}
+
+// Left: brand, then navigation + contact. Right: map.
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(48px, 5vw, 72px);
+  grid-column: 1 / span 6;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 
   p {
-    max-width: 580px;
-    margin-top: 28px;
-    color: rgba(255, 255, 255, 0.68);
-    font-size: clamp(16px, 1.4vw, 18px);
-    line-height: 1.9;
+    max-width: 44ch;
+    margin-top: 24px;
+    color: $text-soft;
+    font-size: 16px;
+    line-height: 1.8;
   }
 }
 
-.footerNav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 22px;
-  margin-top: 34px;
+.logo {
+  display: inline-flex;
+  color: $white-color;
+  font-family: var(--font-heading);
+  font-size: clamp(44px, 5.4vw, 72px);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 52px;
+  margin-top: 32px;
+  padding: 0 30px;
+  border: 1px solid $accent-light;
+  color: $accent-light;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+
+  &:hover,
+  &:focus-visible {
+    background: $accent-light;
+    color: $secondary-color;
+  }
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+  gap: 40px clamp(24px, 4vw, 64px);
+  padding-top: 40px;
+  border-top: 1px solid $line;
+
+  h2 {
+    margin-bottom: 12px;
+    color: $accent-light;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+}
+
+.nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
 
   a {
     position: relative;
     display: inline-flex;
-    min-height: 34px;
     align-items: center;
-    color: rgba(255, 255, 255, 0.72);
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
+    min-height: 44px;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 15px;
     transition: color 0.2s ease;
 
+    // Same gold underline as the header nav.
     &::after {
       content: '';
       position: absolute;
-      left: 0;
       right: 0;
-      bottom: 2px;
+      bottom: 8px;
+      left: 0;
       height: 1px;
+      background: $accent-light;
       transform: scaleX(0);
       transform-origin: left;
-      background: $accent-color;
-      transition: transform 0.2s ease;
+      transition: transform 0.3s ease;
     }
 
-    &:hover {
-      color: $accent-color;
+    &:hover,
+    &:focus-visible {
+      color: $white-color;
 
       &::after {
         transform: scaleX(1);
@@ -82,127 +134,101 @@
   }
 }
 
-.columnRight {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 15px;
-  padding-top: 12px;
+.contact {
+  font-style: normal;
 
-  .titleContact {
-    color: $accent-color;
-    font-family: var(--font-body);
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+  dl {
+    display: grid;
+    gap: 20px;
+    margin: 0;
   }
 
-  .phoneNumber,
-  .email,
-  .location {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    color: rgba(255, 255, 255, 0.76);
+  dt {
+    margin-bottom: 2px;
+    color: rgba(255, 255, 255, 0.56);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+  }
+
+  dd {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.88);
     font-size: 15px;
-    font-style: normal;
-    line-height: 1.55;
-
-    svg {
-      flex: 0 0 auto;
-      margin-top: 3px;
-      color: $accent-color;
-    }
+    line-height: 1.6;
   }
 
-  a:hover {
-    color: $accent-color;
+  a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: inherit;
+    transition: color 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+      color: $accent-light;
+    }
   }
 }
 
-.mapContainer {
-  width: 100%;
-  margin-top: 12px;
+.phone a {
+  font-family: var(--font-heading);
+  font-size: clamp(22px, 2.2vw, 28px);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+.map {
+  position: relative;
+  grid-column: 8 / -1;
+  min-height: clamp(300px, 40vw, 420px);
+  border: 1px solid $line;
 
   iframe {
-    width: min(100%, 480px);
-    height: 260px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    filter: grayscale(0.9) contrast(0.92);
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    filter: grayscale(1) contrast(0.92);
+    transition: filter 0.4s ease;
+  }
+
+  &:hover iframe,
+  &:focus-within iframe {
+    filter: none;
   }
 }
 
-.divider {
-  width: 100%;
-  height: 1px;
-  background-color: rgba(255, 255, 255, 0.12);
-}
-
-.containerCopyright {
-  display: flex;
-  width: 100%;
-  max-width: $max-content-width;
-  justify-content: space-between;
-  padding: 18px clamp(20px, 4vw, 48px) 24px;
+.legal {
+  @include container;
+  padding: 0 $gutter 32px;
 
   p {
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    padding-top: 24px;
+    border-top: 1px solid $line;
+    color: rgba(255, 255, 255, 0.52);
+    font-size: 13px;
   }
 }
 
-@media (max-width: 860px) {
-  .containerContent {
-    grid-template-columns: 1fr;
-    gap: 34px;
-  }
-
-  .columnRight {
-    padding-top: 0;
+@media (max-width: 1024px) {
+  .info,
+  .map {
+    grid-column: 1 / -1;
   }
 }
 
-@media (max-width: 640px) {
-  .containerContent {
-    padding: 58px 20px 34px;
+// Narrow phones: two columns leave the email too little room.
+@media (max-width: 360px) {
+  .columns {
+    grid-template-columns: minmax(0, 1fr);
   }
+}
 
-  .brandColumn {
-    .footerLogo {
-      font-size: clamp(46px, 15vw, 72px);
-      line-height: 0.94;
-    }
-
-    p {
-      margin-top: 22px;
-      font-size: 15px;
-      line-height: 1.75;
-    }
-  }
-
-  .footerNav {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px 18px;
-  }
-
-  .mapContainer {
-    iframe {
-      width: 100%;
-      height: 210px;
-    }
-  }
-
-  .containerCopyright {
-    flex-direction: column;
-    gap: 8px;
-    padding: 16px 20px 22px;
-
-    p {
-      line-height: 1.5;
-    }
+@media (prefers-reduced-motion: reduce) {
+  .footer * {
+    transition: none !important;
   }
 }

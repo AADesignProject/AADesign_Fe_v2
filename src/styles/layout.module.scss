@@ -2,12 +2,16 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  --header-height: 126px;
+  --header-height: 81px;
 }
 
 .content {
   flex: 1;
   padding-top: var(--header-height);
+}
+
+.contentFlush {
+  padding-top: 0;
 }
 
 .skipLink {
@@ -29,8 +33,8 @@
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1024px) {
   .container {
-    --header-height: 108px;
+    --header-height: 69px;
   }
 }

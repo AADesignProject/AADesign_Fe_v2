@@ -11,14 +11,14 @@ const assertIncludes = (source, expected, message) => {
   }
 };
 
-const assertMatches = (source, pattern, message) => {
-  if (!pattern.test(source)) {
-    throw new Error(message);
-  }
-};
-
+const homeDir = 'src/component-page/home';
 const index = read('src/pages/index.tsx');
-const component = read('src/component-page/home/homepage-landing.tsx');
+const landing = read(`${homeDir}/homepage-landing.tsx`);
+const parts = fs
+  .readdirSync(path.join(root, homeDir))
+  .filter((file) => file.startsWith('home-') && file.endsWith('.tsx'))
+  .map((file) => read(`${homeDir}/${file}`))
+  .join('\n');
 const styles = read('src/styles/home-page.module.scss');
 const en = read('src/locales/en/common.json');
 const vi = read('src/locales/vi/common.json');
@@ -26,71 +26,74 @@ const vi = read('src/locales/vi/common.json');
 assertIncludes(
   index,
   '<HomepageLandingComponent />',
-  'Homepage should render the rebuilt landing component'
+  'Homepage should render the landing component'
 );
 
-const sectionIds = [
-  'hero',
-  'what-we-do',
-  'who-we-serve',
-  'regions',
-  'quick-proof',
-  'primary-cta',
-  'social-proof',
-  'experience',
-  'project-types',
-  'featured-images',
-  'need-services',
-  'featured-projects',
-  'process',
-  'why-aa-design',
-  'founder',
-  'reviews',
-  'faq',
-  'consultation-form',
+// Sections are composed in this order in the landing component.
+const componentOrder = [
+  'HomeHero',
+  'HomeIntro',
+  'HomeFeatured',
+  'HomeBand',
+  'HomeProcess',
+  'HomeServices',
+  'HomeTeam',
+  'HomeFaq',
+  'HomeContact',
 ];
 
 let previousIndex = -1;
-for (const sectionId of sectionIds) {
-  const indexInComponent = component.indexOf(`id="${sectionId}"`);
-  if (indexInComponent === -1) {
-    throw new Error(`Missing homepage section id: ${sectionId}`);
+for (const name of componentOrder) {
+  const position = landing.indexOf(`<${name}`);
+  if (position === -1) throw new Error(`Missing homepage section: ${name}`);
+  if (position < previousIndex) {
+    throw new Error(`Homepage section is out of order: ${name}`);
   }
-  if (indexInComponent < previousIndex) {
-    throw new Error(`Homepage section is out of order: ${sectionId}`);
-  }
-  previousIndex = indexInComponent;
+  previousIndex = position;
+}
+
+// Each section keeps a stable id (the header links to #services).
+for (const id of [
+  'hero',
+  'intro',
+  'featured-projects',
+  'image-band',
+  'process',
+  'services',
+  'team',
+  'faq',
+  'consultation-form',
+]) {
+  assertIncludes(parts, `id="${id}"`, `Missing homepage section id: ${id}`);
 }
 
 assertIncludes(
-  component,
+  landing,
   'getLocalizedProjects',
   'Homepage should localize existing project data'
 );
 assertIncludes(
-  component,
+  landing,
   'staticContent.projects',
   'Homepage should advertise from existing project data'
 );
-assertMatches(
-  component,
-  /const featuredProjectIds = \[[\s\S]*?67f898307d268cfebb8c0af4[\s\S]*?67f9f0e06644672a6bf73b63[\s\S]*?\]/,
-  'Featured projects should be curated from real project ids'
-);
-assertMatches(
-  component,
-  /featuredProjectIds[\s\S]*?slice\(0,\s*8\)/,
-  'Homepage should show up to 8 featured projects'
-);
 assertIncludes(
-  component,
+  parts,
   "t('home.landing.featuredProjects.scopeLabel'",
   'Project cards should use a scope label instead of fake area data'
 );
 assertIncludes(
+  parts,
+  'priority: true',
+  'The hero image should be loaded with priority'
+);
+if ((parts.match(/<h1/g) ?? []).length !== 1) {
+  throw new Error('Homepage should render exactly one h1');
+}
+assertIncludes(
   styles,
   '.landingPage',
-  'Homepage styles should define the rebuilt landing wrapper'
+  'Homepage styles should define the landing wrapper'
 );
 assertIncludes(en, '"landing"', 'English homepage landing copy is missing');
 assertIncludes(vi, '"landing"', 'Vietnamese homepage landing copy is missing');

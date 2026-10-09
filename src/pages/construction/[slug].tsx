@@ -159,8 +159,10 @@ const ConstructionDetail = ({
   ]
     .filter((image): image is string => Boolean(image))
     .filter((image, index, collection) => collection.indexOf(image) === index);
-  const heroImage = (project.thumbnailMain ||
-    project.thumbnail ||
+  // Landscape `thumbnail` first: `thumbnailMain` is often portrait and blurs
+  // when stretched across a full-width hero.
+  const heroImage = (project.thumbnail ||
+    project.thumbnailMain ||
     allImages[0]) as string;
   const lightboxImage = allImages[activeIndex] as string;
   const siteUrl = (
@@ -249,7 +251,7 @@ const ConstructionDetail = ({
               fill
               priority
               quality={90}
-              sizes="100vw"
+              sizes="(orientation: portrait) 150vh, 100vw"
             />
           </div>
           <div className={styles.heroOverlay} />
@@ -367,7 +369,7 @@ const ConstructionDetail = ({
                       width={1920}
                       height={1080}
                       quality={90}
-                      sizes="(max-width: 768px) 90vw, (max-width: 1200px) 80vw, 1200px"
+                      sizes="(max-width: 1344px) 100vw, 1344px"
                       priority={index === 0}
                     />
                     <div className={styles.slideOverlay}>
@@ -440,7 +442,7 @@ const ConstructionDetail = ({
                 src={resolveImageUrl(lightboxImage)}
                 alt={`${localizedProject.displayName} - Fullscreen ${activeIndex + 1}`}
                 fill
-                sizes="(max-width: 1200px) 92vw, 1200px"
+                sizes="(max-width: 1240px) 92vw, 1240px"
                 quality={90}
               />
               <div className={styles.lightboxCounter}>

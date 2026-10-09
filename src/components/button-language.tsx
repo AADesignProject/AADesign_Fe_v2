@@ -1,14 +1,14 @@
-import React from 'react';
-import Image from 'next/image';
+import React, { Fragment } from 'react';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 
-//images
-import vietnamFlag from '@public/images/vietnam_flag.webp';
-import ukFlag from '@public/images/kingdom_flag.webp';
-
 //styles
 import styles from '@/scss/button-language.module.scss';
+
+const languages = [
+  { language: 'vi', label: 'VIE' },
+  { language: 'en', label: 'ENG' },
+];
 
 const ButtonLanguageComponent = () => {
   const { i18n, t } = useTranslation();
@@ -19,42 +19,24 @@ const ButtonLanguageComponent = () => {
     await router.push(router.asPath, router.asPath, { locale: lng });
   };
 
-  const listLanguage = [
-    {
-      language: 'vi',
-      label: 'VIE',
-      flag: vietnamFlag.src,
-      altFlag: 'vietnam flag',
-    },
-    {
-      language: 'en',
-      label: 'ENG',
-      flag: ukFlag.src,
-      altFlag: 'uk flag',
-    },
-  ];
-
   return (
     <div className={styles.wrapperButtonLanguage}>
-      {listLanguage.map((item) => (
-        <button
-          type="button"
-          aria-label={t('language.switchTo', { label: item.label })}
-          aria-pressed={i18n.language === item.language}
-          key={item.language}
-          onClick={() => changeLanguage(item.language)}
-          className={`${styles.containerContent} ${i18n.language === item.language ? styles.active : ''}`}
-        >
-          <Image
-            src={item.flag}
-            alt=""
-            width={20}
-            height={20}
-            sizes="20px"
-            quality={85}
-          />
-          <span>{item.label}</span>
-        </button>
+      {languages.map((item, index) => (
+        <Fragment key={item.language}>
+          {index > 0 && <span aria-hidden="true">/</span>}
+          <button
+            type="button"
+            lang={item.language}
+            aria-label={t('language.switchTo', { label: item.label })}
+            aria-pressed={i18n.language === item.language}
+            onClick={() => changeLanguage(item.language)}
+            className={`${styles.button} ${
+              i18n.language === item.language ? styles.active : ''
+            }`}
+          >
+            {item.label}
+          </button>
+        </Fragment>
       ))}
     </div>
   );
