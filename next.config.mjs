@@ -17,30 +17,49 @@ const getProjectSlug = (project) =>
   toSlugSegment([project.name, project.address].filter(Boolean).join(' ')) ||
   project._id;
 
-const projectIdRedirects = staticContent.projects.flatMap((project) => {
+const redirectsToSlug = (from, project) => {
   const slug = getProjectSlug(project);
 
   return [
     {
-      source: `/construction/${project._id}`,
+      source: `/construction/${from}`,
       destination: `/construction/${slug}`,
       permanent: true,
       locale: false,
     },
     {
-      source: `/en/construction/${project._id}`,
+      source: `/en/construction/${from}`,
       destination: `/en/construction/${slug}`,
       permanent: true,
       locale: false,
     },
     {
-      source: `/vi/construction/${project._id}`,
+      source: `/vi/construction/${from}`,
       destination: `/construction/${slug}`,
       permanent: true,
       locale: false,
     },
   ];
-});
+};
+
+const projectIdRedirects = staticContent.projects.flatMap((project) =>
+  redirectsToSlug(project._id, project)
+);
+
+// Old slug -> project id, for slugs renamed by typo fixes (Diamon, Vinhome).
+const legacySlugs = {
+  'bgr-diamon-residence-le-van-luong-ha-noi': '67fa23db6644672a6bf73ba8',
+  'hoa-lan-vinhome-vinhome-ha-noi': '67f9ef7a6644672a6bf73b57',
+  'chung-cu-vinhome-sai-gon': '67f9f3a96644672a6bf73b77',
+};
+
+const legacySlugRedirects = Object.entries(legacySlugs).flatMap(
+  ([oldSlug, projectId]) =>
+    redirectsToSlug(
+      oldSlug,
+      staticContent.projects.find((project) => project._id === projectId)
+    )
+);
 
 /** @type {import('next').NextConfig} */
 const contentSecurityPolicy = [
@@ -81,9 +100,7 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
   async redirects() {
-    return [
-      ...projectIdRedirects,
-    ];
+    return [...projectIdRedirects, ...legacySlugRedirects];
   },
   compress: true,
   poweredByHeader: false,

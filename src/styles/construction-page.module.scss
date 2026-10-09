@@ -188,7 +188,7 @@
       position: relative;
       display: block;
       width: 100%;
-      aspect-ratio: 4 / 5;
+      aspect-ratio: 3 / 2;
       overflow: hidden;
       background: $secondary-color;
 
@@ -354,7 +354,7 @@
       gap: 14px;
 
       .imageWrapper {
-        aspect-ratio: 4 / 5;
+        aspect-ratio: 3 / 2;
 
         .overlay {
           padding: 18px;

@@ -39,9 +39,9 @@
   "projects": [
     {
       "_id": "67f898307d268cfebb8c0af4",
-      "name": "Biệt thự âu cơ",
+      "name": "Biệt thự Âu Cơ",
       "type": "interior",
-      "address": "Âu cơ, hà nội",
+      "address": "Âu Cơ, Hà Nội",
       "images": [
         "/images/project/biet_thu_au_co/1744345135690-p_tho_1.webp",
         "/images/project/biet_thu_au_co/1744345135683-p_tho_2.webp",
@@ -60,7 +60,7 @@
     },
     {
       "_id": "67f9ed566644672a6bf73b4a",
-      "name": "Biệt thự văn phú",
+      "name": "Biệt thự Văn Phú",
       "type": "architecture",
       "address": "Hà Đông, Hà Nội",
       "images": [
@@ -80,7 +80,7 @@
       "_id": "67f90c4ff603a839446d4911",
       "name": "Amour Resort Bavi",
       "type": "interior",
-      "address": "Ba vì, hà nội",
+      "address": "Ba Vì, Hà Nội",
       "images": [
         "/images/project/amour_resort_bavi/1744374862760-h1_1.webp",
         "/images/project/amour_resort_bavi/1744374862744-h1_2.webp",
@@ -98,9 +98,9 @@
     },
     {
       "_id": "67f9ef7a6644672a6bf73b57",
-      "name": "Hoa lan vinhome",
+      "name": "Hoa Lan Vinhomes",
       "type": "all",
-      "address": "Vinhome, Hà Nội",
+      "address": "Vinhomes, Hà Nội",
       "images": [
         "/images/project/hoa_lan_vinhome/1744433015460-bep__an_1.webp",
         "/images/project/hoa_lan_vinhome/1744433015130-sanh_2.webp",
@@ -140,9 +140,9 @@
     },
     {
       "_id": "67f9f0e06644672a6bf73b63",
-      "name": "Văn phòng lạc hồng",
+      "name": "Văn phòng Lạc Hồng",
       "type": "interior",
-      "address": "Tây hồ, Hà Nội",
+      "address": "Tây Hồ, Hà Nội",
       "images": [
         "/images/project/van_phong_lac_hong/1744433374189-caffe_1.webp",
         "/images/project/van_phong_lac_hong/1744433374328-nha_hang_1.webp",
@@ -160,9 +160,9 @@
     },
     {
       "_id": "67f9f24d6644672a6bf73b6b",
-      "name": "Biệt thự mẫu Kim đô 06",
+      "name": "Biệt thự mẫu Kim Đô 06",
       "type": "interior",
-      "address": "Kim đô, Bắc Ninh",
+      "address": "Kim Đô, Bắc Ninh",
       "images": [
         "/images/project/biet_thu_mau_kim_o/1744433737674-p_doc_2.webp",
         "/images/project/biet_thu_mau_kim_o/1744433736476-p_khach_1.webp",
@@ -180,9 +180,9 @@
     },
     {
       "_id": "67f9f2a56644672a6bf73b6f",
-      "name": "Biệt thự quận 5",
+      "name": "Biệt thự Quận 5",
       "type": "interior",
-      "address": "Quận 5, Sài gòn",
+      "address": "Quận 5, Sài Gòn",
       "images": [
         "/images/project/biet_thu_quan_5/1744433828803-z5842827749166_ff6c52c40eb2dcbd02204bb943c98126.webp",
         "/images/project/biet_thu_quan_5/1744433828547-z5842827783526_49c320a32d7be7049301cc81bcb2913c.webp",
@@ -197,9 +197,9 @@
     },
     {
       "_id": "67f9f3a96644672a6bf73b77",
-      "name": "Chung cư Vinhome",
+      "name": "Chung cư Vinhomes",
       "type": "all",
-      "address": "Sài gòn",
+      "address": "Sài Gòn",
       "images": [
         "/images/project/chung_cu_vinhome/1744434088648-1.webp",
         "/images/project/chung_cu_vinhome/1744434087855-4.webp",
@@ -215,7 +215,7 @@
       "_id": "67f9f4086644672a6bf73b7b",
       "name": "Biệt thự Nghĩa Lộ",
       "type": "interior",
-      "address": "Nghĩa Lộ, Yên bái",
+      "address": "Nghĩa Lộ, Yên Bái",
       "images": [
         "/images/project/biet_thu_nghia_lo/1744434181633-z6344737729875_c7f7f1f578d04c925270da6d13c2a189.webp",
         "/images/project/biet_thu_nghia_lo/1744434181462-z6344737688128_2dacfe7bcc0f9c3f4e125c5ceb427581.webp",
@@ -232,9 +232,9 @@
     },
     {
       "_id": "67f9f4386644672a6bf73b7f",
-      "name": "Khai sơn hill",
+      "name": "Khai Sơn Hill",
       "type": "architecture",
-      "address": "Long biên, Hà Nội",
+      "address": "Long Biên, Hà Nội",
       "images": [
         "/images/project/khai_son_hill/1744434232161-1.webp",
         "/images/project/khai_son_hill/1744434231891-fdsb_2.webp",
@@ -250,7 +250,7 @@
     },
     {
       "_id": "67f9f4a46644672a6bf73b83",
-      "name": "Khu đô thị hiệp hòa",
+      "name": "Khu đô thị Hiệp Hòa",
       "type": "interior",
       "address": "Hiệp Hòa, Bắc Giang",
       "images": [
@@ -269,7 +269,7 @@
       "_id": "67f9f50f6644672a6bf73b87",
       "name": "Khu nghỉ dưỡng Venus",
       "type": "all",
-      "address": "Tam đảo, Vĩnh Phúc",
+      "address": "Tam Đảo, Vĩnh Phúc",
       "images": [
         "/images/project/khu_nghi_duong_venus/1744434445999-phoi_canh_mat_tien_nha_hang_nuong.webp",
         "/images/project/khu_nghi_duong_venus/1744434447022-noi_that_pa2_3.webp",
@@ -288,7 +288,7 @@
       "_id": "67f9f5526644672a6bf73b8b",
       "name": "Nhà số 9",
       "type": "all",
-      "address": "Hàng Cháo, Hà nội",
+      "address": "Hàng Cháo, Hà Nội",
       "images": [
         "/images/project/nha_so_9/1744434512937-wc_1.webp",
         "/images/project/nha_so_9/1744434513423-p_khach_t2_4.webp",
@@ -325,9 +325,9 @@
     },
     {
       "_id": "67fa237d6644672a6bf73ba4",
-      "name": "Biệt thự vĩnh phúc",
+      "name": "Biệt thự Vĩnh Phúc",
       "type": "all",
-      "address": "tam đảo, vĩnh phúc",
+      "address": "Tam Đảo, Vĩnh Phúc",
       "images": [
         "/images/project/biet_thu_vinh_phuc/1744446333230-phong_khach_5.webp",
         "/images/project/biet_thu_vinh_phuc/1744446333716-phong_khach_6.webp",
@@ -343,9 +343,9 @@
     },
     {
       "_id": "67fa23db6644672a6bf73ba8",
-      "name": "Bgr Diamon Residence",
+      "name": "BGR Diamond Residence",
       "type": "all",
-      "address": "Lê văn lương, hà nội",
+      "address": "Lê Văn Lương, Hà Nội",
       "images": [
         "/images/project/bgr_diamon_residence/1744446426433-3.webp",
         "/images/project/bgr_diamon_residence/1744446426315-1.webp",
@@ -378,9 +378,9 @@
     },
     {
       "_id": "67fa24db6644672a6bf73bb0",
-      "name": "Số 6 Nguyễn du",
+      "name": "Số 6 Nguyễn Du",
       "type": "all",
-      "address": "Nguyễn Du, Quy nhơn",
+      "address": "Nguyễn Du, Quy Nhơn",
       "images": [
         "/images/project/so_6_nguyen_du/1744446680707-phong_khach_sua_1.webp",
         "/images/project/so_6_nguyen_du/1744446681730-wc_1.webp",
@@ -419,7 +419,7 @@
       "_id": "67fa25856644672a6bf73bb8",
       "name": "Công trình nhà cổ",
       "type": "architecture",
-      "address": "Ba vì, Hà Nội",
+      "address": "Ba Vì, Hà Nội",
       "images": [
         "/images/project/cong_trinh_nha_co/1744446853719-pc3.webp",
         "/images/project/cong_trinh_nha_co/1744446853441-pc2.webp",
@@ -430,9 +430,9 @@
     },
     {
       "_id": "67fa25f76644672a6bf73bbc",
-      "name": "Đại phú gia",
+      "name": "Đại Phú Gia",
       "type": "architecture",
-      "address": "Quy nhơn",
+      "address": "Quy Nhơn",
       "images": [
         "/images/project/ai_phu_gia/1744446962845-bep_1.webp",
         "/images/project/ai_phu_gia/1744446960194-p_khach_3.webp",

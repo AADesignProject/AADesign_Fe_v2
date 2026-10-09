@@ -304,7 +304,7 @@ const ConstructionPage = () => {
                     width={1920}
                     height={1200}
                     quality={85}
-                    sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    sizes="(max-width: 700px) 100vw, (max-width: 1024px) 50vw, 680px"
                     priority={index < 6}
                   />
                   <div className={styles.overlay}>
