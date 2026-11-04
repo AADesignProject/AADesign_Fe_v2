@@ -1,4 +1,4 @@
-@import './variables.module.scss';
+@use './variables.module.scss' as *;
 
 .wrapperLoading {
   position: fixed;
@@ -9,7 +9,8 @@
   justify-content: center;
   flex-direction: column;
   gap: 18px;
-  background: linear-gradient(rgba(23, 23, 20, 0.72), rgba(23, 23, 20, 0.64)),
+  background:
+    linear-gradient(rgba(23, 23, 20, 0.72), rgba(23, 23, 20, 0.64)),
     rgba(252, 249, 243, 0.18);
   backdrop-filter: blur(12px);
   color: $white-color;

@@ -1,41 +1,4 @@
 {
-  "banners": [
-    {
-      "_id": "banner-1",
-      "title": "Không gian sống đẳng cấp",
-      "description": "Thiết kế tinh tế, hài hòa công năng và thẩm mỹ.",
-      "url": "/images/project/banners/1743410060887-cover_4.webp"
-    },
-    {
-      "_id": "banner-2",
-      "title": "Kiến tạo trải nghiệm",
-      "description": "Biến ý tưởng thành hiện thực với giải pháp toàn diện.",
-      "url": "/images/project/banners/1743410060884-coover_2_1.webp"
-    },
-    {
-      "_id": "banner-3",
-      "title": "Không gian tinh tế",
-      "description": "Tối ưu công năng, nâng tầm thẩm mỹ.",
-      "url": "/images/project/banners/1743410060872-coover_3.webp"
-    }
-  ],
-  "bannerSmall": [
-    {
-      "_id": "banner-small-1",
-      "title": "Góc nghỉ dưỡng",
-      "url": "/images/project/banners_small/1743413345096-anh_con_-_phan_gioi_thieu_chung-03.webp"
-    },
-    {
-      "_id": "banner-small-2",
-      "title": "Phong cách tối giản",
-      "url": "/images/project/banners_small/1743413345098-anh_con_-_phan_gioi_thieu_chung-02.webp"
-    },
-    {
-      "_id": "banner-small-3",
-      "title": "Chi tiết tinh xảo",
-      "url": "/images/project/banners_small/1743413345084-anh_con_-_phan_gioi_thieu_chung-01.webp"
-    }
-  ],
   "projects": [
     {
       "_id": "67f898307d268cfebb8c0af4",

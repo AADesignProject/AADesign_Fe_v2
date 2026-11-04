@@ -49,8 +49,7 @@ const uiFiles = [
   ...walk(path.join(root, 'src/pages')),
 ].filter((filePath) => !filePath.endsWith(`${path.sep}_document.tsx`));
 
-const vietnamesePattern =
-  /[ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠ-ỹ]/;
+const vietnamesePattern = /[ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠ-ỹ]/;
 const mojibakePattern = /(?:áº|Ã|Ä|Æ|Ð|Â©|Â®|â€|â†)/;
 const hardcodedMatches = [];
 

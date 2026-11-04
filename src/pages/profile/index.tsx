@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import SEOHeaderComponent from '@/components/seo-header';
 
 // Styles
-import styles from '@/styles/profile.module.scss';
+import styles from '@/scss/profile.module.scss';
 import {
   parseStat,
   useCountUp,
@@ -72,7 +72,6 @@ const ProfilePage = () => {
       <SEOHeaderComponent
         title={t('seo.title_profile')}
         description={t('seo.description_profile')}
-        keywords={t('seo.keywords_profile')}
         breadcrumbs={[
           { name: t('breadcrumbs.home'), url: '/' },
           { name: t('header.menu.introduction'), url: '/profile' },

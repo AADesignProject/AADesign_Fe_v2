@@ -52,7 +52,7 @@ const HomeHero = ({ project }: { project: LocalizedProject }) => {
   // Landscape `thumbnail` on purpose: `thumbnailMain` is often portrait.
   const { props } = getImageProps({
     src: resolveImageUrl(project.thumbnail ?? ''),
-    alt: `${t('home.landing.hero.imageAlt')} - ${project.displayName}`,
+    alt: `${t('home.landing.hero.imageAlt')} - ${project.displayName}, ${project.displayAddress}`,
     width: 1920,
     height: 1200,
     priority: true,
@@ -71,7 +71,6 @@ const HomeHero = ({ project }: { project: LocalizedProject }) => {
             srcSet={mobileHeroImage}
             type="image/webp"
           />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             {...image}
             {...{ fetchpriority: fetchPriority }}

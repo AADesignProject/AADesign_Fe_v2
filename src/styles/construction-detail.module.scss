@@ -1,4 +1,4 @@
-@import './variables.module.scss';
+@use './variables.module.scss' as *;
 
 .projectDetail {
   min-height: 100vh;
@@ -29,7 +29,8 @@
   .heroOverlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
+    background:
+      linear-gradient(
         180deg,
         rgba(13, 18, 13, 0.08) 0%,
         rgba(13, 18, 13, 0.88) 100%
@@ -234,7 +235,6 @@
     font-size: 15px;
     font-weight: 700;
     line-height: 1.5;
-    text-transform: capitalize;
   }
 }
 

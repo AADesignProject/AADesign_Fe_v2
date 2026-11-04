@@ -28,58 +28,62 @@ const vi = read('src/locales/vi/common.json');
 assertIncludes(
   constants,
   'zaloHref',
-  'general constants should expose a single Zalo link source',
+  'general constants should expose a single Zalo link source'
 );
 
 assertIncludes(
   layout,
   '<FloatingContactComponent />',
-  'layout should render the floating contact controls globally',
+  'layout should render the floating contact controls globally'
 );
 
 assertIncludes(
   component,
   'href={`tel:${phoneNumberHref}`}',
-  'floating contact should include a phone link',
+  'floating contact should include a phone link'
 );
 
 assertIncludes(
   component,
   'href={zaloHref}',
-  'floating contact should include a Zalo link',
+  'floating contact should include a Zalo link'
 );
 
 assertMatches(
   component,
   /aria-label=\{t\('floatingContact\.call'/,
-  'phone action should have a localized aria-label',
+  'phone action should have a localized aria-label'
 );
 
 assertMatches(
   component,
   /aria-label=\{t\('floatingContact\.zalo'/,
-  'Zalo action should have a localized aria-label',
+  'Zalo action should have a localized aria-label'
 );
 
 assertIncludes(
   styles,
   'position: fixed;',
-  'floating contact styles should pin the controls on screen',
+  'floating contact styles should pin the controls on screen'
 );
 
 assertMatches(
   styles,
   /@keyframes\s+pulseContact/,
-  'floating contact styles should define the pulse animation',
+  'floating contact styles should define the pulse animation'
 );
 
 assertMatches(
   styles,
   /prefers-reduced-motion:\s*reduce/,
-  'floating contact animation should respect reduced-motion preference',
+  'floating contact animation should respect reduced-motion preference'
 );
 
 assertIncludes(en, '"floatingContact"', 'English locale should include labels');
-assertIncludes(vi, '"floatingContact"', 'Vietnamese locale should include labels');
+assertIncludes(
+  vi,
+  '"floatingContact"',
+  'Vietnamese locale should include labels'
+);
 
 console.log('Floating contact checks passed.');

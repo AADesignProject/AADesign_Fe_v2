@@ -18,11 +18,15 @@ import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 
 import SEOHeaderComponent from '@/components/seo-header';
-import styles from '@/styles/construction-detail.module.scss';
+import styles from '@/scss/construction-detail.module.scss';
 import staticContent from '@/data/static-content.json';
 import { resolveImageUrl } from '@/utils/resolveImageUrl';
+import { siteUrl } from '@/utils/siteUrl';
+import { businessId } from '@/utils/businessSchema';
 import { getProjectSlug } from '@/utils/projectSlug';
 import { getLocalizedProject } from '@/utils/localizedProject';
+import { getLocaleContent, getProjectContent } from '@/utils/projectContent';
+import { getImageAlt, getProjectSeo } from '@/utils/projectSeo';
 
 interface Project {
   _id: string;
@@ -36,7 +40,7 @@ interface Project {
   typical?: boolean;
 }
 
-type NavigationProject = Pick<Project, '_id' | 'name'>;
+type NavigationProject = { slug: string; name: string };
 
 type ConstructionDetailProps = {
   locale: string;
@@ -92,13 +96,13 @@ export const getStaticProps: GetStaticProps<ConstructionDetailProps> = async ({
       locale,
       nextProject: nextProject
         ? {
-            _id: getProjectSlug(nextProject),
+            slug: getProjectSlug(nextProject),
             name: getLocalizedProject(nextProject, locale).displayName,
           }
         : null,
       prevProject: prevProject
         ? {
-            _id: getProjectSlug(prevProject),
+            slug: getProjectSlug(prevProject),
             name: getLocalizedProject(prevProject, locale).displayName,
           }
         : null,
@@ -128,11 +132,14 @@ const ConstructionDetail = ({
   const projectTypeLabel = t(`project.types.${project.type}`, {
     defaultValue: project.type,
   });
-  const seoDescription = t('construction.detail.seoDescription', {
-    name: localizedProject.displayName,
-    type: projectTypeLabel,
-  });
+  const { area, year } = getProjectContent(project._id);
+  const localeContent = getLocaleContent(project._id, locale);
+  const descriptionParagraphs = (localeContent.description ?? '')
+    .split(/\n{2,}/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean);
 
+  // Only facts that have real data are listed; nothing is shown as a placeholder.
   const overviewFacts = [
     {
       label: t('construction.detail.facts.type'),
@@ -143,14 +150,26 @@ const ConstructionDetail = ({
       value: localizedProject.displayAddress,
     },
     {
-      label: t('construction.detail.facts.scope'),
-      value: t('construction.detail.facts.scopeValue'),
+      label: t('construction.detail.facts.area'),
+      value: area ? `${area} m²` : '',
+    },
+    {
+      label: t('construction.detail.facts.year'),
+      value: year ? String(year) : '',
     },
     {
       label: t('construction.detail.facts.style'),
-      value: t('construction.detail.facts.styleValue'),
+      value: localeContent.style ?? '',
     },
-  ];
+    {
+      label: t('construction.detail.facts.materials'),
+      value: localeContent.materials ?? '',
+    },
+    {
+      label: t('construction.detail.facts.highlights'),
+      value: localeContent.highlights ?? '',
+    },
+  ].filter((fact) => fact.value);
 
   const allImages = [
     project.thumbnailMain,
@@ -165,9 +184,13 @@ const ConstructionDetail = ({
     project.thumbnailMain ||
     allImages[0]) as string;
   const lightboxImage = allImages[activeIndex] as string;
-  const siteUrl = (
-    process.env.NEXT_PUBLIC_SITE_URL || 'https://aa-design.vn'
-  ).replace(/\/$/, '');
+  const seo = getProjectSeo(t, localizedProject, {
+    description: descriptionParagraphs[0],
+    imageCount: allImages.length,
+    locale,
+  });
+  const imageAlt = (image: string) =>
+    getImageAlt(t, localizedProject, image, allImages.indexOf(image));
   const toAbsoluteImageUrl = (image: string) => {
     const resolvedImage = resolveImageUrl(image);
     return resolvedImage.startsWith('http')
@@ -213,9 +236,8 @@ const ConstructionDetail = ({
   return (
     <>
       <SEOHeaderComponent
-        title={localizedProject.displayName}
-        description={seoDescription}
-        keywords={`${projectTypeLabel}, ${localizedProject.displayName}, interior design, construction`}
+        title={seo.title}
+        description={seo.description}
         image={toAbsoluteImageUrl(heroImage)}
         breadcrumbs={[
           { name: t('breadcrumbs.home'), url: '/' },
@@ -232,11 +254,19 @@ const ConstructionDetail = ({
           '@context': 'https://schema.org',
           '@type': 'CreativeWork',
           name: localizedProject.displayName,
-          description: seoDescription,
+          description: seo.description,
+          inLanguage: locale,
+          dateModified: getProjectContent(project._id).updatedAt,
           image: allImages.map((item) => toAbsoluteImageUrl(item)),
-          locationCreated: localizedProject.displayAddress,
+          locationCreated: {
+            '@type': 'Place',
+            name: localizedProject.displayAddress,
+          },
+          // Same @id as the home page node (one entity); type + name so this
+          // page's JSON-LD also validates without resolving that node.
           creator: {
-            '@type': 'Organization',
+            '@type': 'HomeAndConstructionBusiness',
+            '@id': businessId,
             name: 'AA Design',
           },
         }}
@@ -247,7 +277,7 @@ const ConstructionDetail = ({
           <div className={styles.heroImage}>
             <Image
               src={resolveImageUrl(heroImage)}
-              alt={localizedProject.displayName}
+              alt={imageAlt(heroImage)}
               fill
               priority
               quality={90}
@@ -286,7 +316,7 @@ const ConstructionDetail = ({
                 {prevProject ? (
                   <Link
                     className={styles.navButton}
-                    href={`/construction/${prevProject._id}`}
+                    href={`/construction/${prevProject.slug}`}
                   >
                     <span className={styles.navLabel}>
                       {t('construction.detail.previous')}
@@ -303,7 +333,7 @@ const ConstructionDetail = ({
                 {nextProject ? (
                   <Link
                     className={styles.navButton}
-                    href={`/construction/${nextProject._id}`}
+                    href={`/construction/${nextProject.slug}`}
                   >
                     <span className={styles.navLabel}>
                       {t('construction.detail.next')}
@@ -325,8 +355,10 @@ const ConstructionDetail = ({
         <section className={styles.overviewSection}>
           <div className={styles.overviewCopy}>
             <span>{t('construction.detail.overviewLabel')}</span>
-            <h2>{localizedProject.displayName}</h2>
-            <p>{seoDescription}</p>
+            <h2>{t('construction.detail.overviewTitle')}</h2>
+            {descriptionParagraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </div>
           <dl className={styles.factList}>
             {overviewFacts.map((fact) => (
@@ -365,12 +397,11 @@ const ConstructionDetail = ({
                   >
                     <Image
                       src={resolveImageUrl(image)}
-                      alt={`${localizedProject.displayName} - Image ${index + 1}`}
+                      alt={imageAlt(image)}
                       width={1920}
                       height={1080}
                       quality={90}
                       sizes="(max-width: 1344px) 100vw, 1344px"
-                      priority={index === 0}
                     />
                     <div className={styles.slideOverlay}>
                       <span>{t('construction.detail.fullscreenHint')}</span>
@@ -395,7 +426,7 @@ const ConstructionDetail = ({
                     <div className={styles.thumbWrapper}>
                       <Image
                         src={resolveImageUrl(image)}
-                        alt={`${localizedProject.displayName} - Thumbnail ${index + 1}`}
+                        alt=""
                         width={240}
                         height={135}
                         quality={80}
@@ -440,7 +471,7 @@ const ConstructionDetail = ({
             <div className={styles.lightboxImage}>
               <Image
                 src={resolveImageUrl(lightboxImage)}
-                alt={`${localizedProject.displayName} - Fullscreen ${activeIndex + 1}`}
+                alt={imageAlt(lightboxImage)}
                 fill
                 sizes="(max-width: 1240px) 92vw, 1240px"
                 quality={90}
