@@ -1,4 +1,4 @@
-@import './variables.module.scss';
+@use './variables.module.scss' as *;
 
 .wrapperConstructionPage {
   display: flex;
@@ -209,7 +209,8 @@
         justify-content: flex-end;
         padding: clamp(20px, 3vw, 32px);
         color: $white-color;
-        background: linear-gradient(
+        background:
+          linear-gradient(
             180deg,
             rgba(23, 23, 20, 0.02) 0%,
             rgba(23, 23, 20, 0.84) 100%

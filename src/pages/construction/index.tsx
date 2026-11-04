@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
+import React, { memo, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -16,6 +16,7 @@ import staticContent from '@/data/static-content.json';
 import { resolveImageUrl } from '@/utils/resolveImageUrl';
 import { getProjectSlug } from '@/utils/projectSlug';
 import { getLocalizedProjects } from '@/utils/localizedProject';
+import { getProjectPhrase } from '@/utils/projectSeo';
 
 interface Project {
   _id: string;
@@ -76,12 +77,9 @@ const SelectDropdown = ({
 const ConstructionPage = () => {
   const { t } = useTranslation();
   const router = useRouter();
-  const loadMoreRef = useRef<HTMLDivElement>(null);
-  const [page, setPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedType, setSelectedType] = useState('');
   const [selectedLocation, setSelectedLocation] = useState('');
-  const limit = 9;
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -162,9 +160,6 @@ const ConstructionPage = () => {
     });
   }, [allProjects, searchTerm, selectedType, selectedLocation, t]);
 
-  const totalPages = Math.ceil(filteredProjects.length / limit) || 1;
-  const safePage = Math.min(page, totalPages);
-  const hasNextPage = safePage < totalPages;
   const isLoading = false;
 
   const containerVariants = {
@@ -188,41 +183,15 @@ const ConstructionPage = () => {
     },
   };
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const target = entries[0];
-        if (target.isIntersecting && hasNextPage) {
-          setPage((prev) => prev + 1);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    const currentLoadMoreRef = loadMoreRef.current;
-    if (currentLoadMoreRef) {
-      observer.observe(currentLoadMoreRef);
-    }
-
-    return () => {
-      if (currentLoadMoreRef) {
-        observer.unobserve(currentLoadMoreRef);
-      }
-    };
-  }, [hasNextPage]);
-
-  useEffect(() => {
-    setPage(1);
-  }, [searchTerm, selectedType, selectedLocation, router.locale]);
-
-  const projects = filteredProjects.slice(0, safePage * limit);
+  // Every project is rendered (there are few), so each link is in the HTML
+  // for crawlers; infinite scroll would hide most of them.
+  const projects = filteredProjects;
 
   return (
     <>
       <SEOHeaderComponent
         title={t('seo.title_construction')}
         description={t('seo.description_construction')}
-        keywords={t('construction.keywords')}
         breadcrumbs={[
           { name: 'AA Design', url: '/' },
           { name: t('construction.title'), url: '/construction' },
@@ -300,12 +269,12 @@ const ConstructionPage = () => {
                 >
                   <Image
                     src={resolveImageUrl(project.thumbnail)}
-                    alt={project.displayName}
+                    alt={`${project.displayName} – ${getProjectPhrase(t, project.type)}, ${project.displayAddress}`}
                     width={1920}
                     height={1200}
                     quality={85}
                     sizes="(max-width: 700px) 100vw, (max-width: 1024px) 50vw, 680px"
-                    priority={index < 6}
+                    priority={index < 3}
                   />
                   <div className={styles.overlay}>
                     <span className={styles.topTitle}>
@@ -325,7 +294,6 @@ const ConstructionPage = () => {
             )}
             {isLoading && <div className={styles.loading}>Loading...</div>}
           </motion.div>
-          <div ref={loadMoreRef} style={{ height: '20px' }} />
         </div>
       </div>
     </>

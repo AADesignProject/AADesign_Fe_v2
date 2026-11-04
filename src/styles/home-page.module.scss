@@ -1,4 +1,4 @@
-@import './variables.module.scss';
+@use './variables.module.scss' as *;
 
 .landingPage {
   overflow-x: clip;
@@ -70,7 +70,8 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(
+  background:
+    linear-gradient(
       180deg,
       rgba(23, 23, 20, 0.55) 0,
       rgba(23, 23, 20, 0) 26%,

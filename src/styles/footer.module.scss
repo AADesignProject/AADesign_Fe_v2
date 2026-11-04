@@ -1,4 +1,4 @@
-@import './variables.module.scss';
+@use './variables.module.scss' as *;
 
 $line: rgba(255, 255, 255, 0.14);
 $text-soft: rgba(255, 255, 255, 0.68);

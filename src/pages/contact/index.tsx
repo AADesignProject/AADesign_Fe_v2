@@ -71,7 +71,6 @@ const ContactPage = () => {
       <SEOHeaderComponent
         title={t('seo.title_contact')}
         description={t('seo.description_contact')}
-        keywords={t('seo.keywords_contact')}
         breadcrumbs={[
           { name: t('breadcrumbs.home'), url: '/' },
           { name: t('contact.title'), url: '/contact' },

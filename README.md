@@ -1,40 +1,62 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# AA Design – aa-design.vn
 
-## Getting Started
+Website giới thiệu AA Design. Next.js 16 (Pages Router), React 18, TypeScript, SCSS modules, hai ngôn ngữ `vi` (mặc định) và `en`.
 
-First, run the development server:
+## Yêu cầu
+
+- Node 24 (xem `.nvmrc`; Vercel dùng `engines.node`)
+- npm (dùng `package-lock.json`, không dùng yarn/pnpm)
+
+## Chạy dự án
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm ci          # cài đúng phiên bản trong lockfile
+npm run dev     # http://localhost:3000
+npm run lint    # ESLint (next lint đã bị gỡ từ Next 16)
+npm run build   # build production
+npm start       # chạy bản build
+npm run format  # Prettier cho src/, scripts/ và các file *.mjs ở gốc
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Hook pre-commit chạy `npm run lint && npm run build`.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Kiểm tra nhanh
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Các script trong `scripts/` kiểm tra i18n, header, hero, liên hệ nổi, loading và SEO:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```bash
+for s in scripts/check-*.mjs; do node "$s"; done
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+`check-seo-output.mjs` đọc HTML đã build nên cần chạy `npm run build` trước.
 
-## Learn More
+## Biến môi trường
 
-To learn more about Next.js, take a look at the following resources:
+Đặt trong `.env.local` (không commit). Tất cả đều là `NEXT_PUBLIC_*` nên sẽ nằm trong bundle, không đặt bí mật ở đây.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Biến | Mặc định | Dùng cho |
+| --- | --- | --- |
+| `NEXT_PUBLIC_SITE_URL` | `https://aa-design.vn` | canonical, hreflang, sitemap |
+| `NEXT_PUBLIC_LINK_S3` | rỗng | tiền tố cho đường dẫn ảnh không bắt đầu bằng `/` |
+| `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | rỗng | thẻ xác minh Google Search Console |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Cấu trúc
 
-## Deploy on Vercel
+```
+src/
+  pages/            route (index, construction, contact, profile, api/sitemap)
+  component-page/   section riêng của trang chủ
+  components/       header, footer, layout, form, SEO...
+  styles/           *.module.scss (alias @/scss/*)
+  data/             nội dung dự án (static-content.json, project-content.json)
+  locales/          bản dịch vi/en
+  utils/            slug, SEO, schema, gsap...
+public/             ảnh, robots.txt, llms.txt
+scripts/            các script check-*
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+`/sitemap.xml` được sinh động từ dữ liệu dự án (`src/pages/api/sitemap.ts`, rewrite trong `next.config.mjs`).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Deploy
+
+Site chạy trên Vercel, deploy tự động khi push (không còn CI riêng hay EC2/pm2). Vercel lấy Node từ `engines.node` trong `package.json` (hiện `24.x`) và tự chạy `npm install` + `next build`. Đặt các biến `NEXT_PUBLIC_*` ở bảng trên trong Project Settings → Environment Variables. Vì Next 16 không lint lúc build, hãy chạy `npm run lint` (hook pre-commit đã làm việc này) trước khi push.

@@ -49,7 +49,9 @@ const checks = [
   },
 ];
 
-const failures = checks.filter(({ file, pattern }) => !pattern.test(read(file)));
+const failures = checks.filter(
+  ({ file, pattern }) => !pattern.test(read(file))
+);
 
 if (failures.length > 0) {
   console.error('Route loading check failed.');

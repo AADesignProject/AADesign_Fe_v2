@@ -39,6 +39,12 @@ const redirectsToSlug = (from, project) => {
       permanent: true,
       locale: false,
     },
+    {
+      source: `/en/en/construction/${from}`,
+      destination: `/en/construction/${slug}`,
+      permanent: true,
+      locale: false,
+    },
   ];
 };
 
@@ -61,6 +67,19 @@ const legacySlugRedirects = Object.entries(legacySlugs).flatMap(
     )
 );
 
+// Next only strips one locale prefix, so /en/en/x renders as a copy of /en/x.
+// Send it to the real URL (after the ID rules, which are exact).
+// Not done for /vi/x: `locale: false` rules also see the default-locale
+// prefix, so /vi/:path* -> /:path* would loop. Canonical tags cover /vi/x.
+const duplicateLocaleRedirects = [
+  {
+    source: '/en/en/:path*',
+    destination: '/en/:path*',
+    permanent: true,
+    locale: false,
+  },
+];
+
 /** @type {import('next').NextConfig} */
 const contentSecurityPolicy = [
   "default-src 'self'",
@@ -68,7 +87,7 @@ const contentSecurityPolicy = [
   "object-src 'none'",
   "form-action 'self'",
   "frame-ancestors 'self'",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.vercel-scripts.com https://*.vercel-insights.com",
+  "script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com https://*.vercel-insights.com",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https://aa-design.s3.ap-southeast-1.amazonaws.com https://*.googleusercontent.com https://*.gstatic.com https://maps.googleapis.com",
   "font-src 'self' data:",
@@ -82,6 +101,9 @@ const nextConfig = {
   i18n: {
     locales: ['en', 'vi'],
     defaultLocale: 'vi',
+    // Without this `/` redirects English browsers to /en, so one URL would
+    // serve two languages.
+    localeDetection: false,
   },
   images: {
     remotePatterns: [
@@ -95,12 +117,24 @@ const nextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     dangerouslyAllowSVG: false,
     formats: ['image/webp'],
-    minimumCacheTTL: 60,
+    // Next 16 only allows quality 75 unless listed; the pages use 80/85/90.
+    qualities: [75, 80, 85, 90],
+    // Vercel bills per image transformation. Photo file names carry a
+    // timestamp, so a changed photo gets a new URL and a long TTL is safe.
+    minimumCacheTTL: 2678400,
+    localPatterns: [{ pathname: '/images/**' }],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
+  async rewrites() {
+    return [{ source: '/sitemap.xml', destination: '/api/sitemap' }];
+  },
   async redirects() {
-    return [...projectIdRedirects, ...legacySlugRedirects];
+    return [
+      ...projectIdRedirects,
+      ...legacySlugRedirects,
+      ...duplicateLocaleRedirects,
+    ];
   },
   compress: true,
   poweredByHeader: false,
