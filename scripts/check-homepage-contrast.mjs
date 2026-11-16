@@ -54,12 +54,6 @@ const assertRatio = (foregroundToken, backgroundToken, minimum) => {
   }
 };
 
-const assertIncludes = (source, expected, message) => {
-  if (!source.includes(expected)) {
-    throw new Error(message);
-  }
-};
-
 const assertNotIncludes = (source, expected, message) => {
   if (source.includes(expected)) {
     throw new Error(message);
@@ -75,20 +69,19 @@ assertNotIncludes(
   'color: $accent-color;\n  font-size: 12px',
   'Small text on light backgrounds should not use the low-contrast accent color'
 );
-assertIncludes(
-  homeStyles,
-  '.frame {\n  position: relative;',
-  'Project frames should keep captions positioned over images'
-);
-assertIncludes(
-  homeStyles,
-  'z-index: 1;',
-  'Image captions should sit above the dark overlay'
-);
-assertIncludes(
-  homeStyles,
-  'rgba(23, 23, 20, 0.88) 100%',
-  'Image overlays should be dark enough for readable white captions'
-);
+// Captions sit under the photo on the page surface (no overlay), so they must
+// never be hidden until hover: the text has to be readable on touch and for
+// keyboard users without any interaction.
+const captionBlocks = homeStyles.match(/\.caption\s*\{[^}]*\}/g) ?? [];
+if (captionBlocks.length === 0) {
+  throw new Error('Homepage styles should define a .caption rule');
+}
+for (const block of captionBlocks) {
+  if (/opacity:\s*0\s*[;}]/.test(block)) {
+    throw new Error(
+      '.caption must not use opacity: 0 (text hidden by default)'
+    );
+  }
+}
 
 console.log('Homepage contrast checks passed.');

@@ -234,7 +234,7 @@
 .stats {
   display: grid;
   grid-column: 1 / -1;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: clamp(16px, 2vw, 32px);
   margin-top: clamp(24px, 4vw, 56px);
 
@@ -284,7 +284,7 @@
   @include container;
   display: flex;
   flex-direction: column;
-  gap: clamp(56px, 8vw, 120px);
+  gap: clamp(56px, 6vw, 120px);
 }
 
 .featuredRow {
@@ -299,7 +299,7 @@
   will-change: transform;
 
   &.dropped {
-    margin-top: clamp(72px, 10vw, 168px);
+    margin-top: clamp(72px, 7vw, 168px);
   }
 
   > a {
@@ -320,66 +320,51 @@
   }
 }
 
-.card > a:hover .frame img,
-.card > a:focus-visible .frame img {
-  transform: scale(1.05);
-}
-
-// Name, place and scope appear over the photo on hover/focus (always on touch).
+// Name and place sit under the photo, always visible (touch, keyboard, hover).
 .caption {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
-  padding: clamp(48px, 6vw, 80px) clamp(20px, 2.4vw, 32px)
-    clamp(20px, 2.4vw, 32px);
-  background: linear-gradient(
-    180deg,
-    rgba(23, 23, 20, 0) 0%,
-    rgba(23, 23, 20, 0.88) 100%
-  );
-  color: $white-color;
-  opacity: 0;
-  transform: translateY(12px);
-  transition:
-    opacity 0.5s ease,
-    transform 0.6s $ease-out;
-}
-
-.card > a:hover .caption,
-.card > a:focus-visible .caption {
-  opacity: 1;
-  transform: none;
-}
-
-@media (hover: none) {
-  .caption {
-    opacity: 1;
-    transform: none;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 24px;
+  margin-top: 16px;
 }
 
 .captionName {
-  display: block;
   font-family: var(--font-heading);
-  font-size: clamp(22px, 2.2vw, 30px);
+  font-size: clamp(20px, 1.8vw, 26px);
   line-height: 1.2;
 }
 
 .captionMeta {
-  display: block;
-  margin-top: 6px;
-  color: rgba(255, 255, 255, 0.84);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 16px;
+  color: $muted-text-color;
   font-size: 13px;
   line-height: 1.5;
+}
+
+@media (hover: hover) {
+  .card > a:hover,
+  .card > a:focus-visible {
+    .frame img {
+      transform: scale(1.05);
+    }
+
+    .captionName {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 6px;
+    }
+  }
 }
 
 // -------------------------------------------------------- image band
 
 .band {
   position: relative;
-  height: clamp(360px, 80svh, 820px);
+  height: clamp(320px, 60svh, 680px);
   overflow: hidden;
   background: $secondary-color;
 }
@@ -396,168 +381,109 @@
 
 // ------------------------------------------------------------ process
 
-// Default: a plain vertical list (mobile, reduced motion, no JS).
-// With motion on desktop, JS sets data-pinned and the steps scroll sideways.
+// Below 1200px a vertical timeline; from 1200px the steps share one connector
+// line in a single row. No pin or scrub: the only motion is the reveal hook.
 .process {
+  padding: $section-space-tight $gutter;
   background: $secondary-color;
   color: $white-color;
 }
 
-.processPin {
+.processInner {
+  @include container;
   display: flex;
   flex-direction: column;
   gap: clamp(40px, 6vw, 80px);
-  padding: $section-space $gutter;
-}
-
-.processHead {
-  @include container;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 24px;
-}
-
-.processCount {
-  display: none;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 14px;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.08em;
 }
 
 .processTrack {
-  @include container;
-  display: flex;
-  flex-direction: column;
+  margin-left: 4px;
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
   list-style: none;
 }
 
 .step {
-  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  position: relative;
+  padding: 0 0 32px 32px;
   list-style: none;
-}
 
-.stepInner {
-  display: grid;
-  grid-template-columns: minmax(80px, 0.22fr) minmax(0, 1fr);
-  gap: 16px clamp(24px, 4vw, 56px);
-  padding: 32px 0;
+  &:last-child {
+    padding-bottom: 0;
+  }
+
+  // Accent dot sitting on the connector line.
+  &::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: -5px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: $accent-color;
+  }
 
   h3 {
+    margin-top: 12px;
     font-family: var(--font-heading);
-    font-size: clamp(26px, 3vw, 40px);
+    font-size: clamp(22px, 1.9vw, 28px);
     font-weight: 400;
     letter-spacing: -0.01em;
     line-height: 1.2;
   }
 
   p {
-    grid-column: 2;
     max-width: 46ch;
+    margin-top: 12px;
     color: rgba(255, 255, 255, 0.74);
-    font-size: 16px;
-    line-height: 1.8;
+    font-size: 15px;
+    line-height: 1.7;
   }
 }
 
 .stepNumber {
-  grid-row: span 2;
+  display: block;
   color: $accent-light;
   font-family: var(--font-heading);
-  font-size: clamp(40px, 6vw, 72px);
+  font-size: 28px;
+  font-variant-numeric: tabular-nums;
   line-height: 1;
 }
 
-.processBar {
-  display: none;
-}
-
-.process[data-pinned='true'] {
-  height: 100svh;
-  overflow: hidden;
-
-  .processPin {
-    height: 100%;
-    justify-content: space-between;
-    gap: 0;
-    padding: clamp(104px, 14vh, 160px) 0 clamp(32px, 6vh, 64px);
-  }
-
-  .processHead {
-    padding: 0 $gutter;
-  }
-
-  .processCount {
-    display: block;
-  }
-
+@media (min-width: 1200px) {
   .processTrack {
-    flex: 1;
-    flex-direction: row;
-    width: calc(var(--steps) * 100%);
-    max-width: none;
-    margin: 0;
-    will-change: transform;
+    display: grid;
+    grid-template-columns: repeat(var(--steps, 5), minmax(0, 1fr));
+    column-gap: clamp(24px, 3vw, 48px);
+    margin-left: 0;
+    // One continuous line across the row; each step's dot sits on it.
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+    border-left: 0;
   }
 
   .step {
-    display: flex;
-    flex: 0 0 calc(100% / var(--steps));
-    align-items: center;
-    padding: 0 $gutter;
-    border-top: 0;
-  }
-
-  .stepInner {
-    @include container;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    column-gap: clamp(16px, 2vw, 32px);
-    align-items: center;
     padding: 0;
 
-    h3 {
-      grid-column: 7 / -1;
-      align-self: end;
-      font-size: clamp(32px, 4vw, 56px);
+    &::before {
+      top: -5px;
+      left: 0;
     }
 
-    p {
-      grid-column: 7 / -1;
-      align-self: start;
-      font-size: 17px;
+    h3 {
+      margin-top: 20px;
     }
   }
 
   .stepNumber {
-    grid-column: 1 / span 5;
-    grid-row: span 2;
-    font-size: clamp(140px, 24vw, 360px);
-    letter-spacing: -0.04em;
-    opacity: 0.9;
-  }
-
-  .processBar {
-    @include container;
-    display: block;
-    width: calc(100% - 2 * #{$gutter});
-    height: 1px;
-    background: rgba(255, 255, 255, 0.18);
-
-    span {
-      display: block;
-      height: 100%;
-      background: $accent-color;
-      transform: scaleX(0);
-      transform-origin: left;
-    }
+    margin-top: 28px;
+    font-size: clamp(40px, 4vw, 64px);
   }
 }
 
 // ----------------------------------------------------------- services
 
 .services {
-  padding: $section-space $gutter;
+  padding: $section-space-tight $gutter;
 }
 
 .servicesInner {
@@ -577,7 +503,7 @@
   grid-column: 6 / -1;
 
   li {
-    padding: 32px 0;
+    padding: 24px 0;
     border-top: 1px solid $border-color;
     list-style: none;
 
@@ -633,7 +559,7 @@
 // --------------------------------------------------------------- team
 
 .team {
-  padding: $section-space $gutter;
+  padding: $section-space-tight $gutter;
   background: $surface-warm;
 }
 
@@ -683,7 +609,7 @@
 // ---------------------------------------------------------------- faq
 
 .faq {
-  padding: $section-space $gutter;
+  padding: $section-space-tight $gutter;
 }
 
 .faqInner {
@@ -757,6 +683,7 @@
 .contact {
   padding: $section-space $gutter;
   background: $surface-warm;
+  scroll-margin-top: var(--header-height);
 }
 
 .contactInner {
@@ -764,31 +691,84 @@
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: clamp(16px, 2vw, 32px);
-  row-gap: 48px;
+  row-gap: clamp(32px, 4vw, 56px);
 }
 
-.contactIntro {
-  grid-column: 1 / span 5;
+.contactTitle {
+  @include section-heading;
+  grid-column: 1 / span 8;
+}
 
-  h2 {
-    @include section-heading;
+.contactText {
+  grid-column: 9 / -1;
+  align-self: end;
+  max-width: 36ch;
+  color: $muted-text-color;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+// The number is the call action: one oversized, fully tappable row.
+.contactPhone {
+  display: flex;
+  grid-column: 1 / -1;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-block: clamp(20px, 3vw, 40px);
+  border-block: 1px solid $border-color;
+  color: $text-color;
+  font-family: var(--font-heading);
+  font-size: clamp(34px, 9.4vw, 120px);
+  // Playfair defaults to old-style figures, which look uneven in a phone number.
+  font-variant-numeric: lining-nums tabular-nums;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  transition: color 0.25s ease;
+
+  span {
+    white-space: nowrap;
   }
 
-  p {
-    max-width: 44ch;
-    margin-top: 24px;
-    color: $muted-text-color;
-    font-size: 17px;
-    line-height: 1.8;
+  svg {
+    flex: none;
+    font-size: 0.4em;
+    transition: transform 0.35s $ease-out;
+  }
+
+  &:hover,
+  &:focus-visible {
+    color: $accent-text;
+
+    svg {
+      transform: translate(4px, -4px);
+    }
+  }
+
+  // The global ring is too faint on this surface; use the dark gold instead.
+  &:focus-visible {
+    outline: 3px solid $accent-text;
+    outline-offset: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    svg {
+      transition: none;
+    }
+
+    &:hover svg,
+    &:focus-visible svg {
+      transform: none;
+    }
   }
 }
 
 .contactActions {
   display: flex;
+  grid-column: 1 / -1;
   flex-wrap: wrap;
   align-items: center;
   gap: 12px 28px;
-  margin-top: 36px;
 }
 
 .contactButton {
@@ -809,61 +789,10 @@
   }
 }
 
-.form {
-  display: grid;
-  grid-column: 7 / -1;
-  gap: 28px;
-
-  label {
-    display: grid;
-    gap: 8px;
-    color: $muted-text-color;
-    font-size: 14px;
-    font-weight: 500;
-  }
-
-  input,
-  select,
-  textarea {
-    width: 100%;
-    min-height: 52px;
-    padding: 10px 0;
-    border: 0;
-    border-bottom: 1px solid rgba(23, 23, 20, 0.4);
-    border-radius: 0;
-    background: transparent;
-    color: $text-color;
-    font-size: 16px;
-    transition: border-color 0.2s ease;
-
-    &:focus {
-      border-bottom-color: $accent-color;
-    }
-  }
-
-  textarea {
-    min-height: 120px;
-    resize: vertical;
-  }
-
-  button {
-    justify-self: start;
-    min-height: 52px;
-    padding: 0 32px;
-    border: 0;
-    background: $secondary-color;
-    color: $white-color;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    transition: background-color 0.25s ease;
-
-    &:hover,
-    &:focus-visible {
-      background: $primary-dark;
-    }
-  }
+.contactMeta {
+  margin-left: auto;
+  color: $muted-text-color;
+  font-size: 14px;
 }
 
 // --------------------------------------------------------- responsive
@@ -899,9 +828,14 @@
     grid-column: 1 / -1;
   }
 
-  .contactIntro,
-  .form {
+  .contactTitle,
+  .contactText {
     grid-column: 1 / -1;
+  }
+
+  .contactMeta {
+    flex-basis: 100%;
+    margin-left: 0;
   }
 }
 
@@ -924,13 +858,22 @@
   .team,
   .faq,
   .contact,
-  .processPin {
+  .process {
     padding-right: 16px;
     padding-left: 16px;
   }
 
   .introText {
     grid-column: 1 / -1;
+  }
+
+  .contactPhone {
+    min-height: 72px;
+  }
+
+  .contactButton {
+    flex: 1 1 100%;
+    justify-content: center;
   }
 
   .stats {
@@ -955,14 +898,6 @@
       width: 86%;
       margin-left: auto;
     }
-  }
-
-  .caption {
-    padding-top: 48px;
-  }
-
-  .stepInner {
-    grid-template-columns: 56px minmax(0, 1fr);
   }
 
   .teamBody blockquote {

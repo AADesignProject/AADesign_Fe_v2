@@ -131,7 +131,7 @@ const HomeFeatured = ({ projects }: { projects: LocalizedProject[] }) => {
                   : project.thumbnail;
 
               return (
-                <figure
+                <div
                   key={slot.id}
                   className={`${styles.card} ${slot.dropped ? styles.dropped : ''}`}
                   style={{ ['--col' as string]: slot.col }}
@@ -145,28 +145,29 @@ const HomeFeatured = ({ projects }: { projects: LocalizedProject[] }) => {
                       {imagesReady && (
                         <Image
                           src={resolveImageUrl(source ?? '')}
-                          alt={`${project.displayName}, ${project.displayAddress}`}
+                          alt=""
                           fill
                           sizes={shape.sizes}
                           quality={85}
                         />
                       )}
-                      <figcaption className={styles.caption}>
-                        <span className={styles.captionName}>
-                          {project.displayName}
-                        </span>
-                        <span className={styles.captionMeta}>
-                          {project.displayAddress}
-                        </span>
-                        <span className={styles.captionMeta}>
+                    </span>
+                    {/* The caption names the link, so the photo stays silent. */}
+                    <span className={styles.caption}>
+                      <span className={styles.captionName}>
+                        {project.displayName}
+                      </span>
+                      <span className={styles.captionMeta}>
+                        <span>{project.displayAddress}</span>
+                        <span>
                           {t('home.landing.featuredProjects.scopeLabel', {
                             type: t(`project.types.${project.type}`),
                           })}
                         </span>
-                      </figcaption>
+                      </span>
                     </span>
                   </Link>
-                </figure>
+                </div>
               );
             })}
           </div>

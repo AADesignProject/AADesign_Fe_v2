@@ -1,34 +1,54 @@
-import Link from 'next/link';
+import { BsArrowUpRight } from 'react-icons/bs';
 import { useTranslation } from 'react-i18next';
 
-import ConsultationForm from '@/components/consultation-form';
-import { phoneNumber, phoneNumberHref, zaloHref } from '@/constant/general';
+import {
+  email,
+  phoneNumber,
+  phoneNumberHref,
+  zaloHref,
+} from '@/constant/general';
 import styles from '@/scss/home-page.module.scss';
 
 const HomeContact = () => {
   const { t } = useTranslation();
 
   return (
-    <section id="consultation-form" className={styles.contact}>
+    <section
+      id="contact"
+      className={styles.contact}
+      aria-labelledby="contact-title"
+    >
       <div className={styles.contactInner}>
-        <div className={styles.contactIntro}>
-          <h2>{t('home.landing.form.title')}</h2>
-          <p>{t('home.landing.form.description')}</p>
-          <div className={styles.contactActions}>
-            <a
-              href={zaloHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.contactButton}
-            >
-              {t('home.landing.form.zalo')}
-            </a>
-            <Link href={`tel:${phoneNumberHref}`} className={styles.textLink}>
-              {t('home.landing.form.call', { phone: phoneNumber })}
-            </Link>
-          </div>
+        <h2 id="contact-title" className={styles.contactTitle}>
+          {t('home.landing.contact.title')}
+        </h2>
+        <p className={styles.contactText}>
+          {t('home.landing.contact.description')}
+        </p>
+        <a
+          href={`tel:${phoneNumberHref}`}
+          className={styles.contactPhone}
+          aria-label={t('common.call', { phone: phoneNumber })}
+        >
+          <span>{phoneNumber}</span>
+          <BsArrowUpRight aria-hidden="true" focusable="false" />
+        </a>
+        <div className={styles.contactActions}>
+          <a
+            href={zaloHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.contactButton}
+          >
+            {t('common.zalo')}
+          </a>
+          <a href={`mailto:${email}`} className={styles.textLink}>
+            {email}
+          </a>
+          <p className={styles.contactMeta}>
+            {t('header.hours')}: {t('contact.time_active')}
+          </p>
         </div>
-        <ConsultationForm className={styles.form} />
       </div>
     </section>
   );

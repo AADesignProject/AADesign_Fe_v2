@@ -13,14 +13,16 @@
     "home": "Trang chủ"
   },
   "common": {
+    "call": "Gọi {{phone}}",
     "email": "Email",
-    "phone": "Điện thoại"
+    "phone": "Điện thoại",
+    "zalo": "Nhắn Zalo"
   },
   "contact": {
     "title": "Liên hệ",
     "description": "Trao đổi trực tiếp với AA Design để bắt đầu định hướng không gian, phạm vi thiết kế và lịch tư vấn phù hợp.",
     "consultationTitle": "Bắt đầu cuộc trao đổi về không gian của bạn",
-    "reachTitle": "Liên hệ trực tiếp",
+    "reachTitle": "Thông tin liên hệ",
     "zalo": "Zalo",
     "personName": "Mr La Thiên Phi",
     "office": "Văn phòng",
@@ -43,7 +45,8 @@
           "description": "Đưa ra hướng thiết kế và phương án triển khai phù hợp với bạn."
         }
       ]
-    }
+    },
+    "openInMaps": "Mở trong Google Maps"
   },
   "construction": {
     "count": "{{count}} công trình tiêu biểu",
@@ -129,17 +132,17 @@
       "hero": {
         "imageAlt": "Công trình nội thất nổi bật của AA Design",
         "metaProject": "Công trình nổi bật",
-        "primaryCta": "Đặt lịch tư vấn",
+        "primaryCta": "Liên hệ tư vấn",
         "secondaryCta": "Xem công trình",
         "titleLines": [
           "Thiết kế và thi công",
-          "nội thất theo cách",
-          "gia chủ thật sự sống"
+          "nội thất theo đúng",
+          "cách gia chủ sống"
         ]
       },
       "intro": {
-        "title": "Chúng tôi làm không gian giá trị cao trở nên cá nhân, tiện dụng và thi công được",
-        "description": "Từ ý tưởng đến bàn giao, AA Design tạo ra định hướng thiết kế có thể đi từ phối cảnh 3D đến thi công thực tế."
+        "title": "Không gian sang trọng, đúng cách bạn sống và thi công đúng như bản vẽ.",
+        "description": "AA Design đi cùng bạn từ phối cảnh 3D đến thi công ngoài thực tế."
       },
       "stats": {
         "items": [
@@ -148,12 +151,8 @@
             "value": "20+"
           },
           {
-            "label": "Công trình đã thực hiện",
-            "value": "100+"
-          },
-          {
-            "label": "Nhóm công trình chính",
-            "value": "5"
+            "label": "Dự án tiêu biểu",
+            "value": "20+"
           }
         ]
       },
@@ -173,15 +172,15 @@
             "title": "Tư vấn"
           },
           {
-            "description": "Xem xét mặt bằng, nhu cầu sống, giới hạn kỹ thuật và ưu tiên trước khi tạo concept.",
+            "description": "Xem mặt bằng, nhu cầu sống, giới hạn kỹ thuật và ưu tiên trước khi lên concept.",
             "title": "Khảo sát và brief"
           },
           {
-            "description": "Phát triển bố cục, mood, phối cảnh 3D và các quyết định thiết kế chính.",
+            "description": "Phát triển bố cục, không khí không gian, phối cảnh 3D và các quyết định chính.",
             "title": "Concept và 3D"
           },
           {
-            "description": "Phối hợp vật liệu, đồ nội thất, ánh sáng và chi tiết thi công thành bộ hồ sơ có thể triển khai.",
+            "description": "Kết hợp vật liệu, nội thất, ánh sáng, chi tiết thành bộ hồ sơ đủ rõ để thi công.",
             "title": "Vật liệu và kỹ thuật"
           },
           {
@@ -194,15 +193,15 @@
         "title": "Dịch vụ",
         "items": [
           {
-            "description": "Chúng tôi phát triển ý tưởng kiến trúc và nội thất cho biệt thự, căn hộ, văn phòng, nhà hàng, khách sạn và khu nghỉ dưỡng.",
-            "title": "Thiết kế có khả năng thi công"
+            "description": "Chúng tôi phát triển ý tưởng kiến trúc cho biệt thự, văn phòng, nhà hàng, khách sạn và khu nghỉ dưỡng, với định hướng thiết kế có thể thi công được.",
+            "title": "Thiết kế kiến trúc"
           },
           {
-            "description": "Bố cục, vật liệu, ánh sáng và chi tiết đồ nội thất được kiểm soát để không gian hoàn thiện đúng tinh thần thiết kế.",
-            "title": "Kiểm soát trọn gói nội thất"
+            "description": "Bố cục, vật liệu, ánh sáng và chi tiết đồ nội thất được phối hợp từ phối cảnh 3D để không gian hoàn thiện đúng tinh thần thiết kế.",
+            "title": "Thiết kế nội thất"
           },
           {
-            "description": "Đội ngũ đồng hành ở giai đoạn thi công, xử lý chi tiết hiện trường và bàn giao chất lượng cho khách hàng cần dịch vụ trọn gói.",
+            "description": "Đội ngũ đồng hành ở giai đoạn thi công, xử lý chi tiết hiện trường và bàn giao đúng định hướng thiết kế đã duyệt, dành cho khách hàng cần dịch vụ trọn gói.",
             "title": "Thi công trọn gói"
           }
         ],
@@ -211,15 +210,15 @@
           "Biệt thự",
           "Căn hộ cao cấp",
           "Văn phòng",
-          "Nhà hàng/khách sạn",
-          "Thi công trọn gói"
+          "Nhà hàng/khách sạn"
         ]
       },
       "founder": {
         "eyebrow": "Đội ngũ",
-        "title": "Định hướng thiết kế có kinh nghiệm, không chỉ là trang trí",
-        "description": "Founder La Thiên Phi mang gần hai thập kỷ kinh nghiệm kiến trúc và nội thất vào các dự án nhà ở, văn phòng và thương mại.",
-        "quote": "Mỗi công trình cần một điểm cân bằng riêng: cách sống của gia chủ, công năng của không gian và kỷ luật để thi công đúng."
+        "title": "Thiết kế có chiều sâu, không chỉ là trang trí",
+        "description": "Kiến trúc sư La Thiên Phi, người sáng lập AA Design, mang gần hai thập kỷ kinh nghiệm kiến trúc và nội thất vào các dự án nhà ở, văn phòng và thương mại.",
+        "quote": "Mỗi công trình cần một điểm cân bằng riêng: cách sống của gia chủ, công năng của không gian và kỷ luật để thi công đúng.",
+        "name": "La Thiên Phi"
       },
       "faq": {
         "title": "Câu hỏi trước khi bắt đầu dự án",
@@ -244,26 +243,16 @@
             "answer": "Phạm vi bảo hành phụ thuộc hạng mục thi công và vật liệu. Nội dung này nên được chốt trong hợp đồng và checklist bàn giao.",
             "question": "Có bảo hành không?"
           }
-        ]
+        ],
+        "glance": {
+          "design": "Thiết kế",
+          "build": "Thi công",
+          "warranty": "Bảo hành"
+        }
       },
-      "form": {
-        "description": "Gửi brief đầu tiên với loại công trình, địa điểm và thời gian mong muốn. AA Design sẽ phản hồi bằng bước tiếp theo hữu ích nhất.",
-        "message": "Ghi chú dự án",
-        "name": "Họ tên",
-        "need": "Nhu cầu dự án",
-        "options": {
-          "apartment": "Căn hộ cao cấp",
-          "hospitality": "Nhà hàng / khách sạn",
-          "office": "Văn phòng",
-          "turnkey": "Thi công trọn gói",
-          "villa": "Biệt thự"
-        },
-        "phone": "Số điện thoại",
-        "submit": "Gửi yêu cầu tư vấn",
-        "title": "Cho chúng tôi biết không gian bạn muốn xây dựng",
-        "phoneHint": "Nhập số điện thoại Việt Nam, ví dụ 0986 831 269",
-        "zalo": "Nhắn Zalo",
-        "call": "Gọi {{phone}}"
+      "contact": {
+        "title": "Gọi hoặc nhắn Zalo để trao đổi về không gian của bạn",
+        "description": "Cho AA biết loại công trình, địa điểm và thời gian bạn mong muốn, qua điện thoại hoặc Zalo."
       }
     }
   },
@@ -273,7 +262,7 @@
   "profile": {
     "hero": {
       "eyebrow": "Giới thiệu",
-      "title": "Gần hai thập kỷ biến không gian thành nơi để sống",
+      "title": "Gần hai thập kỷ tạo nên những không gian đáng sống",
       "lead": "AA Design do kiến trúc sư La Thiên Phi sáng lập, đồng hành cùng gia chủ từ ý tưởng thiết kế đến ngày bàn giao công trình.",
       "founder": "Người sáng lập",
       "name": "La Thiên Phi",
@@ -299,7 +288,7 @@
       "title": "Thiết kế không chỉ là sắp đặt nội thất",
       "lead": "Mỗi công trình là một câu chuyện riêng, và thiết kế là nghệ thuật kiến tạo không gian sống và làm việc lý tưởng.",
       "paragraphs": [
-        "Với gần 20 năm kinh nghiệm trong lĩnh vực thiết kế kiến trúc - nội thất, tôi đã có cơ hội thực hiện nhiều dự án đa dạng, từ chung cư, biệt thự, văn phòng đến các không gian thương mại.",
+        "Với gần 20 năm kinh nghiệm trong lĩnh vực thiết kế kiến trúc - nội thất, chúng tôi đã có cơ hội thực hiện nhiều dự án đa dạng, từ chung cư, biệt thự, văn phòng đến các không gian thương mại.",
         "Tôi luôn tâm niệm một không gian tốt phải đẹp khi nhìn, thuận tiện khi dùng và đủ chỉn chu để thi công đúng như bản vẽ."
       ],
       "imageAlt": "Mặt tiền biệt thự tân cổ điển với ban công và đèn tường"
@@ -314,7 +303,7 @@
         },
         {
           "title": "Sự hài hòa",
-          "description": "Đảm bảo sự cân bằng hoàn hảo giữa công năng, thẩm mỹ và cảm xúc của người sử dụng."
+          "description": "Cân bằng công năng, thẩm mỹ và cảm xúc của người dùng không gian."
         },
         {
           "title": "Chi tiết",
@@ -325,7 +314,7 @@
     "scope": {
       "imageAlt": "Sảnh gỗ chạm khắc với mái ngói và đèn lồng đỏ"
     },
-    "quote": "Mỗi công trình là một câu chuyện riêng, nơi công năng, thẩm mỹ và cảm xúc gặp nhau."
+    "quote": "Trong mỗi công trình, công năng, thẩm mỹ và cảm xúc cần hòa làm một."
   },
   "project": {
     "types": {

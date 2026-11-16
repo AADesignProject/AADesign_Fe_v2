@@ -80,6 +80,12 @@ const duplicateLocaleRedirects = [
   },
 ];
 
+// Project photos move to this CDN when set (same variable as resolveImageUrl).
+// Images go through /_next/image, so only remotePatterns needs the host, not CSP.
+const imageCdn = process.env.NEXT_PUBLIC_LINK_S3
+  ? new URL(process.env.NEXT_PUBLIC_LINK_S3)
+  : null;
+
 /** @type {import('next').NextConfig} */
 const contentSecurityPolicy = [
   "default-src 'self'",
@@ -112,6 +118,15 @@ const nextConfig = {
         hostname: 'aa-design.s3.ap-southeast-1.amazonaws.com',
         pathname: '/**',
       },
+      ...(imageCdn
+        ? [
+            {
+              protocol: imageCdn.protocol.replace(':', ''),
+              hostname: imageCdn.hostname,
+              pathname: '/**',
+            },
+          ]
+        : []),
     ],
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",

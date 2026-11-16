@@ -1,9 +1,9 @@
 import { useRef } from 'react';
+import Image from 'next/image';
 import { BsArrowUpRight } from 'react-icons/bs';
 import { useTranslation } from 'react-i18next';
 
 //components
-import ConsultationForm from '@/components/consultation-form';
 import SEOHeaderComponent from '@/components/seo-header';
 
 //styles
@@ -15,6 +15,7 @@ import {
   zaloHref,
 } from '@/constant/general';
 import { useReveal, useScrollAnimation } from '@/utils/gsap';
+import { resolveImageUrl } from '@/utils/resolveImageUrl';
 
 type Step = { description: string; title: string };
 
@@ -32,13 +33,16 @@ const ContactPage = () => {
     },
     {
       label: t('contact.zalo'),
-      value: t('home.landing.form.zalo'),
+      value: t('common.zalo'),
       href: zaloHref,
       external: true,
     },
     { label: t('common.email'), value: email, href: `mailto:${email}` },
   ];
   const steps = t('contact.process.items', { returnObjects: true }) as Step[];
+  const mapHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+    `${t('contact.office_address_detail')}, ${t('contact.office_address')}`
+  )}`;
 
   useReveal(ref);
 
@@ -116,6 +120,14 @@ const ContactPage = () => {
                     <address className={styles.value}>
                       <span>{t('contact.office_address_detail')}</span>
                       <span>{t('contact.office_address')}</span>
+                      <a
+                        className={styles.mapLink}
+                        href={mapHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {t('contact.openInMaps')}
+                      </a>
                     </address>
                   </div>
                 </li>
@@ -130,10 +142,15 @@ const ContactPage = () => {
               </ul>
             </div>
 
-            <div className={styles.formCard} data-reveal>
-              <h2>{t('home.landing.form.title')}</h2>
-              <p>{t('home.landing.form.description')}</p>
-              <ConsultationForm className={styles.form} />
+            <div className={styles.photo} data-reveal>
+              <Image
+                src={resolveImageUrl(
+                  '/images/project/ai_phu_gia/1744446960194-p_khach_3.webp'
+                )}
+                alt=""
+                fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
+              />
             </div>
           </div>
         </section>
