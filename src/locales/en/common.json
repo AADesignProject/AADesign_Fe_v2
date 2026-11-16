@@ -13,14 +13,16 @@
     "home": "Home"
   },
   "common": {
+    "call": "Call {{phone}}",
     "email": "Email",
-    "phone": "Phone"
+    "phone": "Phone",
+    "zalo": "Chat on Zalo"
   },
   "contact": {
     "title": "Contact",
     "description": "Speak directly with AA Design to define your space, design scope and consultation schedule.",
     "consultationTitle": "Start a conversation about your space",
-    "reachTitle": "Reach us directly",
+    "reachTitle": "Contact details",
     "zalo": "Zalo",
     "personName": "Mr La Thien Phi",
     "office": "Office",
@@ -43,7 +45,8 @@
           "description": "We present a design direction and a delivery approach that fits."
         }
       ]
-    }
+    },
+    "openInMaps": "Open in Google Maps"
   },
   "construction": {
     "count": "{{count}} featured projects",
@@ -129,7 +132,7 @@
       "hero": {
         "imageAlt": "AA Design featured interior project",
         "metaProject": "Featured project",
-        "primaryCta": "Book consultation",
+        "primaryCta": "Talk to us",
         "secondaryCta": "View projects",
         "titleLines": [
           "Interior design and",
@@ -138,8 +141,8 @@
         ]
       },
       "intro": {
-        "title": "We make high-value spaces feel personal, functional and ready to build",
-        "description": "From concept to handover, AA Design builds a design direction that can move cleanly from 3D visualization into real construction."
+        "title": "Refined spaces that fit how you live and are built exactly as drawn.",
+        "description": "AA Design stays with you from 3D visualization through to on-site construction."
       },
       "stats": {
         "items": [
@@ -148,12 +151,8 @@
             "value": "20+"
           },
           {
-            "label": "Completed projects",
-            "value": "100+"
-          },
-          {
-            "label": "Main project categories",
-            "value": "5"
+            "label": "Featured projects",
+            "value": "20+"
           }
         ]
       },
@@ -169,11 +168,11 @@
         "title": "From consultation to handover",
         "items": [
           {
-            "description": "Discuss project type, location, current state, expectations and investment direction.",
+            "description": "Discuss project type, site, current state, expectations and investment goals.",
             "title": "Consultation"
           },
           {
-            "description": "Review the site, lifestyle needs, technical limits and priorities before shaping the concept.",
+            "description": "Review the site, lifestyle, technical limits and priorities before the concept.",
             "title": "Survey and brief"
           },
           {
@@ -181,7 +180,7 @@
             "title": "Concept and 3D"
           },
           {
-            "description": "Coordinate materials, furniture, lighting and construction details into a buildable package.",
+            "description": "Coordinate materials, furniture, lighting and details into a buildable package.",
             "title": "Material and technical control"
           },
           {
@@ -194,16 +193,16 @@
         "title": "Services",
         "items": [
           {
-            "description": "We develop architecture and interior concepts for villas, apartments, offices, restaurants, hotels and resort spaces.",
-            "title": "Design with a buildable direction"
+            "description": "We develop architecture concepts for villas, offices, restaurants, hotels and resorts, with a design direction that can actually be built.",
+            "title": "Architectural design"
           },
           {
-            "description": "We coordinate layout, materials, lighting and furniture details so the finished space follows the design intent.",
-            "title": "Control the full interior package"
+            "description": "We coordinate layout, materials, lighting and furniture details from the 3D stage so the finished space follows the design intent.",
+            "title": "Interior design"
           },
           {
-            "description": "We manage construction details, site coordination and handover quality for clients who need a complete service.",
-            "title": "Deliver turnkey construction"
+            "description": "Our team stays with the project through construction, handles on-site details and hands over a result that follows the approved design, for clients who want a complete service.",
+            "title": "Turnkey construction"
           }
         ],
         "typesTitle": "Types of spaces we have delivered",
@@ -211,15 +210,15 @@
           "Villas",
           "Premium apartments",
           "Offices",
-          "Restaurants and hotels",
-          "Turnkey construction"
+          "Restaurants and hotels"
         ]
       },
       "founder": {
         "eyebrow": "Founder and team",
-        "title": "A senior design direction, not just decorative styling",
-        "description": "Founder La Thien Phi brings nearly two decades of architecture and interior design experience into residential, office and commercial projects.",
-        "quote": "Every project needs its own balance: the owner's way of living, the function of the space and the discipline to build it properly."
+        "title": "Design with depth, not just decoration",
+        "description": "Architect La Thien Phi, founder of AA Design, brings nearly two decades of architecture and interior design experience into residential, office and commercial projects.",
+        "quote": "Every project needs its own balance: the owner's way of living, the function of the space and the discipline to build it properly.",
+        "name": "La Thien Phi"
       },
       "faq": {
         "title": "Questions before starting a project",
@@ -244,26 +243,16 @@
             "answer": "Warranty scope depends on construction items and materials. It should be clarified with the final contract and handover checklist.",
             "question": "Is there warranty after handover?"
           }
-        ]
+        ],
+        "glance": {
+          "design": "Design",
+          "build": "Construction",
+          "warranty": "Warranty"
+        }
       },
-      "form": {
-        "description": "Send the first brief with your project type, location and timeline. AA Design will respond with the most useful next step.",
-        "message": "Project note",
-        "name": "Your name",
-        "need": "Project need",
-        "options": {
-          "apartment": "Premium apartment",
-          "hospitality": "Restaurant / hotel",
-          "office": "Office",
-          "turnkey": "Turnkey construction",
-          "villa": "Villa"
-        },
-        "phone": "Phone number",
-        "submit": "Send consultation request",
-        "title": "Tell us about the space you want to build",
-        "phoneHint": "Enter a Vietnamese phone number, e.g. 0986 831 269",
-        "zalo": "Chat on Zalo",
-        "call": "Call {{phone}}"
+      "contact": {
+        "title": "Call or message us about your space",
+        "description": "Tell us the project type, location and timing you have in mind, by phone or on Zalo."
       }
     }
   },
@@ -299,7 +288,7 @@
       "title": "Design is more than arranging interiors",
       "lead": "Every project has its own story, and design is the art of shaping ideal spaces for living and working.",
       "paragraphs": [
-        "With nearly 20 years of experience in architecture and interior design, I have had the opportunity to work on a wide range of projects, from apartments and villas to offices and commercial spaces.",
+        "With nearly 20 years of experience in architecture and interior design, we have had the opportunity to work on a wide range of projects, from apartments and villas to offices and commercial spaces.",
         "I believe a good space should look beautiful, be easy to use, and be resolved well enough to be built exactly as drawn."
       ],
       "imageAlt": "Neoclassical villa facade with a balcony and wall lanterns"
@@ -325,7 +314,7 @@
     "scope": {
       "imageAlt": "Carved timber hall with a tiled roof and red lanterns"
     },
-    "quote": "Every project is its own story, where function, aesthetics and emotion meet."
+    "quote": "In every project, function, aesthetics and emotion should come together as one."
   },
   "project": {
     "types": {

@@ -32,13 +32,17 @@ for s in scripts/check-*.mjs; do node "$s"; done
 
 ## Biến môi trường
 
-Đặt trong `.env.local` (không commit). Tất cả đều là `NEXT_PUBLIC_*` nên sẽ nằm trong bundle, không đặt bí mật ở đây.
+Đặt trong `.env.local` (không commit; mẫu ở `.env.example`) và trong Vercel → Project Settings → Environment Variables.
 
-| Biến | Mặc định | Dùng cho |
-| --- | --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | `https://aa-design.vn` | canonical, hreflang, sitemap |
-| `NEXT_PUBLIC_LINK_S3` | rỗng | tiền tố cho đường dẫn ảnh không bắt đầu bằng `/` |
-| `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | rỗng | thẻ xác minh Google Search Console |
+### Công khai (`NEXT_PUBLIC_*`)
+
+Nằm trong bundle trình duyệt, không đặt bí mật ở đây.
+
+| Biến                                   | Mặc định               | Dùng cho                                         |
+| -------------------------------------- | ---------------------- | ------------------------------------------------ |
+| `NEXT_PUBLIC_SITE_URL`                 | `https://aa-design.vn` | canonical, hreflang, sitemap                     |
+| `NEXT_PUBLIC_LINK_S3`                  | rỗng                   | origin CDN ảnh (không có `/` cuối); rỗng = ảnh lấy từ `public/` |
+| `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | rỗng                   | thẻ xác minh Google Search Console               |
 
 ## Cấu trúc
 
@@ -46,7 +50,7 @@ for s in scripts/check-*.mjs; do node "$s"; done
 src/
   pages/            route (index, construction, contact, profile, api/sitemap)
   component-page/   section riêng của trang chủ
-  components/       header, footer, layout, form, SEO...
+  components/       header, footer, layout, SEO...
   styles/           *.module.scss (alias @/scss/*)
   data/             nội dung dự án (static-content.json, project-content.json)
   locales/          bản dịch vi/en
@@ -59,4 +63,4 @@ scripts/            các script check-*
 
 ## Deploy
 
-Site chạy trên Vercel, deploy tự động khi push (không còn CI riêng hay EC2/pm2). Vercel lấy Node từ `engines.node` trong `package.json` (hiện `24.x`) và tự chạy `npm install` + `next build`. Đặt các biến `NEXT_PUBLIC_*` ở bảng trên trong Project Settings → Environment Variables. Vì Next 16 không lint lúc build, hãy chạy `npm run lint` (hook pre-commit đã làm việc này) trước khi push.
+Site chạy trên Vercel, deploy tự động khi push (không còn CI riêng hay EC2/pm2). Vercel lấy Node từ `engines.node` trong `package.json` (hiện `24.x`) và tự chạy `npm install` + `next build`. Đặt các biến `NEXT_PUBLIC_*` ở mục Biến môi trường (cho Production + Preview) trong Project Settings → Environment Variables. Vì Next 16 không lint lúc build, hãy chạy `npm run lint` (hook pre-commit đã làm việc này) trước khi push.

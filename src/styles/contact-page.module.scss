@@ -1,7 +1,6 @@
 @use './variables.module.scss' as *;
 
 $dark-line: rgba(255, 255, 255, 0.16);
-$invalid: #b3261e;
 
 @keyframes rise {
   from {
@@ -76,11 +75,11 @@ $invalid: #b3261e;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: clamp(16px, 2vw, 32px);
   row-gap: 56px;
-  align-items: start;
+  align-items: stretch;
 }
 
 .reach {
-  grid-column: 1 / span 5;
+  grid-column: 1 / span 6;
 
   h2 {
     font-size: clamp(26px, 2.4vw, 34px);
@@ -167,130 +166,37 @@ a.row {
     transform 0.35s $ease-out;
 }
 
-.formCard {
-  grid-column: 7 / -1;
-  padding: clamp(28px, 4vw, 56px);
-  background: $surface-warm;
+// Decorative photo that balances the channel list (column 7 stays empty).
+.photo {
+  position: relative;
+  grid-column: 8 / -1;
+  align-self: stretch;
+  min-height: 420px;
+  background: $surface-muted;
 
-  h2 {
-    @include section-heading;
-    font-size: clamp(26px, 2.6vw, 38px);
-    line-height: 1.2;
-  }
-
-  > p {
-    max-width: 46ch;
-    margin-top: 16px;
-    color: $muted-text-color;
-    font-size: 16px;
-    line-height: 1.8;
+  img {
+    object-fit: cover;
   }
 }
 
-.form {
-  display: grid;
-  gap: 28px;
-  margin-top: 36px;
-
-  label {
-    position: relative;
-    display: grid;
-    gap: 8px;
-    color: $muted-text-color;
-    font-size: 14px;
-    font-weight: 500;
-    transition: color 0.2s ease;
-
-    // Gold underline that draws in from the left while the field has focus.
-    &::after {
-      content: '';
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      height: 1px;
-      background: $accent-color;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s $ease-out;
-    }
-
-    &:focus-within {
-      color: $accent-text;
-
-      &::after {
-        transform: scaleX(1);
-      }
-    }
-
-    &:has(:user-invalid) {
-      color: $invalid;
-    }
-  }
-
-  input,
-  select,
-  textarea {
-    width: 100%;
-    min-height: 52px;
-    padding: 10px 0;
-    border: 0;
-    border-bottom: 1px solid rgba(23, 23, 20, 0.4);
-    border-radius: 0;
-    background: transparent;
-    color: $text-color;
-    font-size: 16px;
-
-    &:user-invalid {
-      border-bottom-color: $invalid;
-    }
-  }
-
-  textarea {
-    min-height: 120px;
-    resize: vertical;
-  }
-
-  button {
-    display: inline-flex;
-    min-height: 52px;
-    align-items: center;
-    justify-self: start;
-    gap: 14px;
-    padding: 0 32px;
-    border: 0;
-    background: $secondary-color;
-    color: $white-color;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    transition: background-color 0.25s ease;
-
-    // A short rule that stretches on hover, in place of an arrow glyph.
-    &::after {
-      content: '';
-      width: 16px;
-      height: 1px;
-      background: currentcolor;
-      transition: width 0.35s $ease-out;
-    }
-
-    &:hover,
-    &:focus-visible {
-      background: $primary-dark;
-
-      &::after {
-        width: 32px;
-      }
-    }
-  }
+.mapLink {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-self: start;
+  gap: 8px;
+  color: $accent-text;
+  font: 600 14px var(--font-body);
+  text-decoration: underline;
+  text-underline-offset: 6px;
 }
 
 // --------------------------------------------------------------- process
 
 .process {
-  padding-block: $section-space;
+  padding-block: $section-space $section-space-tight;
+  // Same dark as the footer below: the hairline keeps the two apart.
+  border-bottom: 1px solid $dark-line;
   background: $secondary-color;
   color: $white-color;
 }
@@ -364,13 +270,25 @@ a.row {
   }
 
   .reach,
-  .formCard {
+  .photo {
     grid-column: 1 / -1;
+  }
+
+  .photo {
+    align-self: start;
+    aspect-ratio: 4 / 3;
+    min-height: 0;
   }
 
   .stepList {
     grid-template-columns: 1fr;
     gap: 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    padding-bottom: 32px;
   }
 }
 

@@ -8,21 +8,21 @@ import SEOHeaderComponent from '@/components/seo-header';
 
 // Styles
 import styles from '@/scss/profile.module.scss';
-import {
-  parseStat,
-  useCountUp,
-  useReveal,
-  useScrollAnimation,
-} from '@/utils/gsap';
+import { useReveal, useScrollAnimation } from '@/utils/gsap';
+import { resolveImageUrl } from '@/utils/resolveImageUrl';
 
 type Stat = { label: string; value: string };
 type Principle = { description: string; title: string };
 
-// Local photos of finished AA Design work (no stock photography).
+// Photos of finished AA Design work (no stock photography).
 const images = {
-  hero: '/images/project/banners/1743410060872-coover_3.webp',
-  story: '/images/project/banners/1743410060884-coover_2_1.webp',
-  scope: '/images/project/biet_thu_au_co/1744345135709-p_tho_4.webp',
+  hero: resolveImageUrl('/images/project/banners/1743410060872-coover_3.webp'),
+  story: resolveImageUrl(
+    '/images/project/banners/1743410060884-coover_2_1.webp'
+  ),
+  scope: resolveImageUrl(
+    '/images/project/biet_thu_au_co/1744345135709-p_tho_4.webp'
+  ),
 };
 
 const pad = (index: number) => String(index + 1).padStart(2, '0');
@@ -43,7 +43,6 @@ const ProfilePage = () => {
   }) as string[];
 
   useReveal(ref);
-  useCountUp(ref);
 
   // The hero and story photos drift slowly against the page as it scrolls.
   useScrollAnimation(ref, ({ gsap, mobile }) => {
@@ -110,17 +109,12 @@ const ProfilePage = () => {
 
         <section className={styles.stats}>
           <ul className={styles.statsInner}>
-            {stats.map((stat) => {
-              const { number, suffix } = parseStat(stat.value);
-              return (
-                <li key={stat.label} data-reveal>
-                  <strong data-count={number} data-suffix={suffix}>
-                    {stat.value}
-                  </strong>
-                  <span>{stat.label}</span>
-                </li>
-              );
-            })}
+            {stats.map((stat) => (
+              <li key={stat.label} data-reveal>
+                <strong>{stat.value}</strong>
+                <span>{stat.label}</span>
+              </li>
+            ))}
           </ul>
         </section>
 

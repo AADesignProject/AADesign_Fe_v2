@@ -25,13 +25,15 @@ const encodePath = (path: string) =>
   path.split('/').map(encodeURIComponent).join('/');
 
 // Image sitemap: lets Google Images find the project photos at their plain
-// file URLs (the page <img> tags point at /_next/image variants).
+// file URLs (the page <img> tags point at /_next/image variants). Photos live
+// on the image CDN when NEXT_PUBLIC_LINK_S3 is set (see resolveImageUrl).
+const imageOrigin = process.env.NEXT_PUBLIC_LINK_S3 || siteUrl;
 const imageTags = (paths: Array<string | undefined>) =>
   [...new Set(paths)]
     .filter((p): p is string => !!p && p.startsWith('/'))
     .map(
       (p) =>
-        `<image:image><image:loc>${escapeXml(siteUrl + encodePath(p))}</image:loc></image:image>`
+        `<image:image><image:loc>${escapeXml(imageOrigin + encodePath(p))}</image:loc></image:image>`
     )
     .join('');
 

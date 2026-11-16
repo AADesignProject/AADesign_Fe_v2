@@ -20,6 +20,8 @@ const parts = fs
   .map((file) => read(`${homeDir}/${file}`))
   .join('\n');
 const styles = read('src/styles/home-page.module.scss');
+const homeIntro = read(`${homeDir}/home-intro.tsx`);
+const homeProcess = read(`${homeDir}/home-process.tsx`);
 const en = read('src/locales/en/common.json');
 const vi = read('src/locales/vi/common.json');
 
@@ -62,7 +64,7 @@ for (const id of [
   'services',
   'team',
   'faq',
-  'consultation-form',
+  'contact',
 ]) {
   assertIncludes(parts, `id="${id}"`, `Missing homepage section id: ${id}`);
 }
@@ -97,5 +99,29 @@ assertIncludes(
 );
 assertIncludes(en, '"landing"', 'English homepage landing copy is missing');
 assertIncludes(vi, '"landing"', 'Vietnamese homepage landing copy is missing');
+
+// The consultation form is gone: the closing section only offers direct
+// channels (call, Zalo, email).
+if (/ConsultationForm|<form\b/.test(parts)) {
+  throw new Error('The homepage should not render a form');
+}
+if (fs.existsSync(path.join(root, 'src/components/consultation-form.tsx'))) {
+  throw new Error('consultation-form.tsx should be deleted');
+}
+
+// No scroll-driven gimmicks: stats render their final numbers, the process
+// section is a plain list (no GSAP pinning).
+if (homeIntro.includes('useCountUp')) {
+  throw new Error('home-intro.tsx should not count numbers up (useCountUp)');
+}
+if (homeProcess.includes('ScrollTrigger')) {
+  throw new Error('home-process.tsx should not use ScrollTrigger');
+}
+if (/\bpin(?:ned|Spacing)?\b/.test(homeProcess)) {
+  throw new Error('home-process.tsx should not pin the section');
+}
+if (styles.includes('data-pinned')) {
+  throw new Error('home-page.module.scss should not style [data-pinned]');
+}
 
 console.log('Homepage rebuild checks passed.');

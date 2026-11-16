@@ -13,7 +13,9 @@ $max-content-width: 1440px;
 
 // Shared layout rhythm (used by every page so sections line up).
 $gutter: clamp(20px, 5vw, 72px);
-$section-space: clamp(88px, 11vw, 168px);
+$section-space: clamp(80px, 9vw, 136px);
+// Denser tier for the content-heavy sections (services, team, faq, process).
+$section-space-tight: clamp(64px, 7vw, 104px);
 $ease-out: cubic-bezier(0.2, 0.7, 0.1, 1);
 $accent-light: #e3c49a;
 // Darker gold for small text on light backgrounds ($accent-color is ~3:1 there).

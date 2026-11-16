@@ -99,48 +99,6 @@ export const useReveal = (scope: RefObject<HTMLElement>) => {
   });
 };
 
-// "100+" -> 100 and "+": the number counts up, the suffix stays put.
-export const parseStat = (value: string) => {
-  const match = value.match(/^(\d+)(.*)$/);
-  return { number: Number(match?.[1] ?? 0), suffix: match?.[2] ?? '' };
-};
-
-/**
- * Counts every `[data-count]` inside `scope` up from 0 once it scrolls into
- * view (`data-suffix` is appended as-is). Without motion the numbers simply
- * stay at their final value.
- */
-export const useCountUp = (scope: RefObject<HTMLElement>) => {
-  useScrollAnimation(scope, ({ gsap }) => {
-    const nodes = Array.from(
-      scope.current?.querySelectorAll<HTMLElement>('[data-count]') ?? []
-    );
-    const finals = nodes.map((node) => node.textContent ?? '');
-
-    nodes.forEach((node) => {
-      const suffix = node.dataset.suffix ?? '';
-      const counter = { value: 0 };
-      node.textContent = `0${suffix}`;
-
-      gsap.to(counter, {
-        value: Number(node.dataset.count),
-        duration: 1.8,
-        ease: 'power2.out',
-        scrollTrigger: { trigger: node, start: 'top 88%', once: true },
-        onUpdate: () => {
-          node.textContent = `${Math.round(counter.value)}${suffix}`;
-        },
-      });
-    });
-
-    return () => {
-      nodes.forEach((node, index) => {
-        node.textContent = finals[index];
-      });
-    };
-  });
-};
-
 /** True once the window `load` event has fired (immediately on client navigations). */
 export const useAfterLoad = () => {
   const [ready, setReady] = useState(false);
